@@ -1,0 +1,378 @@
+<div >
+ 
+    <!-- Si isCvVisible est vrai, affiche le composant CV -->
+  <div *ngIf="isCvVisible" class="bg-white shadow-lg rounded-lg p-6  w-full">
+    <app-cv></app-cv>
+  </div>
+</div>
+
+<div class="min-h-screen bg-gray-100 flex flex-col ">
+  <!-- Container -->
+
+  <div class="bg-white w-full max-w-3xl rounded-lg shadow-lg p-8">
+    <div class="m-w-8">
+      <button (click)="toggleCv()" [ngStyle]="{'background-color': isCvVisible ? 'red' : 'green'}"
+      class="mb-4 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!isCvVisible" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed"><path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/></svg> 
+        <svg xmlns="http://www.w3.org/2000/svg" *ngIf="isCvVisible" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <!-- Header -->
+    <h1 class="text-3xl font-semibold text-center text-green-600 mb-6">
+      Create Your CV
+    </h1>
+
+    <!-- Steps -->
+    <div class="flex justify-between mb-8">
+      <div *ngFor="let step of steps; let i = index" class="flex flex-col items-center">
+        <div
+          [ngClass]="{
+            'bg-green-500 text-white': i === currentStep,
+            'bg-gray-300': i !== currentStep
+          }"
+          class="w-8 h-8 flex items-center justify-center rounded-full"
+        >
+          {{ i + 1 }}
+        </div>
+        <span [ngClass]="{ 'text-green-600': i === currentStep, 'text-gray-500': i !== currentStep }" class="mt-2">
+          {{ step.title }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Form -->
+      <div [ngSwitch]="currentStep">
+        <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
+        <!-- Personal Info Step -->
+        <div *ngSwitchCase="0"   formGroupName="personalInfo">
+          
+          <div class="grid grid-cols-1 border-emerald-50 ">
+            <div class="flex flex-col items-center ">
+              <!-- Champ de sélection de fichier -->
+              <label class="cursor-pointer  border-">
+                <input 
+                  type="file" 
+                  formControlName="profilePicture" 
+                  (change)="onFileSelected($event)" 
+                  class="hidden"
+                />
+                <div class="px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-400 text-center transition duration-200">
+                  Upload Profile Picture
+                </div>
+              </label>
+          
+              <div class="w-32 h-32 mt-4" *ngIf="imagePreview">
+                <img *ngIf="imagePreview" 
+                     [src]="imagePreview" 
+                     alt="Preview" 
+                     class="w-full h-full object-cover rounded-full border-2 border-emerald-400 shadow-lg" 
+                />
+              </div>
+            </div>
+          
+                
+            <div>
+              <label for="firstName" class="block text-gray-600 font-medium mb-2">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+              />
+            </div>
+            <div>
+              <label for="lastName" class="block text-gray-600 font-medium mb-2">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="email" class="block text-gray-600 font-medium mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+              />
+            </div>
+            <div>
+              <label for="phone" class="block text-gray-600 font-medium mb-2">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                formControlName="phone"
+                class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Summary Step -->
+        <div *ngSwitchCase="1">
+          <label for="summary" class="block text-gray-600 font-medium mb-2">Professional Summary</label>
+          <textarea
+            id="summary"
+            formControlName="professionalSummary"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          ></textarea>
+        </div>
+<!-- Education -->
+<!-- Education -->
+<div *ngSwitchCase="2">
+    <div formArrayName="educationPrinciple">
+      <div *ngFor="let edu of educationPrinciple.controls; let i = index" [formGroupName]="i" class="mb-6">
+        <!-- Institution Name -->
+        <div class="mb-4">
+          <label for="institution" class="block text-gray-600 font-medium mb-2">Institution Name</label>
+          <input
+            id="institution"
+            formControlName="institution"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- Degree Obtained -->
+        <div class="mb-4">
+          <label for="degree" class="block text-gray-600 font-medium mb-2">Degree</label>
+          <input
+            id="degree"
+            formControlName="degree"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- Specialization -->
+        <div class="mb-4">
+          <label for="specialization" class="block text-gray-600 font-medium mb-2">Specialization</label>
+          <input
+            id="specialization"
+            formControlName="specialization"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- Start Date -->
+        <div class="mb-4">
+          <label for="startEdu" class="block text-gray-600 font-medium mb-2">Start Date</label>
+          <input
+            id="startEdu"
+            type="date"
+            formControlName="startEdu"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- End Date -->
+        <div class="mb-4">
+          <label for="endEdu" class="block text-gray-600 font-medium mb-2">End Date</label>
+          <input
+            id="endEdu"
+            type="date"
+            formControlName="endEdu"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- Location -->
+        <div class="mb-4">
+          <label for="location" class="block text-gray-600 font-medium mb-2">Location</label>
+          <input
+            id="location"
+            formControlName="location"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500"
+          />
+        </div>
+
+        <!-- Remove Education Button -->
+        <button
+          type="button"
+          *ngIf="educationPrinciple.length > 1"
+
+          (click)="removeEducation(i)"
+          class="mt-2 bg-red-500 text-white py-1 px-4 rounded-lg hover:bg-red-600"
+        >
+          Remove Education
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Education Button -->
+    <div class="text-center">
+
+    <button
+      type="button"
+      (click)="addEducationPrinciple()"
+      class="mt-6 bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+      
+      Add Education
+    </button>
+</div>
+</div>
+
+<div *ngSwitchCase="3" formArrayName="experiences">
+    <div *ngFor="let experience of experiences.controls; let i = index" [formGroupName]="i" class="space-y-6 mt-6 p-6 border rounded-lg shadow-md">
+      <div>
+        <label for="jobTitle" class="block text-sm font-medium text-gray-700">Job Title</label>
+        <input id="jobTitle" formControlName="jobTitle" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+      <div>
+        <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+        <input id="company" formControlName="company" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date</label>
+          <input id="startDate" formControlName="startDate" type="date" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div>
+          <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
+          <input id="endDate" formControlName="endDate" type="date" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+      </div>
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700">Responsibilities and Tasks</label>
+        <textarea id="description" formControlName="description" rows="4" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+      <div class="text-right">
+        <button type="button"      *ngIf="experiences.length > 1"
+          (click)="removeExperience(i)" class="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+          Remove Experience
+        </button>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button"  (click)="addExperience()" class="mt-6 bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+        Add Another Experience
+      </button>
+  </div>
+  
+  </div>
+<!-- Projects Section -->
+<div *ngSwitchCase="4">
+  <div formArrayName="projects">
+    <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i" class="space-y-4 mb-4">
+      <div class="flex flex-col">
+        <label for="title" class="text-sm font-medium text-gray-700">Project Title</label>
+        <input id="title" formControlName="title" class="p-2 border border-emerald-500 rounded-md" />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="description" class="text-sm font-medium text-gray-700">Project Description</label>
+        <textarea id="description" formControlName="description" class="p-2 border border-emerald-500 rounded-md"></textarea>
+      </div>
+
+      <div class="flex flex-col">
+        <label for="technologies" class="text-sm font-medium text-gray-700">Technologies</label>
+        <input id="technologies" formControlName="technologies" class="p-2 border border-emerald-500 rounded-md" />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="linkcertficat" class="text-sm font-medium text-gray-700">Link/Certificate</label>
+        <input id="linkcertficat" formControlName="linkcertficat" type="url" class="p-2 border border-emerald-500 rounded-md" />
+      </div>
+
+      <button type="button" *ngIf="projects.length > 1"
+        (click)="removeProject(i)" class="px-4 py-2 bg-red-500 text-white rounded-md mt-2 hover:bg-red-600 focus:outline-none">Remove Project</button>
+    </div>
+  </div >
+<div class="text-center">
+  <button type="button" (click)="addProject()" 
+  class="mt-6 bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+
+ Add Project</button>
+</div>
+</div>
+<!-- Certifications -->
+<div *ngSwitchCase="5">
+  <div formArrayName="certifications">
+    <div *ngFor="let certification of certifications.controls; let i = index" [formGroupName]="i" class="space-y-4 mt-4">
+      <div>
+        <label for="certificationName" class="block text-sm font-medium text-gray-600">Certification Name</label>
+        <input
+            id="certificationName"
+            formControlName="certificationName"
+            type="text"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none"
+            placeholder="Enter the certification name"
+        />
+      </div>
+
+      <div>
+        <label for="issuingOrganization" class="block text-sm font-medium text-gray-600">Issuing Organization</label>
+        <input
+            id="issuingOrganization"
+            formControlName="issuingOrganization"
+            type="text"
+            class="w-full p-2 border border-emerald-500 rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none"
+            placeholder="Enter the issuing organization"
+        />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="year" class="block text-sm font-medium text-gray-600">Year</label>
+          <input
+              id="year"
+              formControlName="year"
+              type="text"
+              class="w-full p-2 border border-emerald-500 rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none"
+              placeholder="Enter the year"
+          />
+        </div>
+
+        <div>
+          <label for="url" class="block text-sm font-medium text-gray-600">Certification URL</label>
+          <input
+              id="url"
+              formControlName="url"
+              type="url"
+              class="w-full p-2 border border-emerald-500 rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none"
+              placeholder="Enter the certification URL"
+          />
+        </div>
+      </div>
+      <button
+          type="button"
+          *ngIf="certifications.length > 1"
+          (click)="removeCertification(i)"
+          class="text-red-600 hover:text-red-800">
+          Remove Certification
+      </button>
+    </div>
+  </div>
+  <div class="text-center">
+    <button
+        type="button"
+        (click)="addCertification()"
+        class="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-lg">
+        Add Another Certification
+    </button>
+  </div>
+</div>
+
+
+        <!-- Buttons -->
+        <div class="flex justify-between mt-6">
+          <button
+            type="button"
+            class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg"
+            (click)="previousStep()"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            class="px-4 py-2 bg-green-500 text-white rounded-lg"
+            (click)="nextStep()"
+          >
+            Next
+          </button>
+        </div>
+      </form>   </div>
+
+  </div>

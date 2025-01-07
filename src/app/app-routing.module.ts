@@ -7,24 +7,43 @@ import { SingupComponent } from './pages/auth/singup/singup.component';
 import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UsersComponent } from './BodyContent/users/users.component';
+import { CompainesComponent } from './BodyContent/compaines/compaines.component';
+import { SettingsComponent } from './BodyContent/settings/settings.component';
+import { SingOutComponent } from './BodyContent/sing-out/sing-out.component';
+import { ResumesBuidlerComponent } from './BodyContent/resumes-buidler/resumes-buidler.component';
+import { ResumesComponent } from './BodyContent/resumes/resumes.component';
+import { ApplicationsComponent } from './BodyContent/applications/applications.component';
 
-// Define the routes for your application
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent }, // Home page
-
-  { path: 'landing', component: LandingComponent }, // Home page
+  { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirect default route to landing
+  { path: 'landing', component: LandingComponent }, // Landing page
   { path: 'login', component: LoginComponent }, // Login page
   { path: 'signup', component: SingupComponent }, // Signup page
+  
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent }, // Signup page
+
+      { path: 'users', component: UsersComponent },
+      { path: 'applications', component: ApplicationsComponent },
+      { path: 'compaines', component: CompainesComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'singout', component: SingOutComponent },
+      { path: 'resumesbuilder', component: ResumesBuidlerComponent },
+      { path: 'resumes', component: ResumesComponent },
+    ],
+  },
   { path: 'body', component: BodyComponent }, // Body component
   { path: 'footer', component: FooterComponent }, // Footer component
   { path: 'navbar', component: NavbarComponent }, // Navbar component
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // Wildcard route for invalid paths
-  { path: '**', redirectTo: 'landing' }  // Catch-all route to redirect unknown paths
-
+  { path: '**', redirectTo: 'dashboard' }, // Catch-all route
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)], // Import the routing configuration
-  exports: [RouterModule] // Export the RouterModule so it can be used in other parts of the application
+  exports: [RouterModule], // Export the RouterModule so it can be used in other parts of the application
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
