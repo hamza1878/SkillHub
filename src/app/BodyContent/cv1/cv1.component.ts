@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CvService } from '../../cv.service';
 
 @Component({
-  selector: 'app-cv',
+  selector: 'app-cv1',
   standalone: false,
   
-  templateUrl: './cv.component.html',
-  styleUrl: './cv.component.css'
+  templateUrl: './cv1.component.html',
+  styleUrl: './cv1.component.css'
 })
-export class CvComponent {
-  cvData: any = {
+export class Cv1Component {
+ cvData: any = {
     personalInfo: { firstName: '', lastName: '', email: '', phone: '' },
     professionalSummary: '',
     educationPrinciple: [],
@@ -20,7 +20,7 @@ export class CvComponent {
   };
 
   constructor(private cvService: CvService) {}
-  color: number = 0; 
+
   ngOnInit() {
     this.cvService.cvData$.subscribe(data => {
       if (data) {
@@ -33,11 +33,9 @@ export class CvComponent {
         this.cvData.certifications = data.certifications || [];
       }
     });
-    this.cvService.color$.subscribe(color => {
-      this.color = color; 
-      console.log('Received color:', color);
-    });
-
   }
+
 }
+
+
 

@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
- 
+  menuOpen = true;
+
+  toggleMenu() {
+    console.log('Toggle menu clicked'); 
+    this.menuOpen = !this.menuOpen;
+  }
  constructor(private router:Router){}
  logPath(path: string): void {
   alert(`Path clicked: ${path}`);

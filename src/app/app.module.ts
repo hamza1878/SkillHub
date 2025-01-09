@@ -20,6 +20,10 @@ import { SettingsComponent } from './BodyContent/settings/settings.component'
 import { UsersComponent } from './BodyContent/users/users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CvComponent } from './BodyContent/cv/cv.component';
+import { Cv2Component } from './BodyContent/cv2/cv2.component';
+import { Cv1Component } from './BodyContent/cv1/cv1.component';
+import { Cv3Component } from './BodyContent/cv3/cv3.component';
+import { ColorPickerComponent } from './BodyContent/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { CvComponent } from './BodyContent/cv/cv.component';
     SettingsComponent,
     UsersComponent,
     CvComponent,
+    Cv2Component,
+    Cv1Component,
+    Cv3Component,
+    ColorPickerComponent,
 
     // Do not declare the standalone components here
   ],

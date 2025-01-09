@@ -1,0 +1,22 @@
+<div class="relative bg-gray-800 inline-block">
+ 
+
+  <button
+    class="w-16 h-14 rounded-full bg-gray-800 border-2 border-gray-300 flex items-center justify-center text-gray-700 cursor-pointer"
+    (click)="toggleColorOptions()"
+  >
+    🎨
+  </button>
+
+  <div
+    *ngIf="showColorOptions"
+    class="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gray-900 border border-gray-800 rounded-lg shadow-lg p-2 whitespace-nowrap"
+  >
+    <div
+      *ngFor="let color of displayedColors"
+      class="w-8 h-8 rounded-full inline-block mx-1 cursor-pointer border-2 border-white hover:border-black"
+      [ngStyle]="{ 'background-color': color }"
+      (click)="selectColor(color)"
+    ></div>
+  </div>
+</div>

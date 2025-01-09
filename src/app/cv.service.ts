@@ -17,9 +17,22 @@ export class CvService {
 
   cvData$ = this.cvDataSubject.asObservable();
 
+  private colorSubject = new BehaviorSubject<number>(1); 
+  color$ = this.colorSubject.asObservable();
+
+  constructor() {}
+
+  color(newColor:number): number {
+    this.colorSubject.next(newColor); 
+    return newColor;
+  }
+
+  getColor(): number {
+    return this.colorSubject.getValue();
+  }
   updateCv(newData: any) {
     const currentData = this.cvDataSubject.getValue();
-    const updatedData = { ...currentData, ...newData }; // Merge new data with existing data
+    const updatedData = { ...currentData, ...newData }; 
     this.cvDataSubject.next(updatedData);
   }}
 

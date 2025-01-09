@@ -13,7 +13,7 @@
   ::-webkit-scrollbar-thumb {
     background-color: #10b981; /* Scrollbar thumb color (Emerald) */
     border-radius: 64px; /* Rounded edges */
-    border: 3px solid #f1f1f1; /* Adds padding around thumb */
+    border: 0px solid #f1f1f1; /* Adds padding around thumb */
   }
 
   ::-webkit-scrollbar-thumb:hover {

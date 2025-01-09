@@ -22,7 +22,8 @@ export class ResumesBuidlerComponent {
     { id: 'certifications', title: 'Certifications' },
   ];
 showPreview: any;
-isCvVisible: boolean = false;
+isCvVisible: boolean = true;
+  color=1;
 
 toggleCv() {
   this.isCvVisible = !this.isCvVisible;
@@ -86,9 +87,7 @@ toggleCv() {
         specialization: ['', Validators.required],
         startEdu: ['', Validators.required],
         endEdu: ['', Validators.required],
-        location: ['', Validators.required],
-        certifications: [''],
-        academicProjects: [''],
+        location:['', Validators.required],
       });
     }
     addEducationPrinciple(): void {
@@ -194,6 +193,17 @@ toggleCv() {
   previousStep() {
     this.currentStep--;
   }
+  
+  // cvColor(){
+  //   if(this.color<3){
+  //   this.color++;
+   
 
+  //   console.log(this.color)
+  // }else{
+  //     this.color=1;
+  //   console.log(this.color)
+  //   }
+  //   this.cvService.color(this.color);}
   
   }
