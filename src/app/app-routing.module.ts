@@ -14,12 +14,13 @@ import { SingOutComponent } from './BodyContent/sing-out/sing-out.component';
 import { ResumesBuidlerComponent } from './BodyContent/resumes-buidler/resumes-buidler.component';
 import { ResumesComponent } from './BodyContent/resumes/resumes.component';
 import { ApplicationsComponent } from './BodyContent/applications/applications.component';
-
+import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirect default route to landing
   { path: 'landing', component: LandingComponent }, // Landing page
   { path: 'login', component: LoginComponent }, // Login page
   { path: 'signup', component: SingupComponent }, // Signup page
+  { path: 'choix', component: SignupChoixComponent }, // Signup page
   
   {
     path: 'dashboard',
@@ -39,7 +40,7 @@ const routes: Routes = [
   { path: 'body', component: BodyComponent }, // Body component
   { path: 'footer', component: FooterComponent }, // Footer component
   { path: 'navbar', component: NavbarComponent }, // Navbar component
-  { path: '**', redirectTo: 'dashboard' }, // Catch-all route
+  { path: '**', redirectTo: 'dashboard' }, // Catch-all route choix
 ];
 
 @NgModule({

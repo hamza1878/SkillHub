@@ -12,8 +12,8 @@ export class Cv3Component {
 
 
  cvData: any = {
-    personalInfo: { firstName: '', lastName: '', email: '', phone: '' },
-    professionalSummary: '',
+  personalInfo: { firstName: '', lastName: '', email: '', phone: '',linkedin:'',
+  },    professionalSummary: '',
     educationPrinciple: [],
     experiences: [],
     projects: [],

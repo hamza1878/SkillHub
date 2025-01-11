@@ -33,8 +33,21 @@ nbr=0;
     if(color=='#FF0000'){
       console.log(1)
        this.nbr=1
-    }else{
+    }
+    if(color=='#00FFFF'){
+      console.log(2)
+
       this.nbr=2
+    }
+    if(color=='#FF00FF'){
+      console.log(3)
+
+      this.nbr=3
+    }
+    if(color=='#00FFFF'){
+      console.log(4)
+
+      this.nbr=4
 
     }
     this.cvService.color(this.nbr);

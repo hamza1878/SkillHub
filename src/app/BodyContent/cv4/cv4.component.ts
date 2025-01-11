@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { CvService } from '../../cv.service';
 
 @Component({
-  selector: 'app-cv2',
+  selector: 'app-cv4',
   standalone: false,
   
-  templateUrl: './cv2.component.html',
-  styleUrl: './cv2.component.css'
+  templateUrl: './cv4.component.html',
+  styleUrl: './cv4.component.css'
 })
-export class Cv2Component {
+export class Cv4Component {
 
  cvData: any = {
-  personalInfo: { firstName: '', lastName: '', email: '', phone: '',linkedin:'',
+  personalInfo: { firstName: '', lastName: '', email: '', phone: '',linkedin:'',github:''
   },    professionalSummary: '',
     educationPrinciple: [],
     experiences: [],

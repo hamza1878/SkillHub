@@ -20,7 +20,7 @@ export class LoginComponent {
        }
    signup() {
     alert('Navigating to Sign Up');
-    this.router.navigate(['/signup']).then(success => {
+    this.router.navigate(['/choix']).then(success => {
       console.log('Navigation success: ', success);
     }).catch(error => {
       console.error('Navigation error: ', error);

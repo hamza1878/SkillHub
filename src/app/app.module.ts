@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Import standalone components here
 import { SingupComponent } from './pages/auth/singup/singup.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { BodyComponent } from './components/body/body.component';
@@ -24,6 +23,9 @@ import { Cv2Component } from './BodyContent/cv2/cv2.component';
 import { Cv1Component } from './BodyContent/cv1/cv1.component';
 import { Cv3Component } from './BodyContent/cv3/cv3.component';
 import { ColorPickerComponent } from './BodyContent/color-picker/color-picker.component';
+import { Cv4Component } from './BodyContent/cv4/cv4.component';
+import { RoleComponent } from './role/role.component';
+import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,11 @@ import { ColorPickerComponent } from './BodyContent/color-picker/color-picker.co
     Cv1Component,
     Cv3Component,
     ColorPickerComponent,
+    Cv4Component,
+    RoleComponent,
+    SignupChoixComponent,
+    SingupComponent
 
-    // Do not declare the standalone components here
   ],
   imports: [
     BrowserModule,

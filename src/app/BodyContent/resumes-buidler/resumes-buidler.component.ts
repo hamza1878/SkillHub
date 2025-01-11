@@ -39,6 +39,8 @@ toggleCv() {
              email: [''],
              phone: [''],
              profilePicture:[''],
+             linkedin:[''],
+             github:[''],
            }),
            professionalSummary: [''],
            educationPrinciple: this.fb.array([]),

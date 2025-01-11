@@ -17,7 +17,6 @@ export class DashboardComponent {
   }
  constructor(private router:Router){}
  logPath(path: string): void {
-  alert(`Path clicked: ${path}`);
   this.router.navigate([path])
   // // Navigate to the provided path and handle navigation success or failure
   // this.router.navigate([path]).then(success => {

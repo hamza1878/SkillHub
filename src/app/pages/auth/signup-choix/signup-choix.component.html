@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="bg-gray-900 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Choose your account</h2>
+
+        <div class="flex justify-center space-x-4 mt-4">
+            <div class="flex flex-col items-center bg-[#334664] hover:bg-[#2563eb] text-white p-4 rounded-lg text-center cursor-pointer transition-colors w-1/2">
+                <button (click)="navigate('company')" class="w-full">
+                    <img src="/assets/1.png" alt="Client" class="p-2 max-w-[100px] mx-auto">
+                    <p class="text-sm font-bold mt-2">I am a Client</p>
+                </button>
+            </div>
+
+            <div class="flex flex-col items-center bg-[#10b981] hover:bg-[#059669] text-white p-4 rounded-lg text-center cursor-pointer transition-colors w-1/2">
+                <button class="w-full" (click)="navigate('Employed')">
+                    <img src="/assets/2.png" alt="Employment" class="p-2 max-w-[100px] mx-auto">
+                    <p class="text-sm font-bold mt-2">Employment</p>
+                </button>
+            </div>
+        </div>
+
+        <p class="mt-6 text-center text-gray-600">Already have an account? <a href="/login" class="text-blue-500 hover:underline">Log in</a></p>
+    </div>
+</div>

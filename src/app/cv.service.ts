@@ -19,7 +19,13 @@ export class CvService {
 
   private colorSubject = new BehaviorSubject<number>(1); 
   color$ = this.colorSubject.asObservable();
+  private roleData = new BehaviorSubject<any>(null); 
+  role$ = this.roleData.asObservable();
 
+  role(role: any) {
+    this.roleData.next(role); 
+    console.log(role)
+  }
   constructor() {}
 
   color(newColor:number): number {

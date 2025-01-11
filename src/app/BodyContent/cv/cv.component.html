@@ -1,3 +1,16 @@
-<app-cv1 *ngIf="color==3"></app-cv1>
-<app-cv2 *ngIf="color==2"></app-cv2>
-<app-cv3 *ngIf="color==1"></app-cv3>
+<ng-container *ngIf="color === 3">
+    <app-cv1 id="contentToExport" #contentToExport></app-cv1>
+  </ng-container>
+  <ng-container *ngIf="color === 2">
+    <app-cv2 id="contentToExport" #contentToExport></app-cv2>
+  </ng-container>
+  <ng-container *ngIf="color === 4">
+    <app-cv3 id="contentToExport" #contentToExport></app-cv3>
+  </ng-container>
+  <ng-container *ngIf="color === 1">
+    <app-cv4 id="contentToExport" #contentToExport></app-cv4>
+  </ng-container>
+  
+  <button (click)="exportToPDF()" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+    Export to PDF
+  </button>

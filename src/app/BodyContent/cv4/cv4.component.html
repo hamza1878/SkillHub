@@ -1,0 +1,168 @@
+<div class="cv-container mx-auto max-w-4xl shadow-2xl rounded-lg p-8 bg-white bg-cover bg-no-repeat bg-center">
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Colonne de gauche (Contact et Compétences) -->
+     
+      <div class="w-full md:w-1/2 bg-[#3D0000] rounded-xl shadow-lg text-white">
+        <div class="relative w-32 h-16 mx-auto border-l-[50px] border-l-transparent border-r-[50px] border-r-transparent border-t-[200px] border-t-[#630606]">
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-[#950101] bg-white w-32 h-32 shadow-lg">
+            <img
+              *ngIf="cvData?.profilePicture"
+              [src]="cvData?.profilePicture"
+              alt="Profile Image"
+              class="rounded-full border-4 border-[#3D0000] object-cover w-full h-full"
+            />
+          </div>
+        </div>
+      
+        <!-- Nom complet -->
+        <div class="text-center pt-16 mb-6">
+          <p *ngIf="cvData?.personalInfo?.firstName || cvData?.personalInfo?.lastName" class="text-2xl    font-bold">
+            {{ cvData?.personalInfo?.firstName }} {{ cvData?.personalInfo?.lastName }}
+          </p>
+        </div>
+  
+        <!-- Informations de contact -->
+        <div class="mb-8 p-4 pt-16">
+          <h2 class="text-xl font-bold mb-4">Contact</h2>
+          <ul class="space-y-2  break-all ">
+            <li *ngIf="cvData?.personalInfo?.email">
+              <strong>Email:</strong> {{ cvData?.personalInfo?.email }}
+            </li>
+            <li *ngIf="cvData?.personalInfo?.phone">
+              <strong>Téléphone:</strong> {{ cvData?.personalInfo?.phone }}
+            </li>
+            <li *ngIf="cvData?.personalInfo?.website">
+              <strong>Site Web:</strong> <a [href]="cvData?.personalInfo?.website" target="_blank" class="text-blue-400 underline">{{ cvData?.personalInfo?.website }}</a>
+            </li>
+            <li *ngIf="cvData?.personalInfo?.linkedin">
+                <a [href]="cvData?.personalInfo?.linkedin" target="_blank" class="text-blue-600 underline"><img src="/assets/linkedin.png" class="max-w-12" alt=""></a>
+
+            </li>
+            <li *ngIf="cvData?.personalInfo?.github">
+               <a [href]="cvData?.personalInfo?.github" target="_blank" class="text-blue-400 underline"><img src="/assets/github.png" class="max-w-12 bg-red rounded-full" alt=""></a>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Compétences -->
+          <div class="mb-8">
+            <div *ngFor="let certification of cvData?.certifications" class="space-y-2 class=bg-[#950101] rounded-full px-4 py-2 ">
+              <div class="w-full bg-gray-50 p-5 rounded-lg   shadow-sm" *ngIf="certification.certificationName">
+                <h3 class="text-sm bg-[#3D0000] p-2   mb-4">
+                Certifications & Compétences
+                </h3>
+
+                <div *ngIf="certification?.certificationName" class="mb-4">
+                  <p class="text-sm  break-words  text-gray-700">
+                    <strong class="  break-words font-semibold">Certification Name:</strong> {{ certification.certificationName }}
+                  </p>
+                </div>
+                <div *ngIf="certification?.issuingOrganization" class="mb-4">
+                  <p class="text-xl   break-words  text-gray-700">
+                    <strong class=" break-words font-semibold">Issuing Organization:</strong> {{ certification.issuingOrganization }}
+                  </p>
+                </div>
+                <div *ngIf="certification?.year" class="mb-4">
+                  <p class="text-xl   break-words  text-gray-700">
+                    <strong class=" break-words font-semibold">Year:</strong> {{ certification.year }}
+                  </p>
+                </div>
+                <div *ngIf="certification?.url" class="mb-4">
+                  <p class="text-xl   break-words  text-gray-700">
+                    <strong class=" break-words font-semibold">Certificate Link:</strong>
+                    <a [href]="certification.url" target="_blank" class="text-blue-600 underline">View Certificate</a>
+                  </p>
+                </div>
+                <hr class="border-b-2 border-gray-300 mb-4" *ngIf="cvData?.certifications">
+              </div>
+        </div>
+      </div>
+      </div>
+  
+      <!-- Colonne de droite (Expérience, Éducation, etc.) -->
+      <div class="w-full  break-all  md:w-2/3">
+        <!-- Résumé professionnel -->
+        <div class="mb-8">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center rounded-xl p-2 shadow-lg font-bold mb-4">
+            Résumé Professionnel
+          </h2>
+          <p class="text-lg text-gray-700  break-all  leading-relaxed bg-gray-50 p-4 rounded-b-lg shadow-sm">
+            {{ cvData?.professionalSummary }}
+          </p>
+        </div>
+  
+        <!-- Éducation -->
+        <div class="mb-8">
+          <h2 class="text-2xl bg-[#3D0000]  break-all  text-white text-center rounded-xl p-2 shadow-lg font-bold mb-4">
+            Éducation
+          </h2>
+          <div *ngFor="let education of cvData?.educationPrinciple" class="bg-gray-50 p-4 rounded-lg shadow-sm mb-4">
+            <p *ngIf="education?.institution" class="text-lg  break-all  text-gray-700">
+              <strong>Institution:</strong> {{ education?.institution }}
+            </p>
+            <p *ngIf="education?.degree" class="text-lg text-gray-700">
+              <strong>Diplôme:</strong> {{ education?.degree }}
+            </p>
+            <p *ngIf="education?.specialization" class="text-lg  break-all  text-gray-700">
+                <strong class="break-all font-semibold">Specialization:</strong> {{ education?.specialization }}
+              </p>
+            <p *ngIf="education?.startEdu" class="text-lg  break-all  text-gray-700">
+              <strong>Date de début:</strong> {{ education?.startEdu }}
+            </p>
+            <p *ngIf="education?.endEdu" class="text-lg  break-all  text-gray-700">
+              <strong>Date de fin:</strong> {{ education?.endEdu }}
+            </p>
+            <p *ngIf="education?.location" class="text-lg  break-all  text-gray-700">
+                <strong class="break-all font-semibold">Location:</strong> {{ education?.location }}
+              </p>
+          </div>
+        </div>
+  
+        <!-- Expériences professionnelles -->
+        <div class="mb-8">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center  break-all  rounded-xl p-2 shadow-lg font-bold mb-4">
+            Expériences Professionnelles
+          </h2>
+          <div *ngFor="let experience of cvData?.experiences" class="bg-gray-50  break-all  p-4 rounded-lg shadow-sm mb-4">
+            <p *ngIf="experience?.company" class="text-lg text-gray-700">
+              <strong>Entreprise:</strong> {{ experience?.company }}
+            </p>
+            <p *ngIf="experience?.jobTitle" class="text-lg  break-all  text-gray-700">
+              <strong>Poste:</strong> {{ experience?.jobTitle }}
+            </p>
+            <p *ngIf="experience?.startDate" class="text-lg  break-all  text-gray-700">
+              <strong>Date de début:</strong> {{ experience?.startDate }}
+            </p>
+            <p *ngIf="experience?.endDate" class="text-lg  break-all  text-gray-700">
+              <strong>Date de fin:</strong> {{ experience?.endDate }}
+            </p>
+            <p *ngIf="experience?.description" class="text-lg  break-all  text-gray-700">
+              <strong>Description:</strong> {{ experience?.description }}
+            </p>
+          </div>
+        </div>
+  
+        <!-- Projets -->
+        <div class="mb-8">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center  break-all  rounded-xl p-2 shadow-lg font-bold mb-4">
+            Projets
+          </h2>
+          <div *ngFor="let project of cvData?.projects" class="bg-gray-50 p-4  break-all  rounded-lg shadow-sm mb-4">
+            <p *ngIf="project?.projectTitle" class="text-lg text-gray-700">
+              <strong>Titre:</strong> {{ project?.projectTitle }}
+            </p>
+            <p *ngIf="project?.description" class="text-lg  break-all  text-gray-700">
+              <strong>Description:</strong> {{ project?.description }}
+            </p>
+            <p *ngIf="project?.technologies" class="text-lg  break-all  text-gray-700">
+              <strong>Technologies:</strong> {{ project?.technologies }}
+            </p>
+            <p *ngIf="project?.linkcertficat" class="text-lg  break-all  text-gray-700">
+              <strong>Lien du certificat:</strong>
+              <a [href]="project?.linkcertficat" target="_blank" class="text-blue-600 underline">Voir le projet</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

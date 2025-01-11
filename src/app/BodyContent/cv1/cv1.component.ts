@@ -10,8 +10,9 @@ import { CvService } from '../../cv.service';
 })
 export class Cv1Component {
  cvData: any = {
-    personalInfo: { firstName: '', lastName: '', email: '', phone: '' },
-    professionalSummary: '',
+  personalInfo: { firstName: '', lastName: '', email: '', phone: '',linkedin:'',
+  },
+      professionalSummary: '',
     educationPrinciple: [],
     experiences: [],
     projects: [],
