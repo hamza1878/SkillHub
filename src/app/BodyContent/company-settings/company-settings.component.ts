@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { gql } from '@apollo/client/core';
-import { Apollo, Mutation } from 'apollo-angular';
+import { Apollo, gql, Mutation } from 'apollo-angular';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'app-company-settings',
   standalone: false,
   
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.css'
+  templateUrl: './company-settings.component.html',
+  styleUrl: './company-settings.component.css'
 })
-export class SettingsComponent implements OnInit {
+export class CompanySettings{
+
 
   CompanyInformation!: FormGroup;
   logoPreview: string | ArrayBuffer | null = null;

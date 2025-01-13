@@ -4,8 +4,16 @@ module.exports = {
     "./src/**/*.{html,ts}",
 
   ],
+  include: [
+    "src/**/*.ts",
+    "src/**/*.d.ts"  // Add this line
+  ],
   theme: {
     extend: {
+      spacing: {
+        'a4-width': '210mm',
+        'a4-height': '297mm',
+      },
       boxShadow: {
         'text': '0 0 5px rgba(157, 254, 148, 0.4), 0 0 10px rgba(174, 37, 37, 0.3)',
       },

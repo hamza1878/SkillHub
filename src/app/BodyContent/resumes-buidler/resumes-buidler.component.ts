@@ -1,6 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CvService } from '../../cv.service';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { CvComponent } from '../cv/cv.component';
 @Component({
   selector: 'app-resumes-buidler',
   standalone: false,
@@ -13,6 +16,8 @@ export class ResumesBuidlerComponent {
   imagePreview: string | null = null;
   currentStep = 0;
   cvData: any = {};
+  cvList: any[] = [];
+  currentCvIndex: number = 0;
   steps = [
     { id: 'personalInfo', title: 'Personal Info' },
     { id: 'professionalSummary', title: 'Professional Summary' },
@@ -24,13 +29,44 @@ export class ResumesBuidlerComponent {
 showPreview: any;
 isCvVisible: boolean = true;
   color=1;
+  htmlContent: string='';
 
 toggleCv() {
   this.isCvVisible = !this.isCvVisible;
 }
+populateResumeForm() {
+  this.resumeForm = this.fb.group({
+    personalInfo: this.fb.group({
+      firstName: [this.cvData.firstName || ''],
+      lastName: [this.cvData.lastName || ''],
+      email: [this.cvData.email || ''],
+      phone: [this.cvData.phone || ''],
+      profilePicture: [this.cvData.profilePicture || ''],
+      linkedin: [this.cvData.linkedin || ''],
+      github: [this.cvData.github || ''],
+    }),
+    professionalSummary: [this.cvData.professionalSummary || ''],
+    educationPrinciple: this.fb.array([]),
+    experiences: this.fb.array([]),
+    projects: this.fb.array([]),
+    certifications: this.fb.array([]),
+  });
+
+  // Mettre à jour le cv quand l'utilisateur modifie les champs
+  this.resumeForm.valueChanges.subscribe((value) => {
+    this.cvService.updateCv(value);
+  });
+
+  // Ajouter des sections comme l'éducation, l'expérience, les projets, etc.
+  this.addEducationPrinciple();
+  this.addExperience();
+  this.addCertification();
+}
   constructor(private fb: FormBuilder, private cvService: CvService){
+
      this.cvService.cvData$.subscribe(data => {
        this.cvData = data || {};  
+       
      });
      this.resumeForm = this.fb.group({
            personalInfo: this.fb.group({
@@ -61,7 +97,7 @@ toggleCv() {
            this.cvService.updateCv(value);
           
          });
-      
+
        }
          onFileSelected(event: Event): void {
      const input = event.target as HTMLInputElement;
@@ -173,11 +209,17 @@ toggleCv() {
      this.experiences.removeAt(index);
    }
 
- 
+  //  this.cvService.loadCvData();
+    
+  //  this.cvService.cvData$.subscribe((data) => {
+  //    this.cvData = data;
+  //    this.populateResumeForm();  
+  //  });
 
   ngOnInit(): void {
     //  this.addExperience();
     // this.addEducationPrinciple();
+   
   }
   nextStep() {
     const currentStepId = this.steps[this.currentStep].id;
@@ -195,6 +237,52 @@ toggleCv() {
   previousStep() {
     this.currentStep--;
   }
+}
+  // exportAsImage(): void {
+  //   const element = document.querySelector('.cv-container') as HTMLElement;
+  //   html2canvas(element).then((canvas) => {
+  //     const imgData = canvas.toDataURL('image/png');
+  //     const link = document.createElement('a');
+  //     link.download = 'cv.png';
+  //     link.href = imgData;
+  //     link.click();
+  //   });
+  // }
+
+  // exportAsPDF(): void {
+  //   const element = document.querySelector('.cv-container') as HTMLElement;
+  //   html2canvas(element).then((canvas) => {
+  //     const imgData = canvas.toDataURL('image/png');
+  //     const pdf = new jsPDF('p', 'mm', 'a4');
+  //     const imgWidth = 210;
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //     pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+  //     pdf.save('cv.html');
+  //   });
+  // }
+  // exportHtmlToFile(): void {
+  //   const blob = new Blob([this.htmlContent], { type: 'text/html' });
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = 'widget.html';
+  //   a.click();
+  //   window.URL.revokeObjectURL(url);}
+
+  // addNewCv(): void {
+  //   this.cvList.push({});
+  //   this.currentCvIndex = this.cvList.length - 1;
+  //   this.cvData = this.cvList[this.currentCvIndex];
+  //   this.resumeForm.patchValue(this.cvData);
+  // }
+  
+
+  // selectCv(index: number): void {
+  //   this.currentCvIndex = index;
+  //   this.cvData = this.cvList[index];
+  //   this.resumeForm.patchValue(this.cvData);
+  // }
+
   
   // cvColor(){
   //   if(this.color<3){
@@ -208,4 +296,4 @@ toggleCv() {
   //   }
   //   this.cvService.color(this.color);}
   
-  }
+  

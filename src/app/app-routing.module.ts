@@ -16,7 +16,7 @@ import { ResumesComponent } from './BodyContent/resumes/resumes.component';
 import { ApplicationsComponent } from './BodyContent/applications/applications.component';
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirect default route to landing
+  { path: '', redirectTo: 'companies', pathMatch: 'full' }, // Redirect default route to landing
   { path: 'landing', component: LandingComponent }, // Landing page
   { path: 'login', component: LoginComponent }, // Login page
   { path: 'signup', component: SingupComponent }, // Signup page
@@ -30,7 +30,7 @@ const routes: Routes = [
 
       { path: 'users', component: UsersComponent },
       { path: 'applications', component: ApplicationsComponent },
-      { path: 'compaines', component: CompainesComponent },
+      { path: 'companies', component: CompainesComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'singout', component: SingOutComponent },
       { path: 'resumesbuilder', component: ResumesBuidlerComponent },

@@ -1,6 +1,5 @@
-<div class="cv-container mx-auto max-w-4xl shadow-2xl rounded-lg p-8 bg-white bg-cover bg-no-repeat bg-center">
+<div id="cvContent"  class="cvContent mx-auto max-w-4xl shadow-2xl rounded-lg p-8 bg-white bg-cover bg-no-repeat bg-center">
     <div class="flex flex-col md:flex-row gap-8">
-      <!-- Colonne de gauche (Contact et Compétences) -->
      
       <div class="w-full md:w-1/2 bg-[#3D0000] rounded-xl shadow-lg text-white">
         <div class="relative w-32 h-16 mx-auto border-l-[50px] border-l-transparent border-r-[50px] border-r-transparent border-t-[200px] border-t-[#630606]">
@@ -14,14 +13,12 @@
           </div>
         </div>
       
-        <!-- Nom complet -->
         <div class="text-center pt-16 mb-6">
           <p *ngIf="cvData?.personalInfo?.firstName || cvData?.personalInfo?.lastName" class="text-2xl    font-bold">
             {{ cvData?.personalInfo?.firstName }} {{ cvData?.personalInfo?.lastName }}
           </p>
         </div>
   
-        <!-- Informations de contact -->
         <div class="mb-8 p-4 pt-16">
           <h2 class="text-xl font-bold mb-4">Contact</h2>
           <ul class="space-y-2  break-all ">
@@ -44,7 +41,6 @@
           </ul>
         </div>
   
-        <!-- Compétences -->
           <div class="mb-8">
             <div *ngFor="let certification of cvData?.certifications" class="space-y-2 class=bg-[#950101] rounded-full px-4 py-2 ">
               <div class="w-full bg-gray-50 p-5 rounded-lg   shadow-sm" *ngIf="certification.certificationName">
@@ -79,11 +75,9 @@
       </div>
       </div>
   
-      <!-- Colonne de droite (Expérience, Éducation, etc.) -->
       <div class="w-full  break-all  md:w-2/3">
-        <!-- Résumé professionnel -->
-        <div class="mb-8">
-          <h2 class="text-2xl bg-[#3D0000] text-white text-center rounded-xl p-2 shadow-lg font-bold mb-4">
+        <div class="mb-8 pt-2">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center  justify-center  rounded-xl p-2   shadow-lg font-bold ">
             Résumé Professionnel
           </h2>
           <p class="text-lg text-gray-700  break-all  leading-relaxed bg-gray-50 p-4 rounded-b-lg shadow-sm">
@@ -91,9 +85,8 @@
           </p>
         </div>
   
-        <!-- Éducation -->
         <div class="mb-8">
-          <h2 class="text-2xl bg-[#3D0000]  break-all  text-white text-center rounded-xl p-2 shadow-lg font-bold mb-4">
+          <h2 class="text-2xl bg-[#3D0000]  break-all  justify-center   text-white text-center rounded-xl p-2 pb-6 shadow-lg font-bold mb-4">
             Éducation
           </h2>
           <div *ngFor="let education of cvData?.educationPrinciple" class="bg-gray-50 p-4 rounded-lg shadow-sm mb-4">
@@ -118,9 +111,8 @@
           </div>
         </div>
   
-        <!-- Expériences professionnelles -->
         <div class="mb-8">
-          <h2 class="text-2xl bg-[#3D0000] text-white text-center  break-all  rounded-xl p-2 shadow-lg font-bold mb-4">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center  justify-center   break-all  rounded-xl p-2 pb-6 shadow-lg font-bold mb-4">
             Expériences Professionnelles
           </h2>
           <div *ngFor="let experience of cvData?.experiences" class="bg-gray-50  break-all  p-4 rounded-lg shadow-sm mb-4">
@@ -142,9 +134,8 @@
           </div>
         </div>
   
-        <!-- Projets -->
         <div class="mb-8">
-          <h2 class="text-2xl bg-[#3D0000] text-white text-center  break-all  rounded-xl p-2 shadow-lg font-bold mb-4">
+          <h2 class="text-2xl bg-[#3D0000] text-white text-center  justify-center   break-all  rounded-xl p-2 pb-6 shadow-lg font-bold mb-4">
             Projets
           </h2>
           <div *ngFor="let project of cvData?.projects" class="bg-gray-50 p-4  break-all  rounded-lg shadow-sm mb-4">
@@ -166,3 +157,6 @@
       </div>
     </div>
   </div>
+  <button (click)="exportCvToPDF()">exportCvToPDF</button><button (click)="exportCvToHTML()">exportCvToHTML()</button> 
+<button (click)=" exportCvWithTailwind()"> exportCvWithTailwind()</button>
+  

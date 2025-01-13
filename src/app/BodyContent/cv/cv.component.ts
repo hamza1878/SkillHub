@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { CvService } from '../../cv.service';
-import jsPDF from 'jspdf';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CvService } from '../../cv.service';
 
 @Component({
   selector: 'app-cv',
+  standalone: false,
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css'],
-  standalone:false,
 })
-export class CvComponent implements OnInit {
+export class CvComponent {
   cvData: any = {
-    personalInfo: { firstName: '', lastName: '', email: '', phone: '', linkedin: '' },
+    personalInfo: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+    },
     professionalSummary: '',
     educationPrinciple: [],
     experiences: [],
     projects: [],
     certifications: [],
-    imagePreview: null
+    imagePreview: null,
   };
+
   color: number = 0;
 
   constructor(private cvService: CvService) {}
 
   ngOnInit() {
-    this.cvService.cvData$.subscribe(data => {
+    // S'abonner aux données du CV
+    this.cvService.cvData$.subscribe((data) => {
       if (data) {
         console.log('CV Data received:', data);
         this.cvData = { ...data };
@@ -36,49 +44,35 @@ export class CvComponent implements OnInit {
       }
     });
 
-    this.cvService.color$.subscribe(color => {
+    // S'abonner à la couleur sélectionnée
+    this.cvService.color$.subscribe((color) => {
       this.color = color;
       console.log('Received color:', color);
     });
   }
-  exportToPDF() {
-    const element = document.getElementById('contentToExport');
-    if (!element) {
-      console.error('Element not found');
-      return;
-    }
-  
-    const options = {
-      scale: 2, // Enhances rendering quality
-      useCORS: true,
-      allowTaint: false,
-    };
-  
-    html2canvas(element, options).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  
-      let position = 0;
-      while (position < canvas.height) {
-        const sectionHeight = Math.min(canvas.height - position, pdfHeight * (canvas.width / pdfWidth));
-        const sectionCanvas = document.createElement('canvas');
-        sectionCanvas.width = canvas.width;
-        sectionCanvas.height = sectionHeight;
-        const ctx = sectionCanvas.getContext('2d');
-        if (ctx) {
-          ctx.drawImage(canvas, 0, position, canvas.width, sectionHeight, 0, 0, sectionCanvas.width, sectionCanvas.height);
-        }
-        const sectionImgData = sectionCanvas.toDataURL('image/png');
-        pdf.addImage(sectionImgData, 'PNG', 0, 0, pdfWidth, (sectionHeight * pdfWidth) / canvas.width);
-        position += sectionHeight;
-        if (position < canvas.height) pdf.addPage();
-      }
-  
-      pdf.save('webpage.pdf');
-    }).catch((error) => {
-      console.error('PDF generation error:', error);
-    });
+
+  // Méthode pour envoyer les données du CV au widget
+  sendCvToWidget() {
+    this.cvService.updateCv(this.cvData);
   }
-}  
+}
+//   @Output() pdfGenerated = new EventEmitter<Blob>(); // EventEmitter to send the PDF to WidgetsComponent
+
+
+//   exportCvToPDF() {
+//     const element = document.getElementById('cvContent'); // Récupérer le contenu du CV
+//     if (element) {
+//       html2canvas(element).then((canvas) => {
+//         const imgData = canvas.toDataURL('image/png'); // Convertir le canvas en image
+//         const pdf = new jsPDF();
+//         pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // Ajouter l'image au PDF (A4)
+
+//         // Générer le PDF en Blob
+//         const pdfBlob = pdf.output('blob');
+
+//         // Émettre le Blob à travers l'événement
+//         this.pdfGenerated.emit(pdfBlob);
+//       });
+//     }
+//   }
+// }

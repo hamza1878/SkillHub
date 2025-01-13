@@ -1,1 +1,108 @@
-<p>compaines works!</p>
+<div class="text-center bg-gray-900 p-4">
+    <div class="text-center text-4xl md:text-8xl p-2 text-white">Find Your Dream Job Today!</div>
+    <div class="text-center text-xl md:text-2xl p-2 text-gray-300">
+      Connecting Talent with Opportunity: Your Gateway to Career Success
+    </div>
+    <div class="flex flex-col md:flex-row justify-center p-4 space-y-4 md:space-y-0 md:space-x-6">
+      <input
+        class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
+        type="text"
+        placeholder="Job title or company">
+      <input
+        class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
+        type="text"
+        placeholder="Location">
+        <select class="block p-6 border text-black rounded-xl w-80">
+            <option class="bg-gray-600 text-gray-600" value="" disabled selected>Select a category</option>
+            <option *ngFor="let category of jobCategories" [value]="category">{{ category }}</option>
+          </select>
+          
+      <button
+        class="flex items-center justify-center bg-green-600 text-white font-semibold p-4 md:p-6 rounded-xl hover:bg-green-700 w-full md:w-80">
+        <img src="/assets/rech.png" alt="Search" class="w-8 h-8 mr-2">
+        <p class="text-xl">Find Job</p>
+      </button>
+    </div>
+  </div>
+  
+  <div class="flex justify-center space-x-12 p-12">
+    <div class="flex items-center space-x-4">
+      <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <img src="/assets/job.png" class="w-16 mx-auto" alt="Job Icon">
+      </div>
+      <div class="text-center">
+        <p class="text-2xl">25,850</p>
+        <p class="text-xl">jobs</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <img src="/assets/candidates.png" class="w-16 mx-auto" alt="Candidates Icon">
+      </div>
+      <div class="text-center">
+        <p class="text-2xl">10.254</p>
+        <p class="text-xl">Candidates</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <img src="/assets/company.png" class="w-16 mx-auto" alt="Company Icon">
+      </div>
+      <div class="text-center">
+        <p class="text-2xl">14.254</p>
+        <p class="text-xl">company</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    <ul *ngFor="let item of jobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+      <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+        <img *ngIf="item.logo" [src]="item.logo" alt="Company Logo" class="w-full h-full object-cover">
+        <span *ngIf="!item.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+      </div>
+  
+      <li class="p-2 mt-24"> 
+        <label class="text-xl p-4">🏢Company Name</label> {{item.companyName}}
+      </li>
+      <li class="p-2">
+        <label class="text-xl p-4">🧑‍💻 Job Title</label> {{item.jobTitle}}
+      </li>
+      <li class="p-2">
+        <label class="text-xl p-4">📍Location</label> {{item.location}}
+      </li>
+      <li class="p-2">
+        <label class="text-xl p-4">⏰Work Time</label> {{item.workTime}}
+      </li>
+      <li class="p-2">
+        <label class="text-xl p-4">🤑Salary</label> {{item.salary}}
+      </li>
+      <div class="justify-center flex md:space-x-6">
+        <!-- See more button -->
+        <button class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>see more</span>
+         
+        </button>
+      
+        <!-- Apply button -->
+        <button class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+          <svg class="md:space-x-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+            <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+            <path d="M12 8v8"/>
+            <path d="M16 12H8"/>
+            <path d="M2.5 8.875a10 10 0 0 0-.5 3"/>
+            <path d="M2.83 16a10 10 0 0 0 2.43 3.4"/>
+            <path d="M4.636 5.235a10 10 0 0 1 .891-.857"/>
+            <path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/>
+          </svg>
+          <span class="text-white">apply</span>
+
+        </button>
+      </div>
+      
+    </ul>
+  </div>
+  
+  
+    

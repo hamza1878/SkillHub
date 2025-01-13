@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CvService } from '../../cv.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { CvService } from '../../cv.service';
   styleUrl: './cv2.component.css'
 })
 export class Cv2Component {
+  @Input() 
 
  cvData: any = {
   personalInfo: { firstName: '', lastName: '', email: '', phone: '',linkedin:'',

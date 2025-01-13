@@ -1,0 +1,147 @@
+<form [formGroup]="CompanyInformation" *ngIf="role==='Company'" (ngSubmit)="onSubmit()" class="max-w-4xl mx-auto p-8 bg-gray-900 text-white shadow-lg rounded-lg">
+    <div class="flex justify-center mb-8">
+      <label for="logo" class="cursor-pointer">
+        <div class="w-32 h-32 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
+          <img *ngIf="logoPreview" [src]="logoPreview" alt="Company Logo" class="w-full h-full object-cover">
+          <span *ngIf="!logoPreview" class="text-gray-400">Upload Logo</span>
+        </div>
+        <input id="logo" type="file" (change)="onLogoChange($event)" class="hidden" accept="image/*">
+      </label>
+    </div>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+          <input id="name" formControlName="name" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="tagline" class="block text-sm font-medium text-gray-300">Tagline</label>
+          <input id="tagline" formControlName="tagline" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="type" class="block text-sm font-medium text-gray-300">Type</label>
+          <select id="type" formControlName="type" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            <option value="">Select...</option>
+            <option value="Startup">Startup</option>
+            <option value="SME">SME</option>
+            <option value="Corporation">Corporation</option>
+            <option value="Non-Profit">Non-Profit</option>
+            <option value="Government">Government</option>
+          </select>
+        </div>
+  
+        <div class="mb-4">
+          <label for="jobApplications" class="block text-sm font-medium text-gray-300">Job Domain</label>
+          <select id="jobApplications" formControlName="jobApplications" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            <option value="">Select...</option>
+            <option value="IT & Software">IT & Software</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Finance">Finance</option>
+            <option value="Education">Education</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Sales">Sales</option>
+            <option value="Design">Design</option>
+            <option value="Customer Support">Customer Support</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Legal">Legal</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Retail">Retail</option>
+            <option value="Logistics">Logistics</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Media & Entertainment">Media & Entertainment</option>
+            <option value="Hospitality">Hospitality</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Research & Development">Research & Development</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+  
+        <div class="mb-4">
+          <label for="registrationNumber" class="block text-sm font-medium text-gray-300">Registration Number</label>
+          <input id="registrationNumber" formControlName="registrationNumber" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="taxId" class="block text-sm font-medium text-gray-300">Tax ID</label>
+          <input id="taxId" formControlName="taxId" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+      </div>
+  
+      <div>
+        <div class="mb-4">
+          <label for="foundingDate" class="block text-sm font-medium text-gray-300">Founding Date</label>
+          <input id="foundingDate" formControlName="foundingDate" type="date" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="foundingDateTime" class="block text-sm font-medium text-gray-300">Founding Date Time</label>
+          <input id="foundingDateTime" formControlName="foundingDateTime" type="time" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="headquarters" class="block text-sm font-medium text-gray-300">Headquarters</label>
+          <input id="headquarters" formControlName="headquarters" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="legalStatus" class="block text-sm font-medium text-gray-300">Legal Status</label>
+          <select id="legalStatus" formControlName="legalStatus" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            <option value="">Select...</option>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+            <option value="Non-Profit">Non-Profit</option>
+            <option value="Government">Government</option>
+          </select>
+        </div>
+  
+        <div class="mb-4">
+          <label for="capital" class="block text-sm font-medium text-gray-300">Capital</label>
+          <input id="capital" formControlName="capital" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+  
+        <div class="mb-4">
+          <label for="revenue" class="block text-sm font-medium text-gray-300">Revenue</label>
+          <input id="revenue" formControlName="revenue" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+      </div>
+    </div>
+  
+    <div class="mt-6">
+      <div class="mb-4">
+        <label for="industry" class="block text-sm font-medium text-gray-300">Industry</label>
+        <input id="industry" formControlName="industry" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+  
+      <div class="mb-4">
+        <label for="businessModel" class="block text-sm font-medium text-gray-300">Business Model</label>
+        <input id="businessModel" formControlName="businessModel" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+  
+      <div class="mb-4">
+        <label for="mission" class="block text-sm font-medium text-gray-300">Mission</label>
+        <textarea id="mission" formControlName="mission" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+  
+      <div class="mb-4">
+        <label for="vision" class="block text-sm font-medium text-gray-300">Vision</label>
+        <textarea id="vision" formControlName="vision" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+  
+      <div class="mb-4">
+        <label for="brandIdentity" class="block text-sm font-medium text-gray-300">Brand Identity</label>
+        <textarea id="brandIdentity" formControlName="brandIdentity" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+    </div>
+  
+    <div class="mt-8">
+      <button type="submit" [disabled]="!CompanyInformation.valid" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        Submit
+      </button>
+    </div>
+  </form>
+
