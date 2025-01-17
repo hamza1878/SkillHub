@@ -13,8 +13,9 @@ import { SettingsComponent } from './BodyContent/settings/settings.component';
 import { SingOutComponent } from './BodyContent/sing-out/sing-out.component';
 import { ResumesBuidlerComponent } from './BodyContent/resumes-buidler/resumes-buidler.component';
 import { ResumesComponent } from './BodyContent/resumes/resumes.component';
-import { ApplicationsComponent } from './BodyContent/applications/applications.component';
+import { ApplicationsComponent } from './apply/applications/applications.component';
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
+import { FindjobComponent } from './findjob/findjob.component';
 const routes: Routes = [
   { path: '', redirectTo: 'companies', pathMatch: 'full' }, // Redirect default route to landing
   { path: 'landing', component: LandingComponent }, // Landing page
@@ -27,6 +28,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent }, // Signup page
+      { path: 'Findjob', component: FindjobComponent },
 
       { path: 'users', component: UsersComponent },
       { path: 'applications', component: ApplicationsComponent },

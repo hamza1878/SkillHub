@@ -26,12 +26,11 @@ export class CvComponent {
     imagePreview: null,
   };
 
-  color: number = 0;
+  color: string = '';
 
   constructor(private cvService: CvService) {}
 
   ngOnInit() {
-    // S'abonner aux données du CV
     this.cvService.cvData$.subscribe((data) => {
       if (data) {
         console.log('CV Data received:', data);
@@ -44,14 +43,12 @@ export class CvComponent {
       }
     });
 
-    // S'abonner à la couleur sélectionnée
     this.cvService.color$.subscribe((color) => {
       this.color = color;
       console.log('Received color:', color);
     });
   }
 
-  // Méthode pour envoyer les données du CV au widget
   sendCvToWidget() {
     this.cvService.updateCv(this.cvData);
   }

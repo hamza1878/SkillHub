@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ResumesBuidlerComponent } from './BodyContent/resumes-buidler/resumes-buidler.component';
 import { CompainesComponent } from './BodyContent/compaines/compaines.component';
-import { ApplicationsComponent } from './BodyContent/applications/applications.component';
+import { ApplicationsComponent } from './apply/applications/applications.component';
 import { ResumesComponent } from './BodyContent/resumes/resumes.component';
 import { SingOutComponent } from './BodyContent/sing-out/sing-out.component';
 import { SettingsComponent } from './BodyContent/settings/settings.component';
@@ -39,6 +39,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';  
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CandidateDetailsComponent } from './apply/candidate-details/candidate-details.component';
+import { ResponseFormComponent } from './apply/response-form/response-form.component';
+import { BodycompComponent } from './apply/bodycomp/bodycomp.component';
+import { FindjobComponent } from './findjob/findjob.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     WidgetsComponent,
     UsersSettings,
     CompanySettings,
-    
+    CandidateDetailsComponent,ResponseFormComponent,BodycompComponent,FindjobComponent
   ],
   imports: [
     MatButtonModule,
@@ -82,15 +87,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     GraphQLModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatDialogModule ,  
+    MatDialogModule,
     BrowserModule,
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-        
-         
-  ],
+    BrowserAnimationsModule
+    
+],
   providers: [
     provideHttpClient(),
     provideApollo(() => {

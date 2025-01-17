@@ -1,1 +1,92 @@
-<p class="p-16" style="background-color: black ; ">users works!</p>
+<div class="bg-gray-800 rounded-2xl p-8">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <label class="text-6xl text-green-400">l</label>
+            <p class="text-2xl text-white">Detail Employee</p>
+        </div>
+
+        <div class="flex flex-col items-center border border-black p-4 rounded-lg">
+            
+
+        </div>
+
+        <p class="text-4xl text-white cursor-pointer">🖊️</p>
+    </div>
+
+
+
+    <div class="flex items-center mt-8 space-x-6">
+        <div class="w-32 h-32 rounded-full bg-gray-500 overflow-hidden flex items-center justify-center">
+            <img alt="Company Logo" class="w-full h-full object-cover hidden">
+            <span class="text-white">Upload Logo</span>
+        </div>
+
+        <div class="flex flex-col">
+            <p class="text-4xl text-white font-bold">{{firstName }} {{lastName}}</p>
+            <p>506 followers</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl"><p class="text-2xl p-2 text-white">✨Role </p>
+                <p class="text-2xl text-white">{{role}} </p></div>
+                <div  class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl"> <p class="text-2xl p-2 text-white">📧Email </p>
+                    <p class="text-2xl text-white"> {{email}}</p>
+
+                
+            </div><div  class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl"><p class="text-2xl p-2 text-white">📞 Phone</p><p class="text-2xl text-white"> {{phoneNumber}}</p>
+</div>           </div>
+        </div>
+        <div class="flex flex-col">
+           
+
+
+
+        </div>
+        
+    </div>
+    <div>        <p class="flex items-center justify-end " (click)="show()"><img  class="max-w-16" src="/assets/open.png" alt="">
+    </p>
+    </div>
+</div>
+    <div *ngIf="shows" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    
+            <ul  class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+ <li ><p class="text-2xl text-center ">💼  Professional Details</p><ul class="text-xl p-2"><li> Current Position</li>
+ <li> Company Name</li>
+ <li>Department</li>
+ <li>Hire Date</li>
+ <li>Past Positions</li></ul>
+   
+    
+    
+    </li> </ul>
+ <ul class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative"><li ><p class="text-2xl text-center "> Skills and Education</p><ul class="text-xl p-2"><li> Education</li>
+    <li> Skills</li>
+    <li>Languages</li>
+   </ul></li> </ul>
+ <ul class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative"> <h2 class="text-3xl text-white text-center mb-6">Contact Form</h2>
+    <form action="#" method="POST">
+      <ul class="space-y-4">
+        <li>
+          <label for="companyName" class="block text-white">🏢Company Name</label>
+          <input type="text" id="companyName" name="companyName" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Company Name" required />
+        </li>
+        <li>
+          <label for="post" class="block text-white">🎯Post</label>
+          <input type="text" id="post" name="post" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Post Title" required />
+        </li>
+        <li>
+          <label for="location" class="block text-white">📍Location</label>
+          <input type="text" id="location" name="location" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Location" required />
+        </li>
+        <li>
+          <label for="description" class="block text-white">🔎Description</label>
+          <textarea id="description" name="description" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter a description" required></textarea>
+        </li>
+        <li>
+          <button type="submit" class="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300">Envoyer</button>
+        </li>
+      </ul>
+    </form>
+                </ul>
+  
+
+</div>

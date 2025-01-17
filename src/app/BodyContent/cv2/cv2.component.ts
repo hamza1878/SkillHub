@@ -18,12 +18,27 @@ export class Cv2Component {
     experiences: [],
     projects: [],
     certifications: [],
-    imagePreview: null
+    imagePreview: null,
+    skills: [],
+
   };
+color='blue-500';
+colors='blue-500';
 
   constructor(private cvService: CvService) {}
 
   ngOnInit() {
+    this.cvService.cvData$.subscribe(data => {
+      if (data) {
+        console.log('CV Data received:', data);
+        this.cvData = { ...data };
+        this.cvData.skills = data.skills || [];
+      }
+        this.cvService.color$.subscribe((color) => {
+      this.color = color || 'blue-500';
+      console.log('Received color:', color);
+    });
+    });
     this.cvService.cvData$.subscribe(data => {
       if (data) {
         console.log('CV Data received:', data);
@@ -32,6 +47,8 @@ export class Cv2Component {
         this.cvData.educationPrinciple = data.educationPrinciple || [];
         this.cvData.experiences = data.experiences || [];
         this.cvData.projects = data.projects || [];
+        this.cvData.skills = data.skills || [];
+
         this.cvData.certifications = data.certifications || [];
       }
     });

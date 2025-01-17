@@ -20,6 +20,15 @@ module.exports = {
     },
   },
 
+    safelist: [
+      'border-blue-500',
+      'border-red-500',
+      'border-green-500',
+      'border-yellow-500',
+      'border-purple-500',
+    ],
+  
+
   plugins: [],
 }
  

@@ -1,0 +1,456 @@
+<div >
+    <div class="text-center bg-gray-900 p-4" >
+      <div class="text-center text-4xl md:text-8xl p-2 text-white">Find Your Dream Job Today!</div>
+      <div class="text-center text-xl md:text-2xl p-2 text-gray-300">
+        Connecting Talent with Opportunity: Your Gateway to Career Success
+      </div>
+      <div class="flex flex-col md:flex-row justify-center p-4 space-y-4 md:space-y-0 md:space-x-6">
+        <input
+          class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
+          type="text"
+          placeholder="Job title or company"
+          [(ngModel)]="jobTitle"
+          aria-label="Job title or company">
+    
+        <input
+          class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
+          type="text"
+          placeholder="Location"
+          [(ngModel)]="location"
+          aria-label="Location">
+    
+        <select class="block p-6 border text-black rounded-xl w-80" [(ngModel)]="selected" aria-label="Job category">
+          <option class="bg-gray-600 text-gray-600" value="" disabled selected>Select a category</option>
+          <option *ngFor="let category of jobCategories" [value]="category">{{ category }}</option>
+        </select>
+    
+        <button (click)="rechercher(jobTitle, location, selected)"
+          class="flex items-center justify-center bg-green-600 text-white font-semibold p-4 md:p-6 rounded-xl hover:bg-green-700 w-full md:w-80">
+          <img src="/assets/rech.png" alt="Search" class="w-8 h-8 mr-2">
+          <p class="text-xl">Find Job</p>
+        </button>
+      </div>
+    </div>
+    <section *ngIf="shows" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+          
+     
+    
+      <ng-container *ngIf="filteredJobs.length > 0">
+        <ul *ngFor="let job of filteredJobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+          <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+            <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
+            <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+          </div>
+    
+          <li class="p-2 mt-24">
+            <label class="text-xl p-4">🏢 Company Name</label> {{job.companyName}}
+          </li>
+          <li class="p-2">
+            <label class="text-xl p-4">🧑‍💻 Job Title</label> {{job.jobTitle}}
+          </li>
+          <li class="p-2">
+            <label class="text-xl p-4">📍 Location</label> {{job.location}}
+          </li>
+          <li class="p-2">
+            <label class="text-xl p-4">⏰ Work Time</label> {{job.workTime}}
+          </li>
+          <li class="p-2">
+            <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
+          </li>
+          <div class="justify-center flex md:space-x-6">
+            <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span>See More</span>
+            </button>
+    
+            <button (click)="applyModalOpen()" class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+                <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+                <path d="M12 8v8"/>
+                <path d="M16 12H8"/>
+              </svg>
+              <span class="text-white">Apply</span>
+            </button>
+          </div>
+        </ul>
+      </ng-container>
+       
+    </section>
+    <section *ngIf="serach" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+      <ul *ngFor="let job of jobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+        <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+          <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
+          <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+        </div>
+    
+        <li class="p-2 mt-24">
+          <label class="text-xl p-4">🏢 Company Name</label> {{job.companyName}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">🧑‍💻 Job Title</label> {{job.jobTitle}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">📍 Location</label> {{job.location}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">⏰ Work Time</label> {{job.workTime}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
+        </li>
+        <div class="justify-center flex md:space-x-6">
+          <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+              <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>See More</span>
+          </button>
+    
+          <button class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+              <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+              <path d="M12 8v8"/>
+              <path d="M16 12H8"/>
+              <path d="M2.5 8.875a10 10 0 0 0-.5 3"/>
+              <path d="M2.83 16a10 10 0 0 0 2.43 3.4"/>
+              <path d="M4.636 5.235a10 10 0 0 1 .891-.857"/>
+              <path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/>
+            </svg>
+            <span class="text-white">Apply</span>
+          </button>
+        </div>
+      </ul>
+    </section>
+    
+ 
+    <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <div class="bg-[#25262d] p-6 w-[50%] max-h-[80%] rounded-lg shadow-lg text-center relative ease-in-out flex flex-col">
+        <button (click)="closeModal()" class="absolute top-4 right-4 text-red text-2xl hover:text-red-500">
+          X
+        </button>
+        <div class="space-y-12 p-8 overflow-y-auto flex-grow">
+          <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+            <img *ngIf="modalJob.logo" [src]="modalJob.logo" alt="Company Logo" class="w-full w-32 h-32 rounded-full h-full object-cover">
+            <span *ngIf="!modalJob.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+          </div>
+          <h1 class="text-2xl text-white mt-4 p-2">{{ modalJob.companyName }}</h1>
+    
+          <h2 class="text-2xl text-white">
+            <label class="text-2xl pr-2">Job Title:</label>{{ modalJob.jobTitle }}
+          </h2>
+          <div class="flex justify-center space-x-12">
+            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+              <strong>📍Location:</strong> {{ modalJob.location }}
+            </p>
+            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+              <strong>⏰Work Time:</strong> {{ modalJob.workTime }}
+            </p>
+            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+              <strong>🤑Salary:</strong> {{ modalJob.salary }}
+            </p>
+          </div>
+          <p class="text-white w-full text-xl space-x-2 mt-2">
+            <strong class="text-white mt-1 max-h-12 text-xl pr-16 pl-16 bg-green-600 p-4 rounded-xl hover:bg-green-700 w-1/2">Description:</strong> 
+          </p>
+          <p class="text-xl">{{ modalJob.description || 'No description available' }}</p>
+        </div>
+        <div class="mt-auto p-8">
+          <button (click)=" applyModalOpen()" class="bg-blue-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 w-full flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+              <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+              <path d="M12 8v8"/>
+              <path d="M16 12H8"/>
+            </svg>
+            <span class="text-white">Apply</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="showModalApply"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center space-x-2 items-center"
+    >
+      <div
+        class="bg-gray-800 p-12 w-1/2 h-4/5 rounded-lg shadow-lg text-center relative flex flex-col"
+      >
+        <button
+          (click)="closeModalApply()"
+          class="absolute top-4 right-4 text-red-500 text-2xl hover:text-red-600"
+        >
+          X
+        </button>
+    
+        <label class="text-2xl font-semibold text-white mb-6">
+          You Will Grow, You Will Succeed. We Promise That
+        </label>
+        <form
+        [formGroup]="modalapply"
+        (ngSubmit)="onSubmit()"
+        class="space-y-6  p-16 bg-gray-800 text-white rounded-lg shadow-md max-w-4xl space-y-12 p-8 overflow-y-auto flex-grow"
+      >
+        <div class="flex flex-col gap-2">
+          <label for="firstName" class="font-semibold">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            placeholder="Enter your first name"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      
+        <div class="flex flex-col gap-2">
+          <label for="lastName" class="font-semibold">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Enter your last name"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      
+        <div class="flex flex-col gap-2">
+          <label for="phoneNumber" class="font-semibold">Phone Number</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Enter your phone number"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      
+        <div class="flex flex-col gap-2">
+          <label for="description" class="font-semibold">Description</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="4"
+            placeholder="Describe yourself or your application"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          ></textarea>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="phoneNumber" class="font-semibold">linkedin</label>
+          <input
+            type="url"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="linkedin"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="github" class="font-semibold">github</label>
+          <input
+            type="url"
+            id="github"
+            formControlName="github"
+            placeholder="github"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="resumes" class="font-semibold">Resume</label>
+          <input
+            type="file"
+            id="resumes"
+            formControlName="resumes"
+            class="w-full bg-gray-700 text-gray-400 p-3 rounded-lg file:bg-blue-600 file:text-white file:px-4 file:py-2 file:rounded-lg file:mr-3 hover:file:bg-blue-700"
+          />
+        </div>
+      
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:bg-gray-500"
+          [disabled]="!modalapply.valid"
+        >
+          Submit
+        </button>
+    
+      </form>   
+      
+    </div></div></div>
+    
+    
+       <!-- <section class="flex justify-center space-x-12 p-12">
+      <div class="flex items-center space-x-4">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+          <img src="/assets/job.png" class="w-16 mx-auto" alt="Job Icon">
+        </div>
+        <div class="text-center">
+          <p class="text-2xl">25,850</p>
+          <p class="text-xl">jobs</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+          <img src="/assets/candidates.png" class="w-16 mx-auto" alt="Candidates Icon">
+        </div>
+        <div class="text-center">
+          <p class="text-2xl">10.254</p>
+          <p class="text-xl">Candidates</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+          <img src="/assets/company.png" class="w-16 mx-auto" alt="Company Icon">
+        </div>
+        <div class="text-center">
+          <p class="text-2xl">14.254</p>
+          <p class="text-xl">Companies</p>
+        </div>
+      </div>
+    </section> -->
+    
+    <!-- <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+      <ul *ngFor="let job of jobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+        <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+          <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
+          <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+        </div>
+    
+        <li class="p-2 mt-24">
+          <label class="text-xl p-4">🏢 Company Name</label> {{job.companyName}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">🧑‍💻 Job Title</label> {{job.jobTitle}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">📍 Location</label> {{job.location}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">⏰ Work Time</label> {{job.workTime}}
+        </li>
+        <li class="p-2">
+          <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
+        </li>
+        <div class="justify-center flex md:space-x-6">
+          <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+              <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>See More</span>
+          </button>
+    
+          <button class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+              <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+              <path d="M12 8v8"/>
+              <path d="M16 12H8"/>
+              <path d="M2.5 8.875a10 10 0 0 0-.5 3"/>
+              <path d="M2.83 16a10 10 0 0 0 2.43 3.4"/>
+              <path d="M4.636 5.235a10 10 0 0 1 .891-.857"/>
+              <path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/>
+            </svg>
+            <span class="text-white">Apply</span>
+          </button>
+        </div>
+      </ul>
+    </section> -->
+     
+          
+          <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl">
+              <p class="text-2xl p-2 text-white">✨Role</p>
+              <p class="text-2xl text-white">{{role}}</p>
+            </div>
+            <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl">
+              <p class="text-2xl p-2 text-white">📧Email</p>
+              <p class="text-2xl text-white">{{email}}</p>
+            </div>
+            <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl">
+              <p class="text-2xl p-2 text-white">📞Phone</p>
+              <p class="text-2xl text-white">{{phoneNumber}}</p>
+            </div>
+          </div>
+    
+          <div class="flex flex-col mt-6">
+            <p class="text-xl text-gray-400">Slogan:</p>
+            <p class="text-2xl text-white font-bold">{{slogan}}</p>
+            <p class="text-xl text-gray-400 mt-4">Mission:</p>
+            <p class="text-white">{{mission}}</p>
+          </div>
+    
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl">
+              <p class="text-2xl p-2 text-white">📈 Chiffre d'affaires</p>
+              <p class="text-2xl text-white">{{chiffreAffaires}}</p>
+            </div>
+            <div class="bg-gray-600 w-56 h-24 items-center text-center p-2 rounded-2xl">
+              <p class="text-2xl p-2 text-white">👩‍💼 Employés</p>
+              <p class="text-2xl text-white">{{nombreEmployes}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="mt-8">
+        <h2 class="text-3xl text-white">Témoignages</h2>
+        <div class="bg-gray-700 p-4 rounded-lg mt-4">
+          <p class="text-white italic">"Un service exceptionnel et des produits de haute qualité." - Client XYZ</p>
+        </div>
+      </div>
+    
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+        <img src="/assets/image1.jpg" alt="Bureau" class="w-full h-32 object-cover rounded-lg">
+        <img src="/assets/image2.jpg" alt="Équipe" class="w-full h-32 object-cover rounded-lg">
+      </div>
+    
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+        <ul class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+          <li>
+            <p class="text-2xl text-center">💼 Professional Details</p>
+            <ul class="text-xl p-2">
+              <li>Current Position</li>
+              <li>Company Name</li>
+              <li>Department</li>
+              <li>Hire Date</li>
+              <li>Past Positions</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+          <li>
+            <p class="text-2xl text-center">Skills and Education</p>
+            <ul class="text-xl p-2">
+              <li>Education</li>
+              <li>Skills</li>
+              <li>Languages</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+          <h2 class="text-3xl text-white text-center mb-6">Contact Form</h2>
+          <form action="#" method="POST">
+            <ul class="space-y-4">
+              <li>
+                <label for="companyName" class="block text-white">🏢Company Name</label>
+                <input type="text" id="companyName" name="companyName" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Company Name" required />
+              </li>
+              <li>
+                <label for="post" class="block text-white">🎯Post</label>
+                <input type="text" id="post" name="post" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Post Title" required />
+              </li>
+              <li>
+                <label for="location" class="block text-white">📍Location</label>
+                <input type="text" id="location" name="location" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter Location" required />
+              </li>
+              <li>
+                <label for="description" class="block text-white">🔎Description</label>
+                <textarea id="description" name="description" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter a description" required></textarea>
+              </li>
+              <li>
+                <button type="submit" class="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300">Envoyer</button>
+              </li>
+            </ul>
+          </form>
+        </ul>
+      </div>
+    </div> -->

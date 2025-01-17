@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class WidgetsComponent implements OnInit {
   cvData: any;
-  color: number = 0;
+  color: string = '';
  
   isEditing: boolean = false;
   currentWidget: any = {}; 
@@ -41,6 +41,7 @@ export class WidgetsComponent implements OnInit {
           </body>
         </html>
       `;
+      console.log('completeHtmlContent',completeHtmlContent)
       this.widgets[this.currentWidgetIndex].content = completeHtmlContent;
       this.currentWidgetIndex = (this.currentWidgetIndex + 1) % this.widgets.length;
     });

@@ -14,8 +14,7 @@
   >
     <div
       *ngFor="let color of displayedColors"
-      class="w-8 h-8 rounded-full inline-block mx-1 cursor-pointer border-2 border-white hover:border-black"
-      [ngStyle]="{ 'background-color': color }"
+      class="w-8 h-8 rounded-full bg-{{color}} inline-block mx-1 cursor-pointer border-2 border-white hover:border-black"
       (click)="selectColor(color)"
     ></div>
   </div>

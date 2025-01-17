@@ -91,11 +91,30 @@ export class CvService {
     experiences: [],
     projects: [],
     certifications: [],
+    skills:[],
   });
 
   cvData$ = this.cvDataSubject.asObservable();
+  private ApplyData = new BehaviorSubject<any>({
+    personalInfo: { firstName: '', lastName: '', description: '', phone: '', linkdein: null },  });
+    apply(value:any){
+      this.ApplyData.next(value)
+      
+    }
+    private rech = new BehaviorSubject<any>({
+      job:[''],
+      location:[''],
+      selected:[''],
 
 
+    })
+    rechercher(job:any,location:any,selected:any){
+this.rech.next(job)
+this.rech.next(location)
+
+this.rech.next(selected)
+
+    }
   private roleData = new BehaviorSubject<any>(null);
   role$ = this.roleData.asObservable();
 
@@ -117,14 +136,13 @@ export class CvService {
     if ($param2 && typeof $param2 === 'function') {
       const styleSheet = p0.styles;
       const content = p1.htmlContent;
-  
+  console.log(styleSheet,content)
       const finalHtml = `
         <style>${styleSheet}</style>
         <div class="cv-content">
           ${content}
         </div>
       `;
-  
       $param2('#cvContainer').html(finalHtml); 
     } else {
       console.error('$param2 is not a valid function', $param2);
@@ -133,16 +151,18 @@ export class CvService {
     this.cvHtmlSubject.next({ styles: p0.styles, htmlContent: p1.htmlContent });
   }
     
-  private colorSubject = new BehaviorSubject<number>(1);
-     color$ = this.colorSubject.asObservable();
-     color(newColor: number): number {
-       this.colorSubject.next(newColor);
-       return newColor;
-     }
+  private colorSubject = new BehaviorSubject<string>('blue-500');
+  color$ = this.colorSubject.asObservable();
   
-  getColor(): number {
+  color(newColor: string): void {
+    this.colorSubject.next(newColor);
+    console.log('Couleur mise à jour :', newColor);
+  }
+  
+  getColor(): string {
     return this.colorSubject.getValue();
   }
+  
 
 updateCv(newData: any) {
     const currentData = this.cvDataSubject.getValue();

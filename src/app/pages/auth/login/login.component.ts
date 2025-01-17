@@ -8,11 +8,12 @@ import {
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { UserAuthenticationWithPasswordResult ,UserAuthenticationWithPasswordFailure,UserAuthenticationWithPasswordSuccess, Maybe, Mutation} from '../../../../graphql/generated';
+import { NavbarComponent } from "../../../components/navbar/navbar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  imports: [FormsModule],
+  imports: [FormsModule, NavbarComponent],
 })
 export class LoginComponent {
   loginForm: FormGroup;

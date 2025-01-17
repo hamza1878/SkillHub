@@ -3,7 +3,12 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CvService } from '../../cv.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+
+
+import $ from 'jquery';
+
 import { CvComponent } from '../cv/cv.component';
+
 @Component({
   selector: 'app-resumes-buidler',
   standalone: false,
@@ -25,11 +30,14 @@ export class ResumesBuidlerComponent {
     { id: 'experience', title: 'Experience' },
     { id: 'projects', title: 'Projects' },
     { id: 'certifications', title: 'Certifications' },
+    { id: 'skills', title: 'skills' },
+
   ];
 showPreview: any;
 isCvVisible: boolean = true;
-  color=1;
+  color='';
   htmlContent: string='';
+switch: any;
 
 toggleCv() {
   this.isCvVisible = !this.isCvVisible;
@@ -50,17 +58,23 @@ populateResumeForm() {
     experiences: this.fb.array([]),
     projects: this.fb.array([]),
     certifications: this.fb.array([]),
+    skills: this.fb.array([]), 
+
   });
 
-  // Mettre à jour le cv quand l'utilisateur modifie les champs
   this.resumeForm.valueChanges.subscribe((value) => {
     this.cvService.updateCv(value);
   });
 
-  // Ajouter des sections comme l'éducation, l'expérience, les projets, etc.
   this.addEducationPrinciple();
   this.addExperience();
+  this.addSkills(); 
+
   this.addCertification();
+
+  this.cvData.skills.forEach((skill: string) => {
+    this.skills.push(this.fb.group({ skill: [skill] })); 
+  });
 }
   constructor(private fb: FormBuilder, private cvService: CvService){
 
@@ -77,28 +91,42 @@ populateResumeForm() {
              profilePicture:[''],
              linkedin:[''],
              github:[''],
+             jobtitle:['']
            }),
            professionalSummary: [''],
            educationPrinciple: this.fb.array([]),
            experiences: this.fb.array([]), 
            projects: this.fb.array([]),
            certifications: this.fb.array([]),
-         });
+           skills: this.fb.array([])
+          });
+
+this.cvData.skills.forEach((skill: string) => {
+  this.skills.push(this.fb.group({ skills: [skill] }));
+});
+
            this.resumeForm.get('personalInfo.profilePicture')?.valueChanges.subscribe((value) => {
        if (value) {
          this.onFileSelected(value);
          this.cvService.updateCv(this.resumeForm.value);
        }
      });
+  
          this.addEducationPrinciple();
          this.addExperience();
          this.addCertification();
+         this.addSkills();
+this.cvData.skills.forEach((skill: string) => {
+  this.skills.push(this.fb.group({ skills: [skill] }));
+});
+
          this.resumeForm.valueChanges.subscribe((value) => {
            this.cvService.updateCv(value);
           
          });
-
+    
        }
+       
          onFileSelected(event: Event): void {
      const input = event.target as HTMLInputElement;
      if (input && input.files) {
@@ -115,9 +143,24 @@ populateResumeForm() {
        }
      }
    }
+   get skills(): FormArray {
+    return this.resumeForm.get('skills') as FormArray;
+  }
+
+  createSkill(): FormGroup {
+    return this.fb.group({
+      skills: ['', Validators.required],
+    });
+  }
+
+  addSkills() {
+    this.skills.push(this.createSkill());
+  }
+   
     get educationPrinciple(): FormArray {
       return this.resumeForm.get('educationPrinciple') as FormArray;
     }
+  
     createEducation(): FormGroup {
       return this.fb.group({
         institution: ['', Validators.required],
@@ -237,7 +280,96 @@ populateResumeForm() {
   previousStep() {
     this.currentStep--;
   }
-}
+  exportCvToPDF(): void {
+    const cvElement = document.getElementById('cvContent');
+    if (!cvElement) {
+      console.error('Element not found!');
+      return;
+    }
+  
+    const originalOverflow = cvElement.style.overflow;
+    cvElement.style.overflow = 'visible';
+  
+    html2canvas(cvElement, { scale: 8, useCORS: true, logging: true })
+      .then((canvas) => {
+        cvElement.style.overflow = originalOverflow;
+  
+        const imgData = canvas.toDataURL('image/png');
+  
+        const pdf = new jsPDF('p', 'mm', 'a4');
+  
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+  
+        const imgWidth = canvas.width-2;
+        const imgHeight = canvas.height-2;
+  
+        const scale = Math.min(pdfWidth / imgWidth, pdfHeight-2 / imgHeight);
+        const newWidth = imgWidth * scale;
+        const newHeight = imgHeight * scale;
+  
+        const x = (pdfWidth - newWidth) /4;
+        const y = (pdfHeight - newHeight) /10;
+  
+        pdf.addImage(imgData, 'PNG', x, y, newWidth, newHeight);
+  
+        pdf.save('CV.pdf');
+      })
+      .catch((error) => {
+        console.error('Error exporting to PDF:', error);
+      });
+  }
+  exportCvToHTML(): void {
+    const cvElement = document.getElementById('cvContent');
+    if (!cvElement) {
+      console.error('Element not found!');
+      return;
+    }
+  
+    const htmlContent = cvElement.outerHTML;
+  
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+  
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'CV.html'; 
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  exportCvAsPdf() {
+    const cvContent = document.getElementById('cvContent');
+    if (cvContent) {
+      const options = {
+        margin: 1,
+        filename: 'CV.pdf',
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+      };
+  
+      html2pdf().from(cvContent).set(options).save();
+    }
+  }
+  
+  saveCvDataToLocalStorage(): void {
+    const cvDataToSave = JSON.stringify(this.cvData);
+    localStorage.setItem('cvData', cvDataToSave); 
+    console.log('CV Data saved to localStorage');
+  }
+  getCssFromSheet(sheet: CSSStyleSheet): string {
+    let cssText = '';
+    try {
+      if (sheet.cssRules) {
+        cssText = Array.from(sheet.cssRules).map((rule: CSSRule) => rule.cssText).join('\n');
+      }
+    } catch (e) {
+      console.error('Error accessing CSS rules:', e);
+    }
+    return cssText;
+  }
+}  
+
   // exportAsImage(): void {
   //   const element = document.querySelector('.cv-container') as HTMLElement;
   //   html2canvas(element).then((canvas) => {

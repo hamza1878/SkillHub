@@ -1,29 +1,44 @@
 <div class="min-h-screen bg-gray-900 text-gray-100 flex flex-col lg:flex-row">
-  <!-- Formulaire (à gauche) -->
   <div class="flex-1 overflow-y-auto p-4 lg:p-8">
     <div class="bg-gray-800 w-full max-w-3xl rounded-lg shadow-lg p-6 lg:p-8">
-      <!-- Bouton pour afficher/masquer le CV -->
-      <div class="flex space-x-4">
+      <div class="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+        
+        <!-- Bouton Toggle CV -->
         <div>
-          <button (click)="toggleCv()" [ngStyle]="{'background-color': isCvVisible ? 'red' : 'black'}"
+          <button 
+            (click)="toggleCv()" 
+            [ngStyle]="{'background-color': isCvVisible ? 'red' : 'black'}"
             class="mb-4 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300 w-full lg:w-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" *ngIf="!isCvVisible" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed">
-              <path d="m15 18-.722-3.25"/>
-              <path d="M2 8a10.645 10.645 0 0 0 20 0"/>
-              <path d="m20 15-1.726-2.05"/>
-              <path d="m4 15 1.726-2.05"/>
-              <path d="m9 18 .722-3.25"/>
-            </svg> 
-            <svg xmlns="http://www.w3.org/2000/svg" *ngIf="isCvVisible" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
-              <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
+            <ng-container *ngIf="!isCvVisible">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed">
+                <path d="m15 18-.722-3.25"/>
+                <path d="M2 8a10.645 10.645 0 0 0 20 0"/>
+                <path d="m20 15-1.726-2.05"/>
+                <path d="m4 15 1.726-2.05"/>
+                <path d="m9 18 .722-3.25"/>
+              </svg>
+            </ng-container>
+            <ng-container *ngIf="isCvVisible">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </ng-container>
           </button>
         </div>
         
-        <div>
-          <app-color-picker></app-color-picker>        </div>
+        <div class="space-x-4">
+          <app-color-picker></app-color-picker>
+        </div>
+        
+       
+   
+        
       </div>
+  
+ 
+
+      
       
       
       <!-- Titre du formulaire -->
@@ -49,14 +64,11 @@
         </div>
       </div>
 
-      <!-- Formulaire -->
       <div [ngSwitch]="currentStep">
         <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-          <!-- Étape 1 : Informations personnelles -->
           <div *ngSwitchCase="0" formGroupName="personalInfo">
             <div class="grid grid-cols-1">
               <div class="flex flex-col items-center">
-                <!-- Téléchargement de la photo de profil -->
                 <label class="cursor-pointer">
                   <input 
                     type="file" 
@@ -100,6 +112,15 @@
                 />
               </div>
             </div>
+            <div>
+              <label for="jobtitle" class="block text-gray-300 font-medium mb-2">jobtitle</label>
+              <input
+                type="jobtitle"
+                id="jobtitle"
+                formControlName="jobtitle"
+                class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500 bg-gray-700 text-gray-100"
+                />
+            </div>
             <!-- Email et téléphone -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
@@ -120,6 +141,7 @@
                   class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500 bg-gray-700 text-gray-100"
                 />
               </div>
+        
               <div class="flex flex-col">
                 <label for="linkedin" class="text-sm font-medium text-gray-300">linkedin</label>
                 <input id="linkedin" formControlName="linkedin" type="url" class="p-2 border border-emerald-500 rounded-md bg-gray-700 text-gray-100" />
@@ -391,7 +413,22 @@
               </button>
             </div>
           </div>
-
+          <div *ngSwitchCase="6">
+            <div formArrayName="skills">
+              <div *ngFor="let skillGroup of skills.controls; let i = index" [formGroupName]="i">
+                <div class="mb-4">
+                  <label for="skills" class="block text-gray-300 font-medium mb-2">Skill</label>
+                  <textarea
+                    id="skills"
+                    formControlName="skills"
+                    rows="4"
+                    class="w-full p-2 border border-emerald-500 rounded-lg focus:outline-none focus:border-green-500 bg-gray-700 text-gray-100"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <!-- Boutons de navigation -->
           <div class="flex justify-between mt-6">
             <button
@@ -401,13 +438,18 @@
             >
               Previous
             </button>
-            <button
+            <button *ngIf="currentStep<7"
               type="button"
               class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
               (click)="nextStep()"
             >
               Next
             </button>
+              <button *ngIf="currentStep==7"
+                class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                (click)="exportCvWithTailwind()">
+                💾 Save your CV
+              </button>
           </div>
         
         </form>
