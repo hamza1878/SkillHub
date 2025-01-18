@@ -15,9 +15,11 @@ export class DashboardComponent {
     console.log('Toggle menu clicked'); 
     this.menuOpen = !this.menuOpen;
   }
+  name:string=''
  constructor(private router:Router){}
  logPath(path: string): void {
   this.router.navigate([path])
+  this.name=path
   // // Navigate to the provided path and handle navigation success or failure
   // this.router.navigate([path]).then(success => {
   //   if (success) {

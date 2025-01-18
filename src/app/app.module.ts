@@ -44,6 +44,7 @@ import { ResponseFormComponent } from './apply/response-form/response-form.compo
 import { BodycompComponent } from './apply/bodycomp/bodycomp.component';
 import { FindjobComponent } from './findjob/findjob.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CandidateDetailsComponent,ResponseFormComponent,BodycompComponent,FindjobComponent
   ],
   imports: [
+    CommonModule,
     MatButtonModule,
     MatDialogModule,
     BrowserModule,
@@ -82,18 +84,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule,
-    HttpClientModule,
     GraphQLModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    BrowserModule,
-    MatDialogModule,
-    MatButtonModule,
-    ReactiveFormsModule,
     MatAutocompleteModule,
     BrowserAnimationsModule
+    // MatButtonModule,
+    // MatDialogModule,
+    // BrowserModule,
+    // AppRoutingModule,
+    // RouterModule,
+    // LandingComponent,
+    // BodyComponent,
+    // FooterComponent,
+    // NavbarComponent,
+    // ReactiveFormsModule,
+    // FormsModule,
+    // RouterModule,
+    // HttpClientModule,
+    // GraphQLModule,
+    // MatDialogModule,
+    // MatSnackBarModule,
+    // MatDialogModule,
+    // BrowserModule,
+    // MatDialogModule,
+    // MatButtonModule,
+    // ReactiveFormsModule,
+    // MatAutocompleteModule,
+    // BrowserAnimationsModule
     
 ],
   providers: [

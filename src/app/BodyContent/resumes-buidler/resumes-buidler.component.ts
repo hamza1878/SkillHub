@@ -69,7 +69,7 @@ populateResumeForm() {
   this.addEducationPrinciple();
   this.addExperience();
   this.addSkills(); 
-
+  this.addProject()
   this.addCertification();
 
   this.cvData.skills.forEach((skill: string) => {
@@ -321,6 +321,8 @@ this.cvData.skills.forEach((skill: string) => {
   }
   exportCvToHTML(): void {
     const cvElement = document.getElementById('cvContent');
+    console.log(cvElement)
+    this.cvService.cvsave(cvElement)
     if (!cvElement) {
       console.error('Element not found!');
       return;
@@ -338,19 +340,52 @@ this.cvData.skills.forEach((skill: string) => {
     link.click();
     document.body.removeChild(link);
   }
+  
   exportCvAsPdf() {
     const cvContent = document.getElementById('cvContent');
+    
     if (cvContent) {
-      const options = {
-        margin: 1,
-        filename: 'CV.pdf',
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
-      };
+      const htmlContent = cvContent.outerHTML;
   
-      html2pdf().from(cvContent).set(options).save();
+      const styles = Array.from(document.styleSheets)
+        .map((sheet: CSSStyleSheet) => {
+          if (sheet.href) {
+            return `<link rel="stylesheet" href="${sheet.href}">`;
+          }
+          return `<style>${this.getCssFromSheet(sheet)}</style>`;
+        })
+        .join('\n');
+  
+      const completeHtmlContent = `
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <title>CV Export</title>
+            ${styles}
+          </head>
+          <body>
+            ${htmlContent}
+          </body>
+        </html>
+      `;
+      console.log({styles})
+      console.log({htmlContent})
+
+      const $param1 = $(document);  
+      const $param2 = $('#cvContainer');  
+        console.log($(document))
+      const blob = new Blob([completeHtmlContent], { type: 'text/html' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'cv.html';
+      this.cvService.cvHtml($param1, { styles: styles }, $param2, { htmlContent: htmlContent });
+      link.click();
+        localStorage.getItem(this.cvData)
     }
+    this.saveCvDataToLocalStorage();
+
   }
+  
   
   saveCvDataToLocalStorage(): void {
     const cvDataToSave = JSON.stringify(this.cvData);

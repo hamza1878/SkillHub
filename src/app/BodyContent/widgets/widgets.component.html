@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 sm:grid-cols-16 lg:grid-cols-32 gap-6 p-6 w-full">
+<!-- <div class="grid grid-cols-2 sm:grid-cols-16 lg:grid-cols-32 gap-6 p-6 w-full">
   <div *ngFor="let widget of widgets" class="relative bg-white border border-gray-200 rounded-lg shadow-md p-6 w-full">
     <button
       (click)="removeWidget(widget.id)"
@@ -12,9 +12,32 @@
       class="absolute top-2 left-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-blue-600"
     >
       🎨
+    </button> -->
+    <div *ngIf="i > 0" class="grid grid-cols-2 sm:grid-cols-16 lg:grid-cols-32 gap-6 p-6 w-full">
+      <div *ngIf="i > 0" class="relative bg-white border border-gray-200 rounded-lg shadow-md p-2 w-full">
+        <button 
+          (click)="removeWidget()" 
+          class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600">
+          ×
+        </button>
+    
+        <div [innerHTML]="cvwidget"></div>
+      </div>
+    </div>
+    
+    <button (click)="edit()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+      Edit
     </button>
     
-    <p [innerHTML]="widgets[this.currentWidgetIndex].content" class=""></p>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div>
 
+<button 
+  (click)="submitForm()" 
+  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4"
+>
+  Ajouter un Widget
+</button> -->
+
+
+<!-- <p [innerHTML]="cvwidget" class="widget-content"></p> -->

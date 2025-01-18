@@ -129,6 +129,16 @@ this.rech.next(selected)
   });
 
   cvHtml$ = this.cvHtmlSubject.asObservable();
+  private cv = new BehaviorSubject<any>({
+    cvElement:'',
+  }) ;
+
+cvsave(element:any){
+  console.log('servece',element)
+   this.cv.next(element)
+
+}   
+cvsave$ = this.cv.asObservable();
 
   constructor() {}
 
