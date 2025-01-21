@@ -1,20 +1,25 @@
-<div class="flex bg-gray-900 text-gray-100 min-h-screen">
-   <div
+<div class="flex bg-[#1a0033]  text-gray-100 min-h-screen">
+  <header class="fixed top-0 left-0 right-0 flex items-center justify-between  text-white p-4 w-full z-50">
+
+  <button (click)="toggleMenu()">
+    <img src="assets/hamburgers.png" class="w-12 h-12" alt="Hamburger Icon" />
+  </button> </header>
+  <div
    [ngClass]="{
      'translate-x-0': menuOpen,
      '-translate-x-[300px]': !menuOpen, 
      'lg:absolute': !menuOpen
    }"
-   class="bg-gray-800   w-64 space-y-6 pt-16 py-4 px-2 fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out z-20"  
+   class="bg-[#150129]  w-64 space-y-6 pt-16 py-4 px-2 fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out z-20"  
  >
  
-     <div class="h-screen px-3 pb-6 overflow-y-auto bg-gray-800">
+     <div class="h-screen px-3 pb-6 overflow-y-auto bg-[#150129]">
        <ul class="space-y-2 font-medium">
          <li>
            <a
              routerLink="/dashboard"
              (click)="logPath('/dashboard/Findjob')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -38,7 +43,7 @@
            <a
              routerLink="companies"
              (click)="logPath('/dashboard/companies')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -53,7 +58,7 @@
              </svg>
              <span class="flex-1 ms-3 text-xl whitespace-nowrap">Companies</span>
              <span
-               class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full"
+               class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-indigo-950 bg-gray-200 rounded-full"
                >Pro</span
              >
            </a>
@@ -63,7 +68,7 @@
            <a
              routerLink="users"
              (click)="logPath('/dashboard/users')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -88,7 +93,7 @@
            <a
              routerLink="resume"
              (click)="logPath('/dashboard/resumes')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -109,7 +114,7 @@
            <a
              routerLink="resume-builder"
              (click)="logPath('/dashboard/resumesbuilder')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -136,7 +141,7 @@
            <a
              routerLink="applications"
              (click)="logPath('/dashboard/applications')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -157,7 +162,7 @@
            <a
              routerLink="settings"
              (click)="logPath('/dashboard/settings')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -184,7 +189,7 @@
            <a
              routerLink="sign-out"
              (click)="logPath('/landing')"
-             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 group"
+             class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"
            >
              <svg
                class="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 group-hover:text-gray-100"
@@ -214,11 +219,9 @@
      class="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
    ></div>
  
-=   <div [ngClass]="{'ml-64': menuOpen, 'ml-0': !menuOpen}" class="flex-1 flex flex-col overflow-hidden transition-margin duration-300 ease-in-out">
-     <header class="fixed top-0 left-0 right-0 flex items-center justify-between bg-gray-800 text-white p-4 w-full z-50">
-       <button (click)="toggleMenu()">
-         <img src="assets/hamburgers.png" class="w-8 h-8" alt="Hamburger Icon" />
-       </button>
+   <div [ngClass]="{'ml-64': menuOpen, 'ml-0': !menuOpen}" class="flex-1 flex flex-col overflow-hidden transition-margin duration-300 ease-in-out">
+     <!-- <header class="fixed top-0 left-0 right-0 flex items-center justify-between bg-indigo-950 text-white p-4 w-full z-50">
+      
        <h1 class="text-lg font-bold">Dashboard</h1>
        <div class="flex items-center space-x-4">
          <button>
@@ -235,11 +238,11 @@
                stroke-width="2"
                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.25V10a6 6 0 10-12 0v4.25c0 .363-.097.717-.272 1.028L4 17h5m6 0v2a2 2 0 11-4 0v-2m0 0H9"
              />
-           </svg>
-         </button>
+           </svg> -->
+         <!-- </button>
          <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-8 h-8" />
        </div>
-     </header>
+     </header> -->
  
      <main class="p-4 mt-16 overflow-y-auto">
       <router-outlet></router-outlet>

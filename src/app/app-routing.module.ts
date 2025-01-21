@@ -17,17 +17,17 @@ import { ApplicationsComponent } from './apply/applications/applications.compone
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 import { FindjobComponent } from './findjob/findjob.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'companies', pathMatch: 'full' }, // Redirect default route to landing
-  { path: 'landing', component: LandingComponent }, // Landing page
-  { path: 'login', component: LoginComponent }, // Login page
-  { path: 'signup', component: SingupComponent }, // Signup page
-  { path: 'choix', component: SignupChoixComponent }, // Signup page
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'landing', component: LandingComponent }, 
+  { path: 'login', component: LoginComponent }, 
+  { path: 'signup', component: SingupComponent }, 
+  { path: 'choix', component: SignupChoixComponent }, 
   
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent }, // Signup page
+      { path: 'dashboard', component: DashboardComponent }, 
       { path: 'Findjob', component: FindjobComponent },
 
       { path: 'users', component: UsersComponent },
@@ -39,14 +39,14 @@ const routes: Routes = [
       { path: 'resumes', component: ResumesComponent },
     ],
   },
-  { path: 'body', component: BodyComponent }, // Body component
-  { path: 'footer', component: FooterComponent }, // Footer component
-  { path: 'navbar', component: NavbarComponent }, // Navbar component
-  { path: '**', redirectTo: 'dashboard' }, // Catch-all route choix
+  { path: 'body', component: BodyComponent }, 
+  { path: 'footer', component: FooterComponent }, 
+  { path: 'navbar', component: NavbarComponent },
+  { path: '**', redirectTo: 'dashboard' }, 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], // Import the routing configuration
-  exports: [RouterModule], // Export the RouterModule so it can be used in other parts of the application
+  imports: [RouterModule.forRoot(routes)], 
+  exports: [RouterModule], 
 })
 export class AppRoutingModule {}

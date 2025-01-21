@@ -1,9 +1,8 @@
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="max-w-2xl mx-auto p-8 bg-gray-900 text-white shadow-lg rounded-lg">
-    <!-- Profile Picture -->
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="max-w-2xl mx-auto p-8 bg-[#150129] text-white shadow-lg rounded-lg">
     <div class="flex justify-center mb-8">
       <label for="profilePicture" class="cursor-pointer">
-        <div class="w-32 h-32 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
+        <div class="w-32 h-32 rounded-full bg-gray-600 flex items-center justify-center overflow-hidden">
           <img *ngIf="profilePicturePreview" [src]="profilePicturePreview" alt="Profile Picture" class="w-full h-full object-cover">
           <span *ngIf="!profilePicturePreview" class="text-gray-400">Upload Photo</span>
         </div>
@@ -11,36 +10,31 @@
       </label>
     </div>
   
-    <!-- First Name -->
     <div class="mb-4">
       <label for="firstName" class="block text-sm font-medium text-gray-300">First Name</label>
-      <input id="firstName" formControlName="firstName" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      <input id="firstName" formControlName="firstName" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
     </div>
   
-    <!-- Last Name -->
     <div class="mb-4">
       <label for="lastName" class="block text-sm font-medium text-gray-300">Last Name</label>
-      <input id="lastName" formControlName="lastName" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      <input id="lastName" formControlName="lastName" type="text" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
     </div>
   
-    <!-- Email -->
     <div class="mb-4">
       <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
-      <input id="email" formControlName="email" type="email" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      <input id="email" formControlName="email" type="email" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
     </div>
   
   
   
-    <!-- Password -->
     <div class="mb-4">
       <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
-      <input id="password" formControlName="password" type="password" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      <input id="password" formControlName="password" type="password" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
     </div>
   
-    <!-- Status -->
     <div class="mb-4">
       <label for="status" class="block text-sm font-medium text-gray-300">Status</label>
-      <select id="status" formControlName="status" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      <select id="status" formControlName="status" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
         <option value="">Select...</option>
         <option value="Active">Active</option>
         <option value="Inactive">Inactive</option>
@@ -48,25 +42,22 @@
       </select>
     </div>
   
-    <!-- Created At -->
     <div class="mb-4">
       <label for="createdAt" class="block text-sm font-medium text-gray-300">Created At</label>
       <div class="flex gap-4">
-        <input id="createdAt" formControlName="createdAt" type="date" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-        <input id="createdAtTime" formControlName="createdAtTime" type="time" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <input id="createdAt" formControlName="createdAt" type="date" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <input id="createdAtTime" formControlName="createdAtTime" type="time" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
       </div>
     </div>
   
-    <!-- Updated At -->
     <div class="mb-4">
       <label for="updatedAt" class="block text-sm font-medium text-gray-300">Updated At</label>
       <div class="flex gap-4">
-        <input id="updatedAt" formControlName="updatedAt" type="date" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-        <input id="updatedAtTime" formControlName="updatedAtTime" type="time" class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <input id="updatedAt" formControlName="updatedAt" type="date" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <input id="updatedAtTime" formControlName="updatedAtTime" type="time" class="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-700 rounded-md shadow-sm text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
       </div>
     </div>
   
-    <!-- Submit Button -->
     <div class="mt-8">
       <button type="submit" [disabled]="!userForm.valid" class="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         Submit

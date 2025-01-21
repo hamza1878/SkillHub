@@ -122,7 +122,11 @@ this.rech.next(selected)
     this.roleData.next(role);
     console.log(role);
   }
+ 
 
+  setRole(role: string) {
+    this.roleData.next(role);
+  }
   private cvHtmlSubject = new BehaviorSubject<CvHtmlContent>({
     styles: '',
     htmlContent: ''

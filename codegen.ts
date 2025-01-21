@@ -5,15 +5,15 @@ const config: CodegenConfig = {
   schema: 'http://localhost:3000/api/graphql',
   documents: 'src/**/*.ts',
   generates: {
-    './src/graphql/generated.ts': {
+    'src/generated/graphql.ts': {
       plugins: [
         'typescript',
         'typescript-operations',
         'typescript-apollo-angular',
       ],
-      config: {
-        namedClient: 'skillhub',
-      },
+    },
+    './graphql.schema.json': {
+      plugins: ['introspection'],
     },
   },
 };

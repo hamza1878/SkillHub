@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,16 +7,19 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
-import { UserAuthenticationWithPasswordResult ,UserAuthenticationWithPasswordFailure,UserAuthenticationWithPasswordSuccess, Maybe, Mutation} from '../../../../graphql/generated';
-import { NavbarComponent } from "../../../components/navbar/navbar.component";
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { nextTick } from 'process';
+import { subscribe } from 'graphql';
+import { AuthServiceService } from '../../../auth-service.service';
+import { Mutation, UserRoleType } from '../../../../generated/graphql';
+
 @Component({
   selector: 'app-login',
-  standalone: true,
+  standalone: false,
   templateUrl: './login.component.html',
-  imports: [FormsModule, NavbarComponent],
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  // loginForm: FormGroup;
   login = { email: '', password: '' };
 
   LOGIN_MUTATION = gql`
@@ -28,10 +31,13 @@ export class LoginComponent {
             firstName
             createdAt
             id
-            profilePicture
+            picture {
+              url
+            }
             status
             updatedAt
             email
+            role
           }
         }
         ... on UserAuthenticationWithPasswordFailure {
@@ -44,13 +50,18 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private readonly apollo: Apollo
+    private readonly apollo: Apollo,
+    private AuthServiceService: AuthServiceService
   ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
+    // this.loginForm = this.fb.group({
+    //   email: ['', [Validators.required, Validators.email]],
+    //   password: ['', Validators.required],
+    // });
   }
+  ngOnInit(): void {
+    this.AuthServiceService.localStorage.getItem(this.login.email);
+  }
+
   signup() {
     alert('Navigating to Sign Up');
     this.router
@@ -62,7 +73,7 @@ export class LoginComponent {
         console.error('Navigation error: ', error);
       });
   }
-  onSubmit() {
+  backend(): void {
     console.log('mutation', this.LOGIN_MUTATION);
     this.apollo
       .mutate<Mutation>({
@@ -72,34 +83,25 @@ export class LoginComponent {
           password: this.login.password,
         },
       })
+      .subscribe({
+        next: ({ data }) => {
+          if (
+            data?.authenticateUserWithPassword?.__typename ===
+            'UserAuthenticationWithPasswordSuccess'
+          ) {
+            console.log(data.authenticateUserWithPassword.item);
 
-      .subscribe(
-        ({ data }) => {
-       
-            if(data?.authenticateUserWithPassword?.__typename==="UserAuthenticationWithPasswordSuccess"){
-                console.log(data.authenticateUserWithPassword.item)
-            }else{
-              alert("error")
-            }
-            
-           
-          
+            this.AuthServiceService.setUserEmail(this.login.email);
+
+            this.router.navigate(['/dasboard']);
+          } else {
+            alert('Error:hhhh ' + data?.authenticateUserWithPassword);
+          }
         },
-        (error) => {
-          console.log('there was an error sending the query', error);
-        }
-      );
-    // if (this.login.email === 'hbs3107717@gmail.com') {
-    //   this.router
-    //     .navigate(['/dashboard'])
-    //     .then((success) => {
-    //       console.log('Navigation success: ', success);
-    //     })
-    //     .catch((error) => {
-    //       console.error('Navigation error: ', error);
-    //     });
-    // } else {
-    //   alert('Invalid email or password');
-    // }
+        error: (error) => {
+          console.error('Mutation error:', error);
+          alert('An error occurred during the login process.');
+        },
+      });
   }
 }

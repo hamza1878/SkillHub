@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CvService } from '../../cv.service';
+import { Apollo, gql } from 'apollo-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-settings',
   standalone: false,
-  
   templateUrl: './users-settings.component.html',
   styleUrl: './users-settings.component.css'
 })
-export class UsersSettings  implements OnInit {
-
-  userForm!: FormGroup 
+export class UsersSettings implements OnInit {
+  userForm!: FormGroup;
   profilePicturePreview: string | ArrayBuffer | null = null;
   resumeFile: File | null = null;
+  role: any;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder, 
+    private cvService: CvService, 
+    private apollo: Apollo,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
@@ -29,6 +36,53 @@ export class UsersSettings  implements OnInit {
       createdAtTime: [''],
       updatedAt: [''],
       updatedAtTime: ['']
+    });
+
+    this.cvService.role$.subscribe(role => {
+      this.role = role;
+    });
+  }
+
+  onSubmit(): void {
+    if (this.userForm.invalid) {
+      alert('Please fill all required fields correctly.');
+      return;
+    }
+
+    const userSettingsMutation = gql`
+      mutation CreateAllCompanySettings($data: [UserUpdateArgs!]!) {
+        updateUsers(data: $data) {
+          id
+          firstName
+          lastName
+          role
+          profilePicture
+          email
+          resume
+          resumeCount
+          status
+          createdAt
+          updatedAt
+        }
+      }
+    `;
+
+    this.apollo.mutate({
+      mutation: userSettingsMutation,
+      variables: { data: [this.userForm.value] }
+    }).subscribe({
+      next: (response: any) => {
+        console.log('Signup successful:', response);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        console.error('Signup failed:', error);
+        if (error.message.includes('Unique constraint failed on the fields: (`email`)')) {
+          alert('This email is already in use. Please use another email.');
+        } else {
+          alert('An error occurred during signup. Please try again.');
+        }
+      }
     });
   }
 
@@ -50,19 +104,5 @@ export class UsersSettings  implements OnInit {
       this.resumeFile = input.files[0];
     }
   }
-
-  onSubmit(): void {
-    if (this.userForm.valid) {
-      const formData = new FormData();
-      Object.keys(this.userForm.controls).forEach(key => {
-        formData.append(key, this.userForm.get(key)?.value);
-      });
-      if (this.resumeFile) {
-        formData.append('resumeFile', this.resumeFile);
-      }
-      console.log(formData);
-    } else {
-      console.log('Form is not valid');
-    }
-  }
 }
+

@@ -1,7 +1,6 @@
 import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
-import { DocumentNode } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -25,128 +24,76 @@ export type Scalars = {
 
 export type AuthenticatedItem = User;
 
-export type BooleanFilter = {
-  equals?: InputMaybe<Scalars['Boolean']['input']>;
-  not?: InputMaybe<BooleanFilter>;
-};
-
 export type Company = {
   __typename?: 'Company';
-  brandIdentity?: Maybe<Scalars['String']['output']>;
-  businessModel?: Maybe<Scalars['String']['output']>;
-  capital?: Maybe<Scalars['Float']['output']>;
-  ceo?: Maybe<User>;
-  employees?: Maybe<Scalars['Int']['output']>;
-  founders?: Maybe<Array<User>>;
-  foundersCount?: Maybe<Scalars['Int']['output']>;
+  capital?: Maybe<Scalars['Int']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   foundingDate?: Maybe<Scalars['DateTime']['output']>;
-  globalPresence?: Maybe<Scalars['Boolean']['output']>;
   headquarters?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  industry?: Maybe<Scalars['String']['output']>;
-  jobApplications?: Maybe<Array<JobApplication>>;
-  jobApplicationsCount?: Maybe<Scalars['Int']['output']>;
+  jobDomain?: Maybe<Scalars['String']['output']>;
   legalStatus?: Maybe<Scalars['String']['output']>;
   logo?: Maybe<ImageFieldOutput>;
-  mission?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   registrationNumber?: Maybe<Scalars['String']['output']>;
-  revenue?: Maybe<Scalars['Float']['output']>;
-  tagline?: Maybe<Scalars['String']['output']>;
-  taxId?: Maybe<Scalars['String']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  vision?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type CompanyFoundersArgs = {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  orderBy?: Array<UserOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: UserWhereInput;
-};
-
-
-export type CompanyFoundersCountArgs = {
-  where?: UserWhereInput;
-};
-
-
-export type CompanyJobApplicationsArgs = {
-  cursor?: InputMaybe<JobApplicationWhereUniqueInput>;
-  orderBy?: Array<JobApplicationOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: JobApplicationWhereInput;
-};
-
-
-export type CompanyJobApplicationsCountArgs = {
-  where?: JobApplicationWhereInput;
+  revenue?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<CompanyTypeType>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type CompanyCreateInput = {
-  brandIdentity?: InputMaybe<Scalars['String']['input']>;
-  businessModel?: InputMaybe<Scalars['String']['input']>;
-  capital?: InputMaybe<Scalars['Float']['input']>;
-  ceo?: InputMaybe<UserRelateToOneForCreateInput>;
-  employees?: InputMaybe<Scalars['Int']['input']>;
-  founders?: InputMaybe<UserRelateToManyForCreateInput>;
+  capital?: InputMaybe<Scalars['Int']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   foundingDate?: InputMaybe<Scalars['DateTime']['input']>;
-  globalPresence?: InputMaybe<Scalars['Boolean']['input']>;
   headquarters?: InputMaybe<Scalars['String']['input']>;
-  industry?: InputMaybe<Scalars['String']['input']>;
-  jobApplications?: InputMaybe<JobApplicationRelateToManyForCreateInput>;
+  jobDomain?: InputMaybe<Scalars['String']['input']>;
   legalStatus?: InputMaybe<Scalars['String']['input']>;
   logo?: InputMaybe<ImageFieldInput>;
-  mission?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   registrationNumber?: InputMaybe<Scalars['String']['input']>;
-  revenue?: InputMaybe<Scalars['Float']['input']>;
-  tagline?: InputMaybe<Scalars['String']['input']>;
-  taxId?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
-  vision?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CompanyManyRelationFilter = {
-  every?: InputMaybe<CompanyWhereInput>;
-  none?: InputMaybe<CompanyWhereInput>;
-  some?: InputMaybe<CompanyWhereInput>;
+  revenue?: InputMaybe<Scalars['Int']['input']>;
+  type?: InputMaybe<CompanyTypeType>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CompanyOrderByInput = {
-  brandIdentity?: InputMaybe<OrderDirection>;
-  businessModel?: InputMaybe<OrderDirection>;
   capital?: InputMaybe<OrderDirection>;
-  employees?: InputMaybe<OrderDirection>;
+  createdAt?: InputMaybe<OrderDirection>;
   foundingDate?: InputMaybe<OrderDirection>;
-  globalPresence?: InputMaybe<OrderDirection>;
   headquarters?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
-  industry?: InputMaybe<OrderDirection>;
+  jobDomain?: InputMaybe<OrderDirection>;
   legalStatus?: InputMaybe<OrderDirection>;
-  mission?: InputMaybe<OrderDirection>;
   name?: InputMaybe<OrderDirection>;
   registrationNumber?: InputMaybe<OrderDirection>;
   revenue?: InputMaybe<OrderDirection>;
-  tagline?: InputMaybe<OrderDirection>;
-  taxId?: InputMaybe<OrderDirection>;
   type?: InputMaybe<OrderDirection>;
-  vision?: InputMaybe<OrderDirection>;
+  updatedAt?: InputMaybe<OrderDirection>;
 };
 
-export type CompanyRelateToManyForCreateInput = {
-  connect?: InputMaybe<Array<CompanyWhereUniqueInput>>;
-  create?: InputMaybe<Array<CompanyCreateInput>>;
+export type CompanyRelateToOneForCreateInput = {
+  connect?: InputMaybe<CompanyWhereUniqueInput>;
+  create?: InputMaybe<CompanyCreateInput>;
 };
 
-export type CompanyRelateToManyForUpdateInput = {
-  connect?: InputMaybe<Array<CompanyWhereUniqueInput>>;
-  create?: InputMaybe<Array<CompanyCreateInput>>;
-  disconnect?: InputMaybe<Array<CompanyWhereUniqueInput>>;
-  set?: InputMaybe<Array<CompanyWhereUniqueInput>>;
+export type CompanyRelateToOneForUpdateInput = {
+  connect?: InputMaybe<CompanyWhereUniqueInput>;
+  create?: InputMaybe<CompanyCreateInput>;
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum CompanyTypeType {
+  Eurl = 'EURL',
+  Sarl = 'SARL',
+  Sas = 'SAS',
+  Sasu = 'SASU'
+}
+
+export type CompanyTypeTypeNullableFilter = {
+  equals?: InputMaybe<CompanyTypeType>;
+  in?: InputMaybe<Array<CompanyTypeType>>;
+  not?: InputMaybe<CompanyTypeTypeNullableFilter>;
+  notIn?: InputMaybe<Array<CompanyTypeType>>;
 };
 
 export type CompanyUpdateArgs = {
@@ -155,54 +102,36 @@ export type CompanyUpdateArgs = {
 };
 
 export type CompanyUpdateInput = {
-  brandIdentity?: InputMaybe<Scalars['String']['input']>;
-  businessModel?: InputMaybe<Scalars['String']['input']>;
-  capital?: InputMaybe<Scalars['Float']['input']>;
-  ceo?: InputMaybe<UserRelateToOneForUpdateInput>;
-  employees?: InputMaybe<Scalars['Int']['input']>;
-  founders?: InputMaybe<UserRelateToManyForUpdateInput>;
+  capital?: InputMaybe<Scalars['Int']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   foundingDate?: InputMaybe<Scalars['DateTime']['input']>;
-  globalPresence?: InputMaybe<Scalars['Boolean']['input']>;
   headquarters?: InputMaybe<Scalars['String']['input']>;
-  industry?: InputMaybe<Scalars['String']['input']>;
-  jobApplications?: InputMaybe<JobApplicationRelateToManyForUpdateInput>;
+  jobDomain?: InputMaybe<Scalars['String']['input']>;
   legalStatus?: InputMaybe<Scalars['String']['input']>;
   logo?: InputMaybe<ImageFieldInput>;
-  mission?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   registrationNumber?: InputMaybe<Scalars['String']['input']>;
-  revenue?: InputMaybe<Scalars['Float']['input']>;
-  tagline?: InputMaybe<Scalars['String']['input']>;
-  taxId?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
-  vision?: InputMaybe<Scalars['String']['input']>;
+  revenue?: InputMaybe<Scalars['Int']['input']>;
+  type?: InputMaybe<CompanyTypeType>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CompanyWhereInput = {
   AND?: InputMaybe<Array<CompanyWhereInput>>;
   NOT?: InputMaybe<Array<CompanyWhereInput>>;
   OR?: InputMaybe<Array<CompanyWhereInput>>;
-  brandIdentity?: InputMaybe<StringFilter>;
-  businessModel?: InputMaybe<StringFilter>;
-  capital?: InputMaybe<FloatNullableFilter>;
-  ceo?: InputMaybe<UserWhereInput>;
-  employees?: InputMaybe<IntNullableFilter>;
-  founders?: InputMaybe<UserManyRelationFilter>;
+  capital?: InputMaybe<IntNullableFilter>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
   foundingDate?: InputMaybe<DateTimeNullableFilter>;
-  globalPresence?: InputMaybe<BooleanFilter>;
   headquarters?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
-  industry?: InputMaybe<StringFilter>;
-  jobApplications?: InputMaybe<JobApplicationManyRelationFilter>;
-  legalStatus?: InputMaybe<StringNullableFilter>;
-  mission?: InputMaybe<StringFilter>;
+  jobDomain?: InputMaybe<StringFilter>;
+  legalStatus?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   registrationNumber?: InputMaybe<StringFilter>;
-  revenue?: InputMaybe<FloatNullableFilter>;
-  tagline?: InputMaybe<StringFilter>;
-  taxId?: InputMaybe<StringFilter>;
-  type?: InputMaybe<StringNullableFilter>;
-  vision?: InputMaybe<StringFilter>;
+  revenue?: InputMaybe<IntNullableFilter>;
+  type?: InputMaybe<CompanyTypeTypeNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
 
 export type CompanyWhereUniqueInput = {
@@ -223,28 +152,6 @@ export type DateTimeNullableFilter = {
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<DateTimeNullableFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
-};
-
-export type FileFieldInput = {
-  upload: Scalars['Upload']['input'];
-};
-
-export type FileFieldOutput = {
-  __typename?: 'FileFieldOutput';
-  filename: Scalars['String']['output'];
-  filesize: Scalars['Int']['output'];
-  url: Scalars['String']['output'];
-};
-
-export type FloatNullableFilter = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Array<Scalars['Float']['input']>>;
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  not?: InputMaybe<FloatNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type IdFilter = {
@@ -292,41 +199,32 @@ export type IntNullableFilter = {
 
 export type JobApplication = {
   __typename?: 'JobApplication';
-  address?: Maybe<Scalars['String']['output']>;
-  applicantName?: Maybe<Scalars['String']['output']>;
-  applicationDate?: Maybe<Scalars['DateTime']['output']>;
-  company?: Maybe<Array<Company>>;
-  companyCount?: Maybe<Scalars['Int']['output']>;
-  coverLetter?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
+  Company?: Maybe<Company>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['ID']['output'];
-  phone?: Maybe<Scalars['String']['output']>;
-  portfolio?: Maybe<Scalars['String']['output']>;
-  recruiterNotes?: Maybe<Scalars['String']['output']>;
-  resume?: Maybe<FileFieldOutput>;
-  skills?: Maybe<Scalars['String']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  users?: Maybe<Array<User>>;
-  usersCount?: Maybe<Scalars['Int']['output']>;
-  yearsOfExperience?: Maybe<Scalars['Int']['output']>;
+  resume?: Maybe<Array<Resume>>;
+  resumeCount?: Maybe<Scalars['Int']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  user?: Maybe<Array<User>>;
+  userCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
-export type JobApplicationCompanyArgs = {
-  cursor?: InputMaybe<CompanyWhereUniqueInput>;
-  orderBy?: Array<CompanyOrderByInput>;
+export type JobApplicationResumeArgs = {
+  cursor?: InputMaybe<ResumeWhereUniqueInput>;
+  orderBy?: Array<ResumeOrderByInput>;
   skip?: Scalars['Int']['input'];
   take?: InputMaybe<Scalars['Int']['input']>;
-  where?: CompanyWhereInput;
+  where?: ResumeWhereInput;
 };
 
 
-export type JobApplicationCompanyCountArgs = {
-  where?: CompanyWhereInput;
+export type JobApplicationResumeCountArgs = {
+  where?: ResumeWhereInput;
 };
 
 
-export type JobApplicationUsersArgs = {
+export type JobApplicationUserArgs = {
   cursor?: InputMaybe<UserWhereUniqueInput>;
   orderBy?: Array<UserOrderByInput>;
   skip?: Scalars['Int']['input'];
@@ -335,58 +233,22 @@ export type JobApplicationUsersArgs = {
 };
 
 
-export type JobApplicationUsersCountArgs = {
+export type JobApplicationUserCountArgs = {
   where?: UserWhereInput;
 };
 
 export type JobApplicationCreateInput = {
-  address?: InputMaybe<Scalars['String']['input']>;
-  applicantName?: InputMaybe<Scalars['String']['input']>;
-  applicationDate?: InputMaybe<Scalars['DateTime']['input']>;
-  company?: InputMaybe<CompanyRelateToManyForCreateInput>;
-  coverLetter?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  portfolio?: InputMaybe<Scalars['String']['input']>;
-  recruiterNotes?: InputMaybe<Scalars['String']['input']>;
-  resume?: InputMaybe<FileFieldInput>;
-  skills?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  users?: InputMaybe<UserRelateToManyForCreateInput>;
-  yearsOfExperience?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type JobApplicationManyRelationFilter = {
-  every?: InputMaybe<JobApplicationWhereInput>;
-  none?: InputMaybe<JobApplicationWhereInput>;
-  some?: InputMaybe<JobApplicationWhereInput>;
+  Company?: InputMaybe<CompanyRelateToOneForCreateInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  resume?: InputMaybe<ResumeRelateToManyForCreateInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  user?: InputMaybe<UserRelateToManyForCreateInput>;
 };
 
 export type JobApplicationOrderByInput = {
-  address?: InputMaybe<OrderDirection>;
-  applicantName?: InputMaybe<OrderDirection>;
-  applicationDate?: InputMaybe<OrderDirection>;
-  coverLetter?: InputMaybe<OrderDirection>;
-  email?: InputMaybe<OrderDirection>;
+  createdAt?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
-  phone?: InputMaybe<OrderDirection>;
-  portfolio?: InputMaybe<OrderDirection>;
-  recruiterNotes?: InputMaybe<OrderDirection>;
-  skills?: InputMaybe<OrderDirection>;
-  status?: InputMaybe<OrderDirection>;
-  yearsOfExperience?: InputMaybe<OrderDirection>;
-};
-
-export type JobApplicationRelateToManyForCreateInput = {
-  connect?: InputMaybe<Array<JobApplicationWhereUniqueInput>>;
-  create?: InputMaybe<Array<JobApplicationCreateInput>>;
-};
-
-export type JobApplicationRelateToManyForUpdateInput = {
-  connect?: InputMaybe<Array<JobApplicationWhereUniqueInput>>;
-  create?: InputMaybe<Array<JobApplicationCreateInput>>;
-  disconnect?: InputMaybe<Array<JobApplicationWhereUniqueInput>>;
-  set?: InputMaybe<Array<JobApplicationWhereUniqueInput>>;
+  updatedAt?: InputMaybe<OrderDirection>;
 };
 
 export type JobApplicationUpdateArgs = {
@@ -395,40 +257,23 @@ export type JobApplicationUpdateArgs = {
 };
 
 export type JobApplicationUpdateInput = {
-  address?: InputMaybe<Scalars['String']['input']>;
-  applicantName?: InputMaybe<Scalars['String']['input']>;
-  applicationDate?: InputMaybe<Scalars['DateTime']['input']>;
-  company?: InputMaybe<CompanyRelateToManyForUpdateInput>;
-  coverLetter?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  portfolio?: InputMaybe<Scalars['String']['input']>;
-  recruiterNotes?: InputMaybe<Scalars['String']['input']>;
-  resume?: InputMaybe<FileFieldInput>;
-  skills?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  users?: InputMaybe<UserRelateToManyForUpdateInput>;
-  yearsOfExperience?: InputMaybe<Scalars['Int']['input']>;
+  Company?: InputMaybe<CompanyRelateToOneForUpdateInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  resume?: InputMaybe<ResumeRelateToManyForUpdateInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  user?: InputMaybe<UserRelateToManyForUpdateInput>;
 };
 
 export type JobApplicationWhereInput = {
   AND?: InputMaybe<Array<JobApplicationWhereInput>>;
+  Company?: InputMaybe<CompanyWhereInput>;
   NOT?: InputMaybe<Array<JobApplicationWhereInput>>;
   OR?: InputMaybe<Array<JobApplicationWhereInput>>;
-  address?: InputMaybe<StringFilter>;
-  applicantName?: InputMaybe<StringFilter>;
-  applicationDate?: InputMaybe<DateTimeNullableFilter>;
-  company?: InputMaybe<CompanyManyRelationFilter>;
-  coverLetter?: InputMaybe<StringFilter>;
-  email?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
   id?: InputMaybe<IdFilter>;
-  phone?: InputMaybe<StringFilter>;
-  portfolio?: InputMaybe<StringFilter>;
-  recruiterNotes?: InputMaybe<StringFilter>;
-  skills?: InputMaybe<StringFilter>;
-  status?: InputMaybe<StringNullableFilter>;
-  users?: InputMaybe<UserManyRelationFilter>;
-  yearsOfExperience?: InputMaybe<IntNullableFilter>;
+  resume?: InputMaybe<ResumeManyRelationFilter>;
+  updatedAt?: InputMaybe<DateTimeNullableFilter>;
+  user?: InputMaybe<UserManyRelationFilter>;
 };
 
 export type JobApplicationWhereUniqueInput = {
@@ -877,29 +722,15 @@ export enum QueryMode {
 
 export type Resume = {
   __typename?: 'Resume';
-  additionalInformation?: Maybe<Scalars['String']['output']>;
-  address?: Maybe<Scalars['String']['output']>;
-  certifications?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  education?: Maybe<Scalars['JSON']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  hobbies?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
-  languages?: Maybe<Scalars['JSON']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  projects?: Maybe<Scalars['JSON']['output']>;
-  references?: Maybe<Scalars['JSON']['output']>;
-  skills?: Maybe<Scalars['JSON']['output']>;
-  summary?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  users?: Maybe<Array<User>>;
-  usersCount?: Maybe<Scalars['Int']['output']>;
-  workExperience?: Maybe<Scalars['JSON']['output']>;
+  user?: Maybe<Array<User>>;
+  userCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
-export type ResumeUsersArgs = {
+export type ResumeUserArgs = {
   cursor?: InputMaybe<UserWhereUniqueInput>;
   orderBy?: Array<UserOrderByInput>;
   skip?: Scalars['Int']['input'];
@@ -908,28 +739,14 @@ export type ResumeUsersArgs = {
 };
 
 
-export type ResumeUsersCountArgs = {
+export type ResumeUserCountArgs = {
   where?: UserWhereInput;
 };
 
 export type ResumeCreateInput = {
-  additionalInformation?: InputMaybe<Scalars['String']['input']>;
-  address?: InputMaybe<Scalars['String']['input']>;
-  certifications?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  education?: InputMaybe<Scalars['JSON']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  hobbies?: InputMaybe<Scalars['JSON']['input']>;
-  languages?: InputMaybe<Scalars['JSON']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<Scalars['JSON']['input']>;
-  references?: InputMaybe<Scalars['JSON']['input']>;
-  skills?: InputMaybe<Scalars['JSON']['input']>;
-  summary?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  users?: InputMaybe<UserRelateToManyForCreateInput>;
-  workExperience?: InputMaybe<Scalars['JSON']['input']>;
+  user?: InputMaybe<UserRelateToManyForCreateInput>;
 };
 
 export type ResumeManyRelationFilter = {
@@ -939,14 +756,8 @@ export type ResumeManyRelationFilter = {
 };
 
 export type ResumeOrderByInput = {
-  additionalInformation?: InputMaybe<OrderDirection>;
-  address?: InputMaybe<OrderDirection>;
   createdAt?: InputMaybe<OrderDirection>;
-  email?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
-  name?: InputMaybe<OrderDirection>;
-  phone?: InputMaybe<OrderDirection>;
-  summary?: InputMaybe<OrderDirection>;
   updatedAt?: InputMaybe<OrderDirection>;
 };
 
@@ -968,39 +779,19 @@ export type ResumeUpdateArgs = {
 };
 
 export type ResumeUpdateInput = {
-  additionalInformation?: InputMaybe<Scalars['String']['input']>;
-  address?: InputMaybe<Scalars['String']['input']>;
-  certifications?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  education?: InputMaybe<Scalars['JSON']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  hobbies?: InputMaybe<Scalars['JSON']['input']>;
-  languages?: InputMaybe<Scalars['JSON']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<Scalars['JSON']['input']>;
-  references?: InputMaybe<Scalars['JSON']['input']>;
-  skills?: InputMaybe<Scalars['JSON']['input']>;
-  summary?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  users?: InputMaybe<UserRelateToManyForUpdateInput>;
-  workExperience?: InputMaybe<Scalars['JSON']['input']>;
+  user?: InputMaybe<UserRelateToManyForUpdateInput>;
 };
 
 export type ResumeWhereInput = {
   AND?: InputMaybe<Array<ResumeWhereInput>>;
   NOT?: InputMaybe<Array<ResumeWhereInput>>;
   OR?: InputMaybe<Array<ResumeWhereInput>>;
-  additionalInformation?: InputMaybe<StringFilter>;
-  address?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
-  email?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
-  name?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
-  summary?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeNullableFilter>;
-  users?: InputMaybe<UserManyRelationFilter>;
+  user?: InputMaybe<UserManyRelationFilter>;
 };
 
 export type ResumeWhereUniqueInput = {
@@ -1043,25 +834,10 @@ export type User = {
   id: Scalars['ID']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
   password?: Maybe<PasswordState>;
-  profilePicture?: Maybe<Scalars['String']['output']>;
-  resume?: Maybe<Array<Resume>>;
-  resumeCount?: Maybe<Scalars['Int']['output']>;
+  picture?: Maybe<ImageFieldOutput>;
+  role?: Maybe<UserRoleType>;
   status?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type UserResumeArgs = {
-  cursor?: InputMaybe<ResumeWhereUniqueInput>;
-  orderBy?: Array<ResumeOrderByInput>;
-  skip?: Scalars['Int']['input'];
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: ResumeWhereInput;
-};
-
-
-export type UserResumeCountArgs = {
-  where?: ResumeWhereInput;
 };
 
 export type UserAuthenticationWithPasswordFailure = {
@@ -1083,8 +859,8 @@ export type UserCreateInput = {
   firstName?: InputMaybe<Scalars['String']['input']>;
   lastName?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
-  profilePicture?: InputMaybe<Scalars['String']['input']>;
-  resume?: InputMaybe<ResumeRelateToManyForCreateInput>;
+  picture?: InputMaybe<ImageFieldInput>;
+  role?: InputMaybe<UserRoleType>;
   status?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -1101,7 +877,7 @@ export type UserOrderByInput = {
   firstName?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   lastName?: InputMaybe<OrderDirection>;
-  profilePicture?: InputMaybe<OrderDirection>;
+  role?: InputMaybe<OrderDirection>;
   status?: InputMaybe<OrderDirection>;
   updatedAt?: InputMaybe<OrderDirection>;
 };
@@ -1118,15 +894,16 @@ export type UserRelateToManyForUpdateInput = {
   set?: InputMaybe<Array<UserWhereUniqueInput>>;
 };
 
-export type UserRelateToOneForCreateInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-};
+export enum UserRoleType {
+  Company = 'COMPANY',
+  User = 'USER'
+}
 
-export type UserRelateToOneForUpdateInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+export type UserRoleTypeNullableFilter = {
+  equals?: InputMaybe<UserRoleType>;
+  in?: InputMaybe<Array<UserRoleType>>;
+  not?: InputMaybe<UserRoleTypeNullableFilter>;
+  notIn?: InputMaybe<Array<UserRoleType>>;
 };
 
 export type UserUpdateArgs = {
@@ -1140,8 +917,8 @@ export type UserUpdateInput = {
   firstName?: InputMaybe<Scalars['String']['input']>;
   lastName?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
-  profilePicture?: InputMaybe<Scalars['String']['input']>;
-  resume?: InputMaybe<ResumeRelateToManyForUpdateInput>;
+  picture?: InputMaybe<ImageFieldInput>;
+  role?: InputMaybe<UserRoleType>;
   status?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -1155,8 +932,7 @@ export type UserWhereInput = {
   firstName?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   lastName?: InputMaybe<StringFilter>;
-  profilePicture?: InputMaybe<StringFilter>;
-  resume?: InputMaybe<ResumeManyRelationFilter>;
+  role?: InputMaybe<UserRoleTypeNullableFilter>;
   status?: InputMaybe<StringNullableFilter>;
   updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
@@ -1172,4 +948,3 @@ export type Unnamed_1_MutationVariables = Exact<{
 }>;
 
 
-export type Unnamed_1_Mutation = { __typename?: 'Mutation', authenticateUserWithPassword?: { __typename?: 'UserAuthenticationWithPasswordFailure', message: string } | { __typename?: 'UserAuthenticationWithPasswordSuccess', sessionToken: string, item: { __typename?: 'User', firstName?: string | null, createdAt?: any | null, id: string, profilePicture?: string | null, status?: string | null, updatedAt?: any | null, email?: string | null } } | null };

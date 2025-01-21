@@ -1,35 +1,34 @@
-<div class="nav-container w-full p-4 fixed top-0 z-50 bg-[#191C24] shadow-md">
-  <!-- Large Screen Navbar -->
+<div class="nav-container w-full p-4 border-2 border-indigo-900 fixed top-0 z-50 bg-[#1a0033] box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); shadow-md">
   <div class="nav-content max-w-screen-xl mx-auto px-5 hidden md:flex justify-between items-center">
     <ul class="nav-list flex justify-center items-center list-none m-0 p-0 space-x-[120px]">
       <li class="flex flex-row justify-center items-center">
         <img src="assets/s.png" class="w-[64px] h-[64px]" alt="Logo">
-        <a class="Skillhub text-4xl oblique text-[#189353] font-bold">SkillHub</a>
+        <a class="Skillhub text-4xl oblique text-white font-bold">killHub</a>
       </li>
       <li>
-        <a routerLink="/#homeSection" class="text-2xl text-[#189353] transition-colors hover:text-[#33e78a]">
+        <a routerLink="/#homeSection" class="text-2xl text-white transition-colors hover:text-[#2272FF]">
           Home
         </a>
       </li>
       <li>
-        <a routerLink="/#AboutSection" class="text-2xl text-[#189353] transition-colors hover:text-[#33e78a]">
+        <a routerLink="/#AboutSection" class="text-2xl text-white transition-colors hover:text-[#2272FF]">
           About
         </a>
       </li>
       <li>
-        <a routerLink="/#ExpertiseSection" class="text-2xl text-[#189353] transition-colors hover:text-[#33e78a]">
+        <a routerLink="/#ExpertiseSection" class="text-2xl text-white transition-colors hover:text-[#2272FF]">
           Expertise
         </a>
       </li>
       <li>
-        <a routerLink="/#ContactSection" class="text-2xl text-[#189353] transition-colors hover:text-[#33e78a]">
+        <a routerLink="/#ContactSection" class="text-2xl text-white transition-colors hover:text-[#2272FF]">
           Contact Us
         </a>
       </li>
     </ul>
     <div class="login" *ngIf="loginVisible" >
       <button
-        class="text-2xl font-bold text-white bg-[#189353] w-32 h-[48px] rounded-md"
+        class="text-2xl font-bold text-white bg-indigo-600 w-32 h-[48px] hover:bg-indigo-900 rounded-md"
         (click)="login()" 
       >
         Login
@@ -37,9 +36,8 @@
     </div>
   </div>
 
-  <!-- Small Screen Navbar -->
   <div class="nav-content max-w-screen-xl p-6 mx-auto px-8 md:hidden flex justify-between items-center">
-    <a routerLink="/" class="Skillhub text-2xl oblique text-[#189353] font-bold">SkillHub</a>
+    <a routerLink="/" class="Skillhub text-2xl oblique text-white font-bold">SkillHub</a>
     <button
       id="hamburger"
       class="menu max-w-[30px] cursor-pointer focus:outline-none"
@@ -52,18 +50,18 @@
     id="menu" *ngIf="menuVisible"
     class="nav-list flex flex-col items-center justify-between space-y-6 py-4 px-6 md:hidden"
   >
-    <a routerLink="/#homeSection" class="text-base text-[#189353] transition-colors hover:text-[#33e78a]">
+    <a routerLink="/#homeSection" class="text-base text-white transition-colors hover:text-[#2272FF]">
     <h1>Home</h1>  
     </a>
-    <a routerLink="/#AboutSection" class="text-base text-[#189353] transition-colors hover:text-[#33e78a]">
+    <a routerLink="/#AboutSection" class="text-base text-white transition-colors hover:text-[#2272FF]">
       About
     </a>
-    <a routerLink="/#ReviewsSection" class="text-base text-[#189353] transition-colors hover:text-[#33e78a]">
+    <a routerLink="/#ReviewsSection" class="text-base text-white transition-colors hover:text-[#2272FF]">
       Reviews
     </a>
-    <a routerLink="/#ContactSection" class="text-base text-[#189353] transition-colors hover:text-[#33e78a]">
+    <a routerLink="/#ContactSection" class="text-base text-white transition-colors hover:text-[#2272FF]">
       Contact Us
     </a>
-    <a (click)="login()" class="text-base font-bold text-[#189353] hover:underline">Login</a>
+    <a (click)="login()" class="text-base font-bold text-white hover:underline">Login</a>
   </div>
 </div>

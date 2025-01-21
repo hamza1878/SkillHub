@@ -1,5 +1,5 @@
 <div >
-    <div class="text-center bg-gray-900 p-4" >
+    <div class="text-center bg-[#1a0033] p-4" >
       <div class="text-center text-4xl md:text-8xl p-2 text-white">Find Your Dream Job Today!</div>
       <div class="text-center text-xl md:text-2xl p-2 text-gray-300">
         Connecting Talent with Opportunity: Your Gateway to Career Success
@@ -25,7 +25,7 @@
         </select>
     
         <button (click)="rechercher(jobTitle, location, selected)"
-          class="flex items-center justify-center bg-green-600 text-white font-semibold p-4 md:p-6 rounded-xl hover:bg-green-700 w-full md:w-80">
+          class="flex items-center justify-center bg-indigo-600 text-white font-semibold p-4 md:p-6 rounded-xl hover:bg-indigo-800 w-full md:w-80">
           <img src="/assets/rech.png" alt="Search" class="w-8 h-8 mr-2">
           <p class="text-xl">Find Job</p>
         </button>
@@ -36,7 +36,7 @@
      
     
       <ng-container *ngIf="filteredJobs.length > 0">
-        <ul *ngFor="let job of filteredJobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+        <ul *ngFor="let job of filteredJobs" class="bg-[#150129] p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
           <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
             <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
             <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
@@ -58,7 +58,7 @@
             <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
           </li>
           <div class="justify-center flex md:space-x-6">
-            <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+            <button (click)="openModal(job)" class="mt-4 bg-[#5c0259] text-white font-semibold p-4 rounded-lg hover:bg-[#450143] w-1/2 flex items-center justify-center space-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
                 <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
                 <circle cx="12" cy="12" r="3"/>
@@ -66,7 +66,7 @@
               <span>See More</span>
             </button>
     
-            <button (click)="applyModalOpen()" class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+            <button (click)="applyModalOpen()" class="mt-4 bg-indigo-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
                 <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
                 <path d="M12 8v8"/>
@@ -80,7 +80,7 @@
        
     </section>
     <section *ngIf="serach" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-      <ul *ngFor="let job of jobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+      <ul *ngFor="let job of jobs" class="bg-[#150129] p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
         <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
           <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
           <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
@@ -102,7 +102,7 @@
           <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
         </li>
         <div class="justify-center flex md:space-x-6">
-          <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+          <button (click)="openModal(job)" class="mt-4 bg-[#5c0259] text-white font-semibold p-4 rounded-lg hover:bg-[#450143] w-1/2 flex items-center justify-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
               <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
               <circle cx="12" cy="12" r="3"/>
@@ -110,7 +110,7 @@
             <span>See More</span>
           </button>
     
-          <button class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+          <button class="mt-4 bg-indigo-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
               <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
               <path d="M12 8v8"/>
@@ -128,7 +128,7 @@
     
  
     <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div class="bg-[#25262d] p-6 w-[50%] max-h-[80%] rounded-lg shadow-lg text-center relative ease-in-out flex flex-col">
+      <div class="bg-[#1a0033] p-6 w-[50%] max-h-[80%] rounded-lg shadow-lg text-center relative ease-in-out flex flex-col">
         <button (click)="closeModal()" class="absolute top-4 right-4 text-red text-2xl hover:text-red-500">
           X
         </button>
@@ -143,23 +143,23 @@
             <label class="text-2xl pr-2">Job Title:</label>{{ modalJob.jobTitle }}
           </h2>
           <div class="flex justify-center space-x-12">
-            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
               <strong>📍Location:</strong> {{ modalJob.location }}
             </p>
-            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
               <strong>⏰Work Time:</strong> {{ modalJob.workTime }}
             </p>
-            <p class="text-white mt-1 text-xl bg-green-600 p-2 h-16 rounded-xl hover:bg-green-700 w-full md:w-70">
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
               <strong>🤑Salary:</strong> {{ modalJob.salary }}
             </p>
           </div>
           <p class="text-white w-full text-xl space-x-2 mt-2">
-            <strong class="text-white mt-1 max-h-12 text-xl pr-16 pl-16 bg-green-600 p-4 rounded-xl hover:bg-green-700 w-1/2">Description:</strong> 
+            <strong class="text-white mt-1 max-h-12 text-xl pr-16 pl-16 bg-[#5c0259] p-4 rounded-xl hover:bg-[#450143] w-1/2">Description:</strong> 
           </p>
           <p class="text-xl">{{ modalJob.description || 'No description available' }}</p>
         </div>
         <div class="mt-auto p-8">
-          <button (click)=" applyModalOpen()" class="bg-blue-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 w-full flex items-center justify-center space-x-2">
+          <button (click)=" applyModalOpen()" class="bg-indigo-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 w-full flex items-center justify-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
               <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
               <path d="M12 8v8"/>
@@ -175,7 +175,7 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex justify-center space-x-2 items-center"
     >
       <div
-        class="bg-gray-800 p-12 w-1/2 h-4/5 rounded-lg shadow-lg text-center relative flex flex-col"
+        class="bg-[#150129] p-12 w-1/2 h-4/5 rounded-lg shadow-lg text-center relative flex flex-col"
       >
         <button
           (click)="closeModalApply()"
@@ -190,7 +190,7 @@
         <form
         [formGroup]="modalapply"
         (ngSubmit)="onSubmit()"
-        class="space-y-6  p-16 bg-gray-800 text-white rounded-lg shadow-md max-w-4xl space-y-12 p-8 overflow-y-auto flex-grow"
+        class="space-y-6  p-16 bg-[#150129] text-white rounded-lg shadow-md max-w-4xl space-y-12 p-8 overflow-y-auto flex-grow"
       >
         <div class="flex flex-col gap-2">
           <label for="firstName" class="font-semibold">First Name</label>
@@ -261,13 +261,13 @@
             type="file"
             id="resumes"
             formControlName="resumes"
-            class="w-full bg-gray-700 text-gray-400 p-3 rounded-lg file:bg-blue-600 file:text-white file:px-4 file:py-2 file:rounded-lg file:mr-3 hover:file:bg-blue-700"
+            class="w-full bg-gray-700 text-gray-400 p-3 rounded-lg file:bg-indigo-600 file:text-white file:px-4 file:py-2 file:rounded-lg file:mr-3 hover:file:bg-blue-700"
           />
         </div>
       
         <button
           type="submit"
-          class="w-full bg-blue-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:bg-gray-500"
+          class="w-full bg-indigo-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:bg-gray-500"
           [disabled]="!modalapply.valid"
         >
           Submit
@@ -280,7 +280,7 @@
     
        <!-- <section class="flex justify-center space-x-12 p-12">
       <div class="flex items-center space-x-4">
-        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-[#450143]">
           <img src="/assets/job.png" class="w-16 mx-auto" alt="Job Icon">
         </div>
         <div class="text-center">
@@ -289,7 +289,7 @@
         </div>
       </div>
       <div class="flex items-center space-x-4">
-        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-[#450143]">
           <img src="/assets/candidates.png" class="w-16 mx-auto" alt="Candidates Icon">
         </div>
         <div class="text-center">
@@ -298,7 +298,7 @@
         </div>
       </div>
       <div class="flex items-center space-x-4">
-        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-green-700">
+        <div class="bg-green-400 border-2 border-green-900 text-white font-semibold p-4 rounded-full hover:bg-[#450143]">
           <img src="/assets/company.png" class="w-16 mx-auto" alt="Company Icon">
         </div>
         <div class="text-center">
@@ -309,7 +309,7 @@
     </section> -->
     
     <!-- <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-      <ul *ngFor="let job of jobs" class="bg-gray-800 p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
+      <ul *ngFor="let job of jobs" class="bg-[#150129] p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
         <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
           <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
           <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
@@ -331,7 +331,7 @@
           <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
         </li>
         <div class="justify-center flex md:space-x-6">
-          <button (click)="openModal(job)" class="mt-4 bg-green-600 text-white font-semibold p-4 rounded-lg hover:bg-green-700 w-1/2 flex items-center justify-center space-x-2">
+          <button (click)="openModal(job)" class="mt-4 bg-[#5c0259] text-white font-semibold p-4 rounded-lg hover:bg-[#450143] w-1/2 flex items-center justify-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
               <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
               <circle cx="12" cy="12" r="3"/>
@@ -339,7 +339,7 @@
             <span>See More</span>
           </button>
     
-          <button class="mt-4 bg-blue-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
+          <button class="mt-4 bg-indigo-600 text-white font-semibold p-2 rounded-lg hover:bg-blue-700 w-1/2 flex items-center justify-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
               <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
               <path d="M12 8v8"/>
@@ -447,7 +447,7 @@
                 <textarea id="description" name="description" class="block w-full p-3 mt-2 rounded-xl border border-gray-600 bg-gray-700 text-white" placeholder="Enter a description" required></textarea>
               </li>
               <li>
-                <button type="submit" class="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300">Envoyer</button>
+                <button type="submit" class="w-full py-3 bg-[#5c0259] text-white font-semibold rounded-xl hover:bg-[#450143] transition duration-300">Envoyer</button>
               </li>
             </ul>
           </form>

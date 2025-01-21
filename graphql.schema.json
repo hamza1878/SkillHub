@@ -39,101 +39,17 @@
         "possibleTypes": null
       },
       {
-        "kind": "INPUT_OBJECT",
-        "name": "BooleanFilter",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "equals",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "not",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "Company",
         "description": null,
         "isOneOf": null,
         "fields": [
           {
-            "name": "brandIdentity",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "businessModel",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "capital",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ceo",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "employees",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
               "name": "Int",
               "ofType": null
             },
@@ -141,130 +57,12 @@
             "deprecationReason": null
           },
           {
-            "name": "founders",
+            "name": "createdAt",
             "description": null,
-            "args": [
-              {
-                "name": "cursor",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "UserWhereUniqueInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "orderBy",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "INPUT_OBJECT",
-                        "name": "UserOrderByInput",
-                        "ofType": null
-                      }
-                    }
-                  }
-                },
-                "defaultValue": "[]",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "skip",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "0",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "take",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "UserWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "User",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "foundersCount",
-            "description": null,
-            "args": [
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "UserWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "DateTime",
               "ofType": null
             },
             "isDeprecated": false,
@@ -277,18 +75,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "globalPresence",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
@@ -323,142 +109,12 @@
             "deprecationReason": null
           },
           {
-            "name": "industry",
+            "name": "jobDomain",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jobApplications",
-            "description": null,
-            "args": [
-              {
-                "name": "cursor",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationWhereUniqueInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "orderBy",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "INPUT_OBJECT",
-                        "name": "JobApplicationOrderByInput",
-                        "ofType": null
-                      }
-                    }
-                  }
-                },
-                "defaultValue": "[]",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "skip",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "0",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "take",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "JobApplicationWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "JobApplication",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jobApplicationsCount",
-            "description": null,
-            "args": [
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "JobApplicationWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -483,18 +139,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "ImageFieldOutput",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mission",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -530,31 +174,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tagline",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -565,20 +185,20 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "CompanyTypeType",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "vision",
+            "name": "updatedAt",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "isDeprecated": false,
@@ -598,55 +218,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "brandIdentity",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "businessModel",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "capital",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ceo",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserRelateToOneForCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "employees",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -658,11 +230,11 @@
             "deprecationReason": null
           },
           {
-            "name": "founders",
+            "name": "createdAt",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserRelateToManyForCreateInput",
+              "kind": "SCALAR",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -682,18 +254,6 @@
             "deprecationReason": null
           },
           {
-            "name": "globalPresence",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "headquarters",
             "description": null,
             "type": {
@@ -706,23 +266,11 @@
             "deprecationReason": null
           },
           {
-            "name": "industry",
+            "name": "jobDomain",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jobApplications",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationRelateToManyForCreateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -754,18 +302,6 @@
             "deprecationReason": null
           },
           {
-            "name": "mission",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "name",
             "description": null,
             "type": {
@@ -794,31 +330,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tagline",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxId",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -829,68 +341,20 @@
             "name": "type",
             "description": null,
             "type": {
+              "kind": "ENUM",
+              "name": "CompanyTypeType",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "vision",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "CompanyManyRelationFilter",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "every",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "none",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "some",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyWhereInput",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -910,30 +374,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "brandIdentity",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "businessModel",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "capital",
             "description": null,
             "type": {
@@ -946,7 +386,7 @@
             "deprecationReason": null
           },
           {
-            "name": "employees",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -959,18 +399,6 @@
           },
           {
             "name": "foundingDate",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "globalPresence",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1006,7 +434,7 @@
             "deprecationReason": null
           },
           {
-            "name": "industry",
+            "name": "jobDomain",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1019,18 +447,6 @@
           },
           {
             "name": "legalStatus",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mission",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1078,30 +494,6 @@
             "deprecationReason": null
           },
           {
-            "name": "tagline",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxId",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "type",
             "description": null,
             "type": {
@@ -1114,7 +506,7 @@
             "deprecationReason": null
           },
           {
-            "name": "vision",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1132,7 +524,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CompanyRelateToManyForCreateInput",
+        "name": "CompanyRelateToOneForCreateInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -1141,17 +533,9 @@
             "name": "connect",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyWhereUniqueInput",
-                  "ofType": null
-                }
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyWhereUniqueInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -1161,17 +545,9 @@
             "name": "create",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyCreateInput",
-                  "ofType": null
-                }
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyCreateInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -1184,7 +560,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CompanyRelateToManyForUpdateInput",
+        "name": "CompanyRelateToOneForUpdateInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -1193,17 +569,9 @@
             "name": "connect",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyWhereUniqueInput",
-                  "ofType": null
-                }
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyWhereUniqueInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -1213,17 +581,9 @@
             "name": "create",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyCreateInput",
-                  "ofType": null
-                }
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyCreateInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -1233,14 +593,86 @@
             "name": "disconnect",
             "description": null,
             "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CompanyTypeType",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "EURL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SARL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SAS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SASU",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CompanyTypeTypeNullableFilter",
+        "description": null,
+        "isOneOf": false,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "equals",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CompanyTypeType",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyWhereUniqueInput",
+                  "kind": "ENUM",
+                  "name": "CompanyTypeType",
                   "ofType": null
                 }
               }
@@ -1250,7 +682,19 @@
             "deprecationReason": null
           },
           {
-            "name": "set",
+            "name": "not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyTypeTypeNullableFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notIn",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -1259,8 +703,8 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "CompanyWhereUniqueInput",
+                  "kind": "ENUM",
+                  "name": "CompanyTypeType",
                   "ofType": null
                 }
               }
@@ -1326,55 +770,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "brandIdentity",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "businessModel",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "capital",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ceo",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserRelateToOneForUpdateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "employees",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1386,11 +782,11 @@
             "deprecationReason": null
           },
           {
-            "name": "founders",
+            "name": "createdAt",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserRelateToManyForUpdateInput",
+              "kind": "SCALAR",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -1410,18 +806,6 @@
             "deprecationReason": null
           },
           {
-            "name": "globalPresence",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "headquarters",
             "description": null,
             "type": {
@@ -1434,23 +818,11 @@
             "deprecationReason": null
           },
           {
-            "name": "industry",
+            "name": "jobDomain",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "jobApplications",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationRelateToManyForUpdateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -1475,18 +847,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ImageFieldInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mission",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -1522,31 +882,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tagline",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxId",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -1557,8 +893,8 @@
             "name": "type",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "ENUM",
+              "name": "CompanyTypeType",
               "ofType": null
             },
             "defaultValue": null,
@@ -1566,11 +902,11 @@
             "deprecationReason": null
           },
           {
-            "name": "vision",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -1650,55 +986,7 @@
             "deprecationReason": null
           },
           {
-            "name": "brandIdentity",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "businessModel",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "capital",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "FloatNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ceo",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "employees",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1710,11 +998,11 @@
             "deprecationReason": null
           },
           {
-            "name": "founders",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserManyRelationFilter",
+              "name": "DateTimeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1727,18 +1015,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "DateTimeNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "globalPresence",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1770,7 +1046,7 @@
             "deprecationReason": null
           },
           {
-            "name": "industry",
+            "name": "jobDomain",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1782,31 +1058,7 @@
             "deprecationReason": null
           },
           {
-            "name": "jobApplications",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationManyRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "legalStatus",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "mission",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1846,31 +1098,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "FloatNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tagline",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "IntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1882,7 +1110,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
+              "name": "CompanyTypeTypeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -1890,11 +1118,11 @@
             "deprecationReason": null
           },
           {
-            "name": "vision",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "DateTimeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -2088,229 +1316,6 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "DateTime",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "FileFieldInput",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "upload",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Upload",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "FileFieldOutput",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "filename",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "filesize",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Float",
-        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
-        "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "FloatNullableFilter",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "equals",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "not",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "FloatNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "notIn",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
                   "ofType": null
                 }
               }
@@ -2784,31 +1789,19 @@
         "isOneOf": null,
         "fields": [
           {
-            "name": "address",
+            "name": "Company",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "Company",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "applicantName",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicationDate",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -2820,7 +1813,23 @@
             "deprecationReason": null
           },
           {
-            "name": "company",
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "resume",
             "description": null,
             "args": [
               {
@@ -2828,7 +1837,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CompanyWhereUniqueInput",
+                  "name": "ResumeWhereUniqueInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -2849,7 +1858,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "INPUT_OBJECT",
-                        "name": "CompanyOrderByInput",
+                        "name": "ResumeOrderByInput",
                         "ofType": null
                       }
                     }
@@ -2895,7 +1904,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CompanyWhereInput",
+                    "name": "ResumeWhereInput",
                     "ofType": null
                   }
                 },
@@ -2912,7 +1921,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Company",
+                  "name": "Resume",
                   "ofType": null
                 }
               }
@@ -2921,7 +1930,7 @@
             "deprecationReason": null
           },
           {
-            "name": "companyCount",
+            "name": "resumeCount",
             "description": null,
             "args": [
               {
@@ -2932,7 +1941,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CompanyWhereInput",
+                    "name": "ResumeWhereInput",
                     "ofType": null
                   }
                 },
@@ -2950,119 +1959,19 @@
             "deprecationReason": null
           },
           {
-            "name": "coverLetter",
+            "name": "updatedAt",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "email",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "portfolio",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "recruiterNotes",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "resume",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "FileFieldOutput",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "users",
+            "name": "user",
             "description": null,
             "args": [
               {
@@ -3163,7 +2072,7 @@
             "deprecationReason": null
           },
           {
-            "name": "usersCount",
+            "name": "userCount",
             "description": null,
             "args": [
               {
@@ -3190,18 +2099,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "yearsOfExperience",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -3217,11 +2114,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "address",
+            "name": "Company",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyRelateToOneForCreateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -3229,19 +2126,7 @@
             "deprecationReason": null
           },
           {
-            "name": "applicantName",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicationDate",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3253,83 +2138,11 @@
             "deprecationReason": null
           },
           {
-            "name": "company",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyRelateToManyForCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "coverLetter",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "portfolio",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "recruiterNotes",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "resume",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "FileFieldInput",
+              "name": "ResumeRelateToManyForCreateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -3337,11 +2150,11 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -3349,83 +2162,11 @@
             "deprecationReason": null
           },
           {
-            "name": "status",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserRelateToManyForCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "yearsOfExperience",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "JobApplicationManyRelationFilter",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "every",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "none",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "some",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "JobApplicationWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -3445,55 +2186,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicantName",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicationDate",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "coverLetter",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3517,216 +2210,12 @@
             "deprecationReason": null
           },
           {
-            "name": "phone",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "OrderDirection",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "portfolio",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "recruiterNotes",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "yearsOfExperience",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "JobApplicationRelateToManyForCreateInput",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationCreateInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "JobApplicationRelateToManyForUpdateInput",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationCreateInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "disconnect",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "set",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "JobApplicationWhereUniqueInput",
-                  "ofType": null
-                }
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -3789,11 +2278,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "address",
+            "name": "Company",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyRelateToOneForUpdateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -3801,19 +2290,7 @@
             "deprecationReason": null
           },
           {
-            "name": "applicantName",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicationDate",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3825,83 +2302,11 @@
             "deprecationReason": null
           },
           {
-            "name": "company",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyRelateToManyForUpdateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "coverLetter",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "portfolio",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "recruiterNotes",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "resume",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "FileFieldInput",
+              "name": "ResumeRelateToManyForUpdateInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -3909,11 +2314,11 @@
             "deprecationReason": null
           },
           {
-            "name": "skills",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null,
@@ -3921,35 +2326,11 @@
             "deprecationReason": null
           },
           {
-            "name": "status",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserRelateToManyForUpdateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "yearsOfExperience",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -3983,6 +2364,18 @@
                   "ofType": null
                 }
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "Company",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CompanyWhereInput",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -4029,71 +2422,11 @@
             "deprecationReason": null
           },
           {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicantName",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "applicationDate",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "DateTimeNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "company",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "CompanyManyRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "coverLetter",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4113,11 +2446,11 @@
             "deprecationReason": null
           },
           {
-            "name": "phone",
+            "name": "resume",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "ResumeManyRelationFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4125,11 +2458,11 @@
             "deprecationReason": null
           },
           {
-            "name": "portfolio",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
+              "name": "DateTimeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -4137,59 +2470,11 @@
             "deprecationReason": null
           },
           {
-            "name": "recruiterNotes",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserManyRelationFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "yearsOfExperience",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "IntNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -7512,84 +5797,12 @@
         "isOneOf": null,
         "fields": [
           {
-            "name": "additionalInformation",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "address",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "certifications",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "education",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "hobbies",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7612,90 +5825,6 @@
             "deprecationReason": null
           },
           {
-            "name": "languages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "projects",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "references",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "updatedAt",
             "description": null,
             "args": [],
@@ -7708,7 +5837,7 @@
             "deprecationReason": null
           },
           {
-            "name": "users",
+            "name": "user",
             "description": null,
             "args": [
               {
@@ -7809,7 +5938,7 @@
             "deprecationReason": null
           },
           {
-            "name": "usersCount",
+            "name": "userCount",
             "description": null,
             "args": [
               {
@@ -7836,18 +5965,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "workExperience",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -7863,167 +5980,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "additionalInformation",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "certifications",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "education",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "hobbies",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "languages",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "projects",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "references",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -8043,23 +6004,11 @@
             "deprecationReason": null
           },
           {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserRelateToManyForCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "workExperience",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
               "ofType": null
             },
             "defaultValue": null,
@@ -8127,30 +6076,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "additionalInformation",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "type": {
@@ -8163,55 +6088,7 @@
             "deprecationReason": null
           },
           {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderDirection",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8435,167 +6312,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "additionalInformation",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "certifications",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "education",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "hobbies",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "languages",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "projects",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "references",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "skills",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -8615,23 +6336,11 @@
             "deprecationReason": null
           },
           {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserRelateToManyForUpdateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "workExperience",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
               "ofType": null
             },
             "defaultValue": null,
@@ -8711,47 +6420,11 @@
             "deprecationReason": null
           },
           {
-            "name": "additionalInformation",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "DateTimeNullableFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -8771,42 +6444,6 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "phone",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -8819,7 +6456,7 @@
             "deprecationReason": null
           },
           {
-            "name": "users",
+            "name": "user",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -9284,142 +6921,24 @@
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "picture",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "ImageFieldOutput",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "resume",
+            "name": "role",
             "description": null,
-            "args": [
-              {
-                "name": "cursor",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ResumeWhereUniqueInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "orderBy",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "INPUT_OBJECT",
-                        "name": "ResumeOrderByInput",
-                        "ofType": null
-                      }
-                    }
-                  }
-                },
-                "defaultValue": "[]",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "skip",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "0",
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "take",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "ResumeWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
+            "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Resume",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "resumeCount",
-            "description": null,
-            "args": [
-              {
-                "name": "where",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "ResumeWhereInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": "{}",
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
+              "kind": "ENUM",
+              "name": "UserRoleType",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9617,11 +7136,11 @@
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "picture",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "INPUT_OBJECT",
+              "name": "ImageFieldInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -9629,11 +7148,11 @@
             "deprecationReason": null
           },
           {
-            "name": "resume",
+            "name": "role",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ResumeRelateToManyForCreateInput",
+              "kind": "ENUM",
+              "name": "UserRoleType",
               "ofType": null
             },
             "defaultValue": null,
@@ -9785,7 +7304,7 @@
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "role",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -9970,54 +7489,42 @@
         "possibleTypes": null
       },
       {
-        "kind": "INPUT_OBJECT",
-        "name": "UserRelateToOneForCreateInput",
+        "kind": "ENUM",
+        "name": "UserRoleType",
         "description": null,
-        "isOneOf": false,
+        "isOneOf": null,
         "fields": null,
-        "inputFields": [
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
           {
-            "name": "connect",
+            "name": "COMPANY",
             "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "create",
+            "name": "USER",
             "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UserRelateToOneForUpdateInput",
+        "name": "UserRoleTypeNullableFilter",
         "description": null,
         "isOneOf": false,
         "fields": null,
         "inputFields": [
           {
-            "name": "connect",
+            "name": "equals",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "UserWhereUniqueInput",
+              "kind": "ENUM",
+              "name": "UserRoleType",
               "ofType": null
             },
             "defaultValue": null,
@@ -10025,11 +7532,31 @@
             "deprecationReason": null
           },
           {
-            "name": "create",
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "UserRoleType",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "UserCreateInput",
+              "name": "UserRoleTypeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -10037,12 +7564,20 @@
             "deprecationReason": null
           },
           {
-            "name": "disconnect",
+            "name": "notIn",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "UserRoleType",
+                  "ofType": null
+                }
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -10165,11 +7700,11 @@
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "picture",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "INPUT_OBJECT",
+              "name": "ImageFieldInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -10177,11 +7712,11 @@
             "deprecationReason": null
           },
           {
-            "name": "resume",
+            "name": "role",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ResumeRelateToManyForUpdateInput",
+              "kind": "ENUM",
+              "name": "UserRoleType",
               "ofType": null
             },
             "defaultValue": null,
@@ -10345,23 +7880,11 @@
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "role",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "resume",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ResumeManyRelationFilter",
+              "name": "UserRoleTypeNullableFilter",
               "ofType": null
             },
             "defaultValue": null,

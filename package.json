@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:SkillHub": "node dist/skill-hub/server/server.mjs",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "init": "graphql-codegen init"
   },
   "private": true,
   "dependencies": {
@@ -45,7 +46,7 @@
     "@graphql-codegen/cli": "5.0.3",
     "@graphql-codegen/introspection": "4.0.3",
     "@graphql-codegen/typescript": "^4.1.2",
-    "@graphql-codegen/typescript-apollo-angular": "^4.0.0",
+    "@graphql-codegen/typescript-apollo-angular": "4.0.0",
     "@graphql-codegen/typescript-operations": "^4.4.0",
     "@types/express": "^4.17.17",
     "@types/html2canvas": "^1.0.0",

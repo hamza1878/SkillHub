@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideApollo } from 'apollo-angular';
+import { ApolloModule, provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { ApplicationConfig, inject } from '@angular/core';
 import { InMemoryCache } from '@apollo/client/core';
@@ -31,7 +31,7 @@ import { Cv4Component } from './BodyContent/cv4/cv4.component';
 import { RoleComponent } from './role/role.component';
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 import { WidgetsComponent } from './BodyContent/widgets/widgets.component';
-import { provideHttpClient, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, HttpClientModule, withFetch } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
 import { CompanySettings } from './BodyContent/company-settings/company-settings.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -45,10 +45,12 @@ import { BodycompComponent } from './apply/bodycomp/bodycomp.component';
 import { FindjobComponent } from './findjob/findjob.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SingupCompanyComponent } from './singup-company/singup-company.component';
+import { SingupUsersComponent } from './singup-users/singup-users.component';
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,SingupCompanyComponent,SingupUsersComponent,
     DashboardComponent,
     ResumesBuidlerComponent,
     CompainesComponent,
@@ -69,6 +71,7 @@ import { CommonModule } from '@angular/common';
     WidgetsComponent,
     UsersSettings,
     CompanySettings,
+    LoginComponent,
     CandidateDetailsComponent,ResponseFormComponent,BodycompComponent,FindjobComponent
   ],
   imports: [
@@ -82,11 +85,14 @@ import { CommonModule } from '@angular/common';
     BodyComponent,
     FooterComponent,
     NavbarComponent,
-    ReactiveFormsModule,
+    ReactiveFormsModule ,
     FormsModule,
     GraphQLModule,
     MatAutocompleteModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ApolloModule
+    
     // MatButtonModule,
     // MatDialogModule,
     // BrowserModule,
@@ -113,7 +119,7 @@ import { CommonModule } from '@angular/common';
     
 ],
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideApollo(() => {
       const httpLink = inject(HttpLink);
 

@@ -169,6 +169,7 @@ this.cvData.skills.forEach((skill: string) => {
         startEdu: ['', Validators.required],
         endEdu: ['', Validators.required],
         location:['', Validators.required],
+         
       });
     }
     addEducationPrinciple(): void {
@@ -212,6 +213,12 @@ this.cvData.skills.forEach((skill: string) => {
       role: ['', Validators.required],
       linkcertficat: ['', Validators.required],
       technologies: ['', Validators.required],
+
+      
+      
+      
+      
+      
     });
   }
 
@@ -241,6 +248,7 @@ this.cvData.skills.forEach((skill: string) => {
        startDate: ['', Validators.required],
        endDate: ['', Validators.required],
        description: ['', Validators.required],
+      
      });
    }
 
