@@ -39,7 +39,7 @@
            </a>
          </li>
  
-         <li>
+         <li *ngIf="currentRole==='COMPANY'">
            <a
              routerLink="companies"
              (click)="logPath('/dashboard/companies')"
@@ -64,7 +64,7 @@
            </a>
          </li>
  
-         <li>
+         <li *ngIf="currentRole==='USER'">
            <a
              routerLink="users"
              (click)="logPath('/dashboard/users')"
@@ -89,7 +89,7 @@
            </a>
          </li>
  
-         <li>
+         <li *ngIf="currentRole==='USER'">
            <a
              routerLink="resume"
              (click)="logPath('/dashboard/resumes')"
@@ -111,7 +111,7 @@
          </li>
  
          <li>
-           <a
+           <a *ngIf="currentRole==='USER'"
              routerLink="resume-builder"
              (click)="logPath('/dashboard/resumesbuilder')"
              class="flex items-center p-2 text-gray-100 rounded-lg hover:bg-indigo-800 group"

@@ -1,4 +1,4 @@
-<div class="bg-[#150129] rounded-3xl p-10 shadow-2xl">
+ <div *ngFor="let company of companies" class="bg-[#150129]  rounded-3xl p-10 shadow-2xl">
   <div class="flex items-center justify-between mb-10">
     <div class="flex items-center space-x-4">
       <div class="text-6xl text-green-500 font-bold">L</div>
@@ -9,35 +9,48 @@
 
   <div class="flex items-center space-x-6 mb-10">
     <div class="relative w-32 h-32 rounded-full bg-[#28004f] overflow-hidden flex items-center justify-center hover:bg-[#1a0033] transition duration-300 cursor-pointer">
-      <img alt="Company Logo" class="w-full h-full object-cover hidden">
-      <span class="text-gray-400 text-sm">Upload Logo</span>
+      <img *ngIf="company.logo" [src]="company.logo" alt="Profile Picture" class="profile-picture" />
+
     </div>
 
     <div>
-      <p class="text-4xl text-white font-bold">{{companyName}}</p>
+      <p class="text-4xl text-white font-bold">{{ company.name }}</p>
       <p class="text-gray-400 text-lg">506 followers</p>
     </div>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
     <div class="bg-[#28004f] w-full h-28 flex flex-col items-center justify-center p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300">
-      <p class="text-lg text-gray-400">Slogan:</p>
-      <p class="text-xl text-white font-semibold">{{slogan}}</p>
+      <p class="text-lg text-gray-400">type</p>
+      <p class="text-xl text-white font-semibold">{{ company.type }}</p>
     </div>
     <div class="bg-[#28004f] w-full h-28 flex flex-col items-center justify-center p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300">
-      <p class="text-lg text-gray-400">Mission:</p>
-      <p class="text-white text-center">{{mission}}</p>
+      <p class="text-lg text-gray-400">jobDomain</p>
+      <p class="text-white text-center">{{ company.jobDomain }}</p>
     </div>
     <div class="bg-[#28004f] w-full h-28 flex flex-col items-center justify-center p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300">
       <p class="text-lg text-gray-400">📈 Chiffre d'affaires</p>
-      <p class="text-xl text-white font-semibold">{{chiffreAffaires}}</p>
+      <p class="text-xl text-white font-semibold">{{ company.capital }}</p>
     </div>
     <div class="bg-[#28004f] w-full h-28 flex flex-col items-center justify-center p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300">
-      <p class="text-lg text-gray-400">👩‍💼 Employés</p>
-      <p class="text-xl text-white font-semibold">{{nombreEmployes}}</p>
+      <p class="text-lg text-gray-400">👩‍💼 eadquarters</p>
+      <p class="text-xl text-white font-semibold"> {{ company.headquarters }}</p>
     </div>
   </div>
-
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div>
+      <h3 class="text-2xl text-white font-semibold mb-4">CONTACT</h3>
+      <ul class="bg-[#28004f] p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300 space-y-2">
+        <li class="text-white"><p class="text-2xl"  >Phone  <span class="ml-8">{{ company.phone}}</span>   </p>
+        
+        
+         </li>
+        <li class="text-white"><p class="text-2xl">Email <span class="ml-8">{{ company.email}}</span>     
+        </p></li>
+        <li class="text-white"><p class="text-2xl">linkdein  <span class="ml-8">{{ company.linkdein}}</span>    </p></li>
+      </ul>
+    </div>
+<!--
   <section class="mb-10">
     <h2 class="text-3xl text-white font-semibold mb-4">Témoignages</h2>
     <blockquote class="bg-[#28004f] p-6 rounded-2xl hover:bg-[#1a0033] transition duration-300">
@@ -74,4 +87,5 @@
       </div>
     </div>
   </section>
-</div>
+</div> -->
+

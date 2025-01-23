@@ -12,17 +12,21 @@ import { RoleService } from '../../role.service';
   standalone:false
 })
 export class SettingsComponent implements OnInit {
-  currentRole='Company';
+  currentRole='';
   // currentRole: string | null = null;
 
 
   constructor(private cvService: CvService, private roleService: RoleService) {}
 
   ngOnInit(): void {
-    this.cvService.role$.subscribe(role => {
-      this.currentRole = role;
-      console.log('Current Role in Other Component:', this.currentRole);
+    this.cvService.role$.subscribe((setRole) => {
+      console.log(setRole)
+
+      console.log(this.currentRole)
+      this.currentRole = setRole;
     });
+  
+   
   }
 
 //   CompanyInformation!: FormGroup;

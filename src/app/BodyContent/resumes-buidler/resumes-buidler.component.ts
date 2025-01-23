@@ -5,9 +5,11 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 
-import $ from 'jquery';
+import $, { data } from 'jquery';
 
 import { CvComponent } from '../cv/cv.component';
+import { Apollo, gql } from 'apollo-angular';
+import { astFromValue } from 'graphql';
 
 @Component({
   selector: 'app-resumes-buidler',
@@ -38,10 +40,27 @@ isCvVisible: boolean = true;
   color='';
   htmlContent: string='';
 switch: any;
-
 toggleCv() {
   this.isCvVisible = !this.isCvVisible;
 }
+// 
+//   firstName
+//   lastName
+//   email
+//   phone
+//   profilePicture
+//   linkedin
+//   github
+// institution
+// degree
+// specialization
+// startEdu
+// endEdu
+// location
+// certificationName
+// issuingOrganization
+// year
+// url
 populateResumeForm() {
   this.resumeForm = this.fb.group({
     personalInfo: this.fb.group({
@@ -76,7 +95,7 @@ populateResumeForm() {
     this.skills.push(this.fb.group({ skill: [skill] })); 
   });
 }
-  constructor(private fb: FormBuilder, private cvService: CvService){
+  constructor(private fb: FormBuilder, private cvService: CvService,private apollo:Apollo){
 
      this.cvService.cvData$.subscribe(data => {
        this.cvData = data || {};  
@@ -169,6 +188,7 @@ this.cvData.skills.forEach((skill: string) => {
         startEdu: ['', Validators.required],
         endEdu: ['', Validators.required],
         location:['', Validators.required],
+    
          
       });
     }
@@ -191,6 +211,8 @@ this.cvData.skills.forEach((skill: string) => {
       issuingOrganization: [''],
       year: [''],
       url: [''],
+
+    
     });
   }
 
@@ -213,6 +235,7 @@ this.cvData.skills.forEach((skill: string) => {
       role: ['', Validators.required],
       linkcertficat: ['', Validators.required],
       technologies: ['', Validators.required],
+      
 
       
       
@@ -411,8 +434,141 @@ this.cvData.skills.forEach((skill: string) => {
     }
     return cssText;
   }
-}  
+  from:any={
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    profilePicture: '',
+    linkedin: '',
+    github: '',
+    institution: '',
+    degree: '',
+    specialization: '',
+    startEdu: '',
+    endEdu: '',
+    location: '',
+    certificationName: '',
+    issuingOrganization: '',
+    year: '',
+    url: '',
+    projectTitle: '',
+    description: '',
+    role: '',
+    linkcertficat: '',
+    technologies: '',
+    company: '',
+    jobTitle: '',
+    startDate: '',
+    endDate: '',
+    descrip: '',
+    skills: '',
+    createdAt: '',
+    updatedAt: '',}
+  
 
+  createResume(event: Event): void {
+    event.preventDefault();
+
+    const CREATE_RESUME_MUTATION = gql`mutation CreateResume($data: ResumeCreateInput!) {
+  createResume(data: $data) {
+    
+    createdAt
+    
+    education
+    email
+    
+    firstName
+    github
+    id
+    
+    lastName
+    linkedin
+    phone
+    professionalSummary
+    profilePicture
+    skills
+    
+    updatedAt
+    user {
+      id
+    }
+    experiences
+    certifications
+    projects
+  }
+}`;
+
+    console.log(this.resumeForm.value)
+    this.apollo.mutate({
+      mutation: CREATE_RESUME_MUTATION,
+      variables: { data:{
+         firstName: this.resumeForm.value.firstName,
+         lastName: this.resumeForm.value.lastName,
+         email: this.resumeForm.value.email,
+         phone: this.resumeForm.value.phone,
+         profilePicture: this.resumeForm.value.profilePicture,
+         linkedin: this.resumeForm.value.linkedin,
+         github: this.resumeForm.value.github,
+         professionalSummary: this.resumeForm.value.professionalSummary,
+         education: {data:this.resumeForm.value.educationPrinciple},  
+         experiences: this.resumeForm.value.experiences,  
+         projects: this.resumeForm.value.projects,  
+         certifications: this.resumeForm.value.certifications,  
+         skills: this.resumeForm.value.skills  
+      } }, 
+    }).subscribe({
+      next: (response) => {
+        
+        console.log('Resume created successfully:', response);
+      },
+      error: (error) => {
+        console.error('🚨 Apollo Error:', error);
+        if (error.graphQLErrors) console.error('❌ GraphQL Errors:', error.graphQLErrors);
+        if (error.networkError) console.error('🌐 Network Error:', error.networkError);
+      },
+    });
+  }}
+    interface CreateResumeResponse {
+    createResume: any;
+    data?: { // Making data optional in case it's null or undefined
+      createResume?: {  // Also making createResume optional
+        id: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone: string;
+        profilePicture: string;
+        linkedin: string;
+        github: string;
+        institution: string;
+        degree: string;
+        specialization: string;
+        startEdu: string;
+        endEdu: string;
+        location: string;
+        certificationName: string;
+        issuingOrganization: string;
+        year: string;
+        url: string;
+        projectTitle: string;
+        description: string;
+        role: string;
+        linkcertficat: string;
+        technologies: string[];
+        company: string;
+        jobTitle: string;
+        startDate: string;
+        endDate: string;
+        descrip: string;
+        skills: string[];
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  }
+  
   // exportAsImage(): void {
   //   const element = document.querySelector('.cv-container') as HTMLElement;
   //   html2canvas(element).then((canvas) => {

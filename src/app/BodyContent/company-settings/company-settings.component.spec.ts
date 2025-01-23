@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompanySettingsComponent } from './company-settings.component';
+import { CompanySettings } from './company-settings.component';
 
 describe('CompanySettingsComponent', () => {
-  let component: CompanySettingsComponent;
-  let fixture: ComponentFixture<CompanySettingsComponent>;
+  let component: CompanySettings;
+  let fixture: ComponentFixture<CompanySettings>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CompanySettingsComponent]
+      declarations: [CompanySettings]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CompanySettingsComponent);
+    fixture = TestBed.createComponent(CompanySettings);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

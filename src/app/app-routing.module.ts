@@ -15,7 +15,9 @@ import { ResumesBuidlerComponent } from './BodyContent/resumes-buidler/resumes-b
 import { ResumesComponent } from './BodyContent/resumes/resumes.component';
 import { ApplicationsComponent } from './apply/applications/applications.component';
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
-import { FindjobComponent } from './findjob/findjob.component';
+import { FindjobComponent } from './BodyContent/findjob/findjob.component';
+import { ApplyPostsComponent } from './apply/apply-posts/apply-posts.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent }, 
@@ -29,7 +31,9 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent }, 
       { path: 'Findjob', component: FindjobComponent },
+      { path: 'ApplyPosts', component: ApplyPostsComponent },
 
+      
       { path: 'users', component: UsersComponent },
       { path: 'applications', component: ApplicationsComponent },
       { path: 'companies', component: CompainesComponent },

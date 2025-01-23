@@ -1,5 +1,17 @@
 <main class="p-4">
-    <h1 class="text-3xl font-bold text-center mb-8">Application Management</h1>
-    <app-bodycomp></app-bodycomp>
-    
+    <div class="flex justify-between items-center">
+        <button 
+            class="bg-[#240145] text-white px-4 py-2 w-32 rounded border border-gray-300 hover:bg-[#37016e]" 
+            (click)="posts=false">
+            Posts
+        </button>
+        <h1 class="text-3xl font-bold text-center mb-8">Application Management</h1>
+        <button 
+            class="bg-[#240145] text-white px-4 py-2 w-32 rounded border border-gray-300 hover:bg-[#37016e]" 
+            (click)="posts=true">
+            Reapply
+        </button>
+    </div>
+    <app-bodycomp *ngIf="!posts"></app-bodycomp>
+    <app-apply-posts *ngIf="posts"></app-apply-posts>
 </main>

@@ -1,0 +1,96 @@
+<div class="max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg mt-10">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Job Posting Form</h2>
+    <form (ngSubmit)="onSubmit()" #jobForm="ngForm" class="space-y-4">
+      <div>
+        <label for="companyName" class="block text-sm font-semibold text-gray-700">Company Name</label>
+        <input
+          type="text"
+          id="companyName"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Enter company name"
+          required
+          [(ngModel)]="job.companyName"
+          name="companyName"
+          #companyName="ngModel"
+        />
+      </div>
+      <div>
+        <label for="jobTitle" class="block text-sm font-semibold text-gray-700">Job Title</label>
+        <input
+          type="text"
+          id="jobTitle"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Enter job title"
+          required
+          [(ngModel)]="job.jobTitle"
+          name="jobTitle"
+          #jobTitle="ngModel"
+        />
+      </div>
+      <div>
+        <label for="location" class="block text-sm font-semibold text-gray-700">📍 Location</label>
+        <input
+          type="text"
+          id="location"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Enter job location"
+          required
+          [(ngModel)]="job.location"
+          name="location"
+          #location="ngModel"
+        />
+      </div>
+      <div>
+        <label for="workTime" class="block text-sm font-semibold text-gray-700">⏰ Work Time</label>
+        <input
+          type="text"
+          id="workTime"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="e.g., Full-Time, Part-Time"
+          required
+          [(ngModel)]="job.workTime"
+          name="workTime"
+          #workTime="ngModel"
+        />
+      </div>
+      <div>
+        <label for="salary" class="block text-sm font-semibold text-gray-700">🤑 Salary</label>
+        <input
+          type="text"
+          id="salary"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Enter salary range"
+          required
+          [(ngModel)]="job.salary"
+          name="salary"
+          #salary="ngModel"
+        />
+      </div>
+      <div>
+        <label for="description" class="block text-sm font-semibold text-gray-700">Description</label>
+        <textarea
+          id="description"
+          rows="5"
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Write a detailed job description..."
+          required
+          [(ngModel)]="job.description"
+          name="description"
+          #description="ngModel"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        Post Job
+      </button>
+    </form>
+    <p
+      *ngIf="success"
+      class="text-green-600 font-semibold text-center mt-4"
+    >
+      The job has been posted successfully!
+    </p>
+  </div>
+  

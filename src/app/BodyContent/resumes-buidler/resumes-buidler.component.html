@@ -97,7 +97,7 @@
                 <label for="firstName" class="block text-gray-300 font-medium mb-2">First Name</label>
                 <input
                   type="text"
-                  id="firstName"
+                  [(ngModel)]="from.firstName"
                   formControlName="firstName"
                   class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                 />
@@ -107,7 +107,7 @@
                 <label for="lastName" class="block text-gray-300 font-medium mb-2">Last Name</label>
                 <input
                   type="text"
-                  id="lastName"
+                  [(ngModel)]="from.lastName"
                   formControlName="lastName"
                   class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                 />
@@ -117,7 +117,7 @@
               <label for="jobtitle" class="block text-gray-300 font-medium mb-2">jobtitle</label>
               <input
                 type="jobtitle"
-                id="jobtitle"
+                [(ngModel)]="from.jobtitle"
                 formControlName="jobtitle"
                 class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                 />
@@ -128,7 +128,7 @@
                 <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  [(ngModel)]="from.email"
                   formControlName="email"
                   class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                 />
@@ -137,7 +137,7 @@
                 <label for="phone" class="block text-gray-300 font-medium mb-2">Phone</label>
                 <input
                   type="tel"
-                  id="phone"
+                  [(ngModel)]="from.phone"
                   formControlName="phone"
                   class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                 />
@@ -145,11 +145,11 @@
         
               <div class="flex flex-col">
                 <label for="linkedin" class="text-sm font-medium text-gray-300">linkedin</label>
-                <input id="linkedin" formControlName="linkedin" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
+                <input [(ngModel)]="from.linkedin" formControlName="linkedin" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
               </div>
               <div class="flex flex-col">
                 <label for="github" class="text-sm font-medium text-gray-300">github</label>
-                <input id="github" formControlName="github" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
+                <input [(ngModel)]="from.github" formControlName="github" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
               </div>
 
             </div>
@@ -159,7 +159,7 @@
           <div *ngSwitchCase="1">
             <label for="summary" class="block text-gray-300 font-medium mb-2">Professional Summary</label>
             <textarea
-              id="summary"
+              [(ngModel)]="from.summary"
               formControlName="professionalSummary"
               class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
             ></textarea>
@@ -173,7 +173,7 @@
                 <div class="mb-4">
                   <label for="institution" class="block text-gray-300 font-medium mb-2">Institution Name</label>
                   <input
-                    id="institution"
+                    [(ngModel)]="from.institution"
                     formControlName="institution"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                   />
@@ -183,7 +183,7 @@
                 <div class="mb-4">
                   <label for="degree" class="block text-gray-300 font-medium mb-2">Degree</label>
                   <input
-                    id="degree"
+                    [(ngModel)]="from.degree"
                     formControlName="degree"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                   />
@@ -193,7 +193,7 @@
                 <div class="mb-4">
                   <label for="specialization" class="block text-gray-300 font-medium mb-2">Specialization</label>
                   <input
-                    id="specialization"
+                    [(ngModel)]="from.specialization"
                     formControlName="specialization"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                   />
@@ -203,7 +203,7 @@
                 <div class="mb-4">
                   <label for="startEdu" class="block text-gray-300 font-medium mb-2">Start Date</label>
                   <input
-                    id="startEdu"
+                    [(ngModel)]="from.startEdu"
                     type="date"
                     formControlName="startEdu"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
@@ -214,7 +214,7 @@
                 <div class="mb-4">
                   <label for="endEdu" class="block text-gray-300 font-medium mb-2">End Date</label>
                   <input
-                    id="endEdu"
+                    [(ngModel)]="from.endEdu"
                     type="date"
                     formControlName="endEdu"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
@@ -225,7 +225,7 @@
                 <div class="mb-4">
                   <label for="location" class="block text-gray-300 font-medium mb-2">Location</label>
                   <input
-                    id="location"
+                    [(ngModel)]="from.location"
                     formControlName="location"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
                   />
@@ -261,31 +261,31 @@
     <!-- Titre du poste -->
     <div class="mb-4">
       <label for="jobTitle" class="block text-gray-300 font-medium mb-2">Job Title</label>
-      <input id="jobTitle" formControlName="jobTitle" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
+      <input [(ngModel)]="from.jobTitle" formControlName="jobTitle" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
     </div>
 
     <!-- Entreprise -->
     <div class="mb-4">
       <label for="company" class="block text-gray-300 font-medium mb-2">Company</label>
-      <input id="company" formControlName="company" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
+      <input [(ngModel)]="from.company" formControlName="company" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
     </div>
 
     <!-- Dates de début et de fin -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div class="mb-4">
         <label for="startDate" class="block text-gray-300 font-medium mb-2">Start Date</label>
-        <input id="startDate" formControlName="startDate" type="date" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
+        <input [(ngModel)]="from.startDate" formControlName="startDate" type="date" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
       </div>
       <div class="mb-4">
         <label for="endDate" class="block text-gray-300 font-medium mb-2">End Date</label>
-        <input id="endDate" formControlName="endDate" type="date" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
+        <input [(ngModel)]="from.endDate" formControlName="endDate" type="date" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100" />
       </div>
     </div>
 
     <!-- Description des responsabilités -->
     <div class="mb-4">
       <label for="description" class="block text-gray-300 font-medium mb-2">Responsibilities and Tasks</label>
-      <textarea id="description" formControlName="description" rows="4" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"></textarea>
+      <textarea [(ngModel)]="from.description" formControlName="description" rows="4" class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"></textarea>
     </div>
 
     <!-- Bouton pour supprimer une expérience -->
@@ -313,22 +313,22 @@
               <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i" class="space-y-4 mb-4">
 <div>             <div class="flex flex-col">
                   <label for="projectTitle" class="text-sm font-medium text-gray-300">Project projectTitle</label>
-                  <input id="projectTitle" formControlName="projectTitle" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
+                  <input [(ngModel)]="from.projectTitle" formControlName="projectTitle" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
                 </div>
                 <!-- Description du projet -->
                 <div class="flex flex-col">
                   <label for="description" class="text-sm font-medium text-gray-300">Project Description</label>
-                  <textarea id="description" formControlName="description" class="p-2 border border rounded-md bg-gray-700 text-gray-100"></textarea>
+                  <textarea [(ngModel)]="from.description" formControlName="description" class="p-2 border border rounded-md bg-gray-700 text-gray-100"></textarea>
                 </div>
                 <!-- Technologies utilisées -->
                 <div class="flex flex-col">
                   <label for="technologies" class="text-sm font-medium text-gray-300">Technologies</label>
-                  <input id="technologies" formControlName="technologies" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
+                  <input [(ngModel)]="from.technologies" formControlName="technologies" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
                 </div>
                 <!-- Lien ou certificat -->
                 <div class="flex flex-col">
                   <label for="linkcertficat" class="text-sm font-medium text-gray-300">Link/Certificate</label>
-                  <input id="linkcertficat" formControlName="linkcertficat" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
+                  <input [(ngModel)]="from.linkcertficat" formControlName="linkcertficat" type="url" class="p-2 border border rounded-md bg-gray-700 text-gray-100" />
                 </div>
                 <!-- Bouton pour supprimer un projet -->
                 <button type="button" *ngIf="projects.length > 1"
@@ -352,7 +352,7 @@
                 <div>
                   <label for="certificationName" class="block text-sm font-medium text-gray-300">Certification Name</label>
                   <input
-                      id="certificationName"
+                      [(ngModel)]="from.certificationName"
                       formControlName="certificationName"
                       type="text"
                       class="w-full p-2 border border rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none bg-gray-700 text-gray-100"
@@ -363,7 +363,7 @@
                 <div>
                   <label for="issuingOrganization" class="block text-sm font-medium text-gray-300">Issuing Organization</label>
                   <input
-                      id="issuingOrganization"
+                      [(ngModel)]="from.issuingOrganization"
                       formControlName="issuingOrganization"
                       type="text"
                       class="w-full p-2 border border rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none bg-gray-700 text-gray-100"
@@ -375,7 +375,7 @@
                   <div>
                     <label for="year" class="block text-sm font-medium text-gray-300">Year</label>
                     <input
-                        id="year"
+                        [(ngModel)]="from.year"
                         formControlName="year"
                         type="text"
                         class="w-full p-2 border border rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none bg-gray-700 text-gray-100"
@@ -385,7 +385,7 @@
                   <div>
                     <label for="url" class="block text-sm font-medium text-gray-300">Certification URL</label>
                     <input
-                        id="url"
+                        [(ngModel)]="from.url"
                         formControlName="url"
                         type="url"
                         class="w-full p-2 border border rounded-lg focus:ring focus:ring-emerald-200 focus:outline-none bg-gray-700 text-gray-700"
@@ -419,7 +419,7 @@
                 <div class="mb-4">
                   <label for="skills" class="block text-gray-300 font-medium mb-2">Skill</label>
                   <textarea
-                    id="skills"
+                    [(ngModel)]="skills"
                     formControlName="skills"
                     rows="4"
                     class="w-full p-2 border border rounded-lg focus:outline-none focus:border-[#1726fc] bg-gray-700 text-gray-100"
@@ -447,7 +447,7 @@
             </button>
               <button *ngIf="currentStep"
                 class="px-4 py-2 bg-[#1726fc] text-white rounded-lg hover:bg-[#0d18a8]"
-                (click)="exportCvToHTML()">
+                (click)="exportCvToHTML()" (click)="createResume($event)">
                 💾 Save your CV
               </button>
           </div>

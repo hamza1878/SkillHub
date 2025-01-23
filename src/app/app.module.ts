@@ -28,7 +28,6 @@ import { Cv1Component } from './BodyContent/cv1/cv1.component';
 import { Cv3Component } from './BodyContent/cv3/cv3.component';
 import { ColorPickerComponent } from './BodyContent/color-picker/color-picker.component';
 import { Cv4Component } from './BodyContent/cv4/cv4.component';
-import { RoleComponent } from './role/role.component';
 import { SignupChoixComponent } from './pages/auth/signup-choix/signup-choix.component';
 import { WidgetsComponent } from './BodyContent/widgets/widgets.component';
 import { provideHttpClient, HttpClientModule, withFetch } from '@angular/common/http';
@@ -42,15 +41,17 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CandidateDetailsComponent } from './apply/candidate-details/candidate-details.component';
 import { ResponseFormComponent } from './apply/response-form/response-form.component';
 import { BodycompComponent } from './apply/bodycomp/bodycomp.component';
-import { FindjobComponent } from './findjob/findjob.component';
+import { FindjobComponent } from './BodyContent/findjob/findjob.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/auth/login/login.component';
-import { SingupCompanyComponent } from './singup-company/singup-company.component';
-import { SingupUsersComponent } from './singup-users/singup-users.component';
-@NgModule({
+import { SingupCompanyComponent } from './pages/auth/singup-company/singup-company.component'; 
+import { SingupUsersComponent } from './pages/auth/singup-users/singup-users.component';
+import { ApplyPostsComponent } from './apply/apply-posts/apply-posts.component';
+ 
+ @NgModule({
   declarations: [
-    AppComponent,SingupCompanyComponent,SingupUsersComponent,
+    AppComponent,ApplyPostsComponent, SingupCompanyComponent,SingupUsersComponent,
     DashboardComponent,
     ResumesBuidlerComponent,
     CompainesComponent,
@@ -65,7 +66,6 @@ import { SingupUsersComponent } from './singup-users/singup-users.component';
     Cv3Component,
     ColorPickerComponent,
     Cv4Component,
-    RoleComponent,
     SignupChoixComponent,
     SingupComponent,
     WidgetsComponent,
@@ -92,7 +92,7 @@ import { SingupUsersComponent } from './singup-users/singup-users.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ApolloModule
-    
+    ,MatSnackBarModule 
     // MatButtonModule,
     // MatDialogModule,
     // BrowserModule,

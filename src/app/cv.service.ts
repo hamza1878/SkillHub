@@ -85,36 +85,45 @@ interface CvHtmlContent {
 })
 export class CvService {
   private cvDataSubject = new BehaviorSubject<any>({
-    personalInfo: { firstName: '', lastName: '', email: '', phone: '', profilePicture: null },
+    personalInfo: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      profilePicture: null,
+    },
     professionalSummary: '',
     educationPrinciple: [],
     experiences: [],
     projects: [],
     certifications: [],
-    skills:[],
+    skills: [],
   });
 
   cvData$ = this.cvDataSubject.asObservable();
   private ApplyData = new BehaviorSubject<any>({
-    personalInfo: { firstName: '', lastName: '', description: '', phone: '', linkdein: null },  });
-    apply(value:any){
-      this.ApplyData.next(value)
-      
-    }
-    private rech = new BehaviorSubject<any>({
-      job:[''],
-      location:[''],
-      selected:[''],
+    personalInfo: {
+      firstName: '',
+      lastName: '',
+      description: '',
+      phone: '',
+      linkdein: null,
+    },
+  });
+  apply(value: any) {
+    this.ApplyData.next(value);
+  }
+  private rech = new BehaviorSubject<any>({
+    job: [''],
+    location: [''],
+    selected: [''],
+  });
+  rechercher(job: any, location: any, selected: any) {
+    this.rech.next(job);
+    this.rech.next(location);
 
-
-    })
-    rechercher(job:any,location:any,selected:any){
-this.rech.next(job)
-this.rech.next(location)
-
-this.rech.next(selected)
-
-    }
+    this.rech.next(selected);
+  }
   private roleData = new BehaviorSubject<any>(null);
   role$ = this.roleData.asObservable();
 
@@ -122,67 +131,78 @@ this.rech.next(selected)
     this.roleData.next(role);
     console.log(role);
   }
- 
+  private id = new BehaviorSubject<any>(null);
+  id$ = this.id.asObservable();
+  iduser(id: any) {
+    this.id.next(id);
+    localStorage.getItem(id);
+    console.log(id);
+    localStorage.setItem('current_user', id);
+  }
 
-  setRole(role: string) {
+  setRole(role: any) {
     this.roleData.next(role);
+    console.log(role);
   }
   private cvHtmlSubject = new BehaviorSubject<CvHtmlContent>({
     styles: '',
-    htmlContent: ''
+    htmlContent: '',
   });
 
   cvHtml$ = this.cvHtmlSubject.asObservable();
   private cv = new BehaviorSubject<any>({
-    cvElement:'',
-  }) ;
+    cvElement: '',
+  });
 
-cvsave(element:any){
-  console.log('servece',element)
-   this.cv.next(element)
-
-}   
-cvsave$ = this.cv.asObservable();
+  cvsave(element: any) {
+    console.log('servece', element);
+    this.cv.next(element);
+  }
+  cvsave$ = this.cv.asObservable();
 
   constructor() {}
 
-  cvHtml($param1: any, p0: { styles: string }, $param2: any, p1: { htmlContent: string }) {
+  cvHtml(
+    $param1: any,
+    p0: { styles: string },
+    $param2: any,
+    p1: { htmlContent: string }
+  ) {
     if ($param2 && typeof $param2 === 'function') {
       const styleSheet = p0.styles;
       const content = p1.htmlContent;
-  console.log(styleSheet,content)
+      console.log(styleSheet, content);
       const finalHtml = `
         <style>${styleSheet}</style>
         <div class="cv-content">
           ${content}
         </div>
       `;
-      $param2('#cvContainer').html(finalHtml); 
+      $param2('#cvContainer').html(finalHtml);
     } else {
       console.error('$param2 is not a valid function', $param2);
     }
-  
+
     this.cvHtmlSubject.next({ styles: p0.styles, htmlContent: p1.htmlContent });
   }
-    
+
   private colorSubject = new BehaviorSubject<string>('blue-500');
   color$ = this.colorSubject.asObservable();
-  
+
   color(newColor: string): void {
     this.colorSubject.next(newColor);
     console.log('Couleur mise à jour :', newColor);
   }
-  
+
   getColor(): string {
     return this.colorSubject.getValue();
   }
-  
 
-updateCv(newData: any) {
+  updateCv(newData: any) {
     const currentData = this.cvDataSubject.getValue();
     const updatedData = { ...currentData, ...newData };
-    this.cvDataSubject.next(updatedData); 
-    localStorage.setItem('cvData', JSON.stringify(updatedData));  
+    this.cvDataSubject.next(updatedData);
+    localStorage.setItem('cvData', JSON.stringify(updatedData));
   }
 
   loadCvData() {
@@ -190,4 +210,5 @@ updateCv(newData: any) {
     if (savedData) {
       this.cvDataSubject.next(JSON.parse(savedData));
     }
-  }}
+  }
+}

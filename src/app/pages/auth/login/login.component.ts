@@ -12,6 +12,7 @@ import { nextTick } from 'process';
 import { subscribe } from 'graphql';
 import { AuthServiceService } from '../../../auth-service.service';
 import { Mutation, UserRoleType } from '../../../../generated/graphql';
+import { CvService } from '../../../cv.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,19 @@ import { Mutation, UserRoleType } from '../../../../generated/graphql';
 })
 export class LoginComponent implements OnInit {
   // loginForm: FormGroup;
-  login = { email: '', password: '' };
+  login = { email: '', password: '',role:'' };
+ROLE_QYERY=gql`
+query User {
+  authenticatedItem {
+    ... on User {
+      role
+      email
+      password {
+        isSet
+      }
+    }
+  }
+}`;
 
   LOGIN_MUTATION = gql`
     mutation ($email: String!, $password: String!) {
@@ -51,7 +64,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private readonly apollo: Apollo,
-    private AuthServiceService: AuthServiceService
+    private AuthServiceService: AuthServiceService,
+    private CvService:CvService
   ) {
     // this.loginForm = this.fb.group({
     //   email: ['', [Validators.required, Validators.email]],
@@ -59,9 +73,11 @@ export class LoginComponent implements OnInit {
     // });
   }
   ngOnInit(): void {
+    console.log("role",this.ROLE_QYERY)
     this.AuthServiceService.localStorage.getItem(this.login.email);
-  }
 
+  }
+  roleporbleme='COMPANY'
   signup() {
     alert('Navigating to Sign Up');
     this.router
@@ -81,17 +97,30 @@ export class LoginComponent implements OnInit {
         variables: {
           email: this.login.email,
           password: this.login.password,
+          roles:this.ROLE_QYERY
+          
         },
       })
+    
       .subscribe({
         next: ({ data }) => {
+          console.log(data)
+          
           if (
             data?.authenticateUserWithPassword?.__typename ===
             'UserAuthenticationWithPasswordSuccess'
           ) {
             console.log(data.authenticateUserWithPassword.item);
+            const user = data.authenticateUserWithPassword.item;
+            console.log('User data:', user);
+            if (user.role) {
+              this.CvService.setRole(user.role);
+            } else {
+              this.CvService.setRole('COMPANY'); 
+            }
+            this.CvService.iduser(user.id)
+            
 
-            this.AuthServiceService.setUserEmail(this.login.email);
 
             this.router.navigate(['/dasboard']);
           } else {

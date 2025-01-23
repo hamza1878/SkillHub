@@ -20,6 +20,7 @@ export class ApplicationsComponent {
     phone: '',
     resume: null,
   };
+  posts!:boolean
   
   candidates: Candidate[] = [
     { name: 'Jean Dupont', position: 'Développeur Web', date: '2023-10-01', status: 'Nouveau', },

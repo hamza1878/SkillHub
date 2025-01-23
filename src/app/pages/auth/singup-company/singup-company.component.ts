@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CvService } from '../cv.service';
+import { CvService } from '../../../cv.service';
 import { Apollo, gql } from 'apollo-angular';
-import { RoleService } from '../role.service';
+import { RoleService } from '../../../role.service';
+import { Mutation } from '../../../../generated/graphql';
 
 @Component({
   selector: 'app-singup-company',
@@ -29,7 +30,7 @@ export class SingupCompanyComponent {
   ) {}
   setRole(role: string): void {
     this.company.role = role;
-    this.RoleService.setRole(role); // Store the selected role in RoleService
+    this.RoleService.setRole(role);
   }
   signUp(event: Event) {
     event.preventDefault();
@@ -45,51 +46,54 @@ export class SingupCompanyComponent {
     }
 
     const INIT_COMPANY = gql`
-      mutation CreateCompanies($data: [CompanyCreateInput!]!) {
-        createCompanies(data: $data) {
-          name
-
-          email
-
-          password
+      mutation CreateCompany($data: CompanyCreateInput!) {
+        createCompany(data: $data) {
+          user {
+            id
+          }
         }
       }
     `;
 
     const SIGN_UP_MUTATION = gql`
-      mutation CreateUsers($data: [UserCreateInput!]!) {
-        createUsers(data: $data) {
-          firstName
-          lastName
+      mutation CreateUser($data: UserCreateInput!) {
+        createUser(data: $data) {
+          id
           email
+          firstName
           password {
             isSet
           }
-          role
         }
       }
     `;
 
     this.apollo
-      .mutate({
+      .mutate<Mutation>({
         mutation: SIGN_UP_MUTATION,
         variables: {
           data: {
-            nameCompany: this.company.nameCompany,
             email: this.company.contactEmail,
             password: this.company.password,
           },
         },
       })
       .subscribe({
-        next: (response: any) => {
+        next: (response) => {
           console.log('Signup successful:', response);
+          this.cvService.iduser(response.data?.createUser?.id);
           this.apollo
             .mutate({
               mutation: INIT_COMPANY,
               variables: {
                 data: {
-                  name: this.company.nameCompany,
+                  user: {
+                    connect: {
+                      id:   response.data?.createUser?.id,
+                    },
+                  },
+                  name: this.company.name,
+                  IndustryType: this.company.IndustryType,
                 },
               },
             })

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../components/navbar/navbar.component';
-import { CvService } from '../cv.service';
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { CvService } from '../../../cv.service';
 import { Apollo, gql } from 'apollo-angular';
-import { RoleService } from '../role.service';
-import { UserRoleType } from '../../generated/graphql';
+import { RoleService } from '../../../role.service';
+import { UserRoleType } from '../../../../generated/graphql';
 @Component({
   selector: 'app-singup-users',
   standalone: false,
