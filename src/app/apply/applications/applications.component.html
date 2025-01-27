@@ -12,6 +12,13 @@
             Reapply
         </button>
     </div>
+    <div *ngIf="currentRole==='USER'">
+    <app-candidate-res></app-candidate-res></div>
+    <div *ngIf="currentRole==='COMPANY'">
+
+        
     <app-bodycomp *ngIf="!posts"></app-bodycomp>
     <app-apply-posts *ngIf="posts"></app-apply-posts>
+    </div>
+
 </main>

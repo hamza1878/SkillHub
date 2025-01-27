@@ -11,7 +11,7 @@ import { CvService } from '../cv.service';
 })
 export class DashboardComponent {
   menuOpen = true;
- currentRole='';
+ currentRole!:string| null;
   // currentRole: string | null = null;
 
 
@@ -21,11 +21,15 @@ export class DashboardComponent {
     this.cvService.role$.subscribe((setRole) => {
       console.log(setRole)
 
-      console.log(this.currentRole)
       this.currentRole = setRole;
+      this.currentRole = localStorage.getItem('current_role');
+
+      console.log(this.currentRole)
+
+
     });
   
-   
+    
   }
   toggleMenu() {
     console.log('Toggle menu clicked'); 

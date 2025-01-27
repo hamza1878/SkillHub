@@ -1,4 +1,4 @@
-<div class="space-y-6 bg-[#150129]  p-6 rounded-lg text-gray-100">
+<!-- <div class="space-y-6 bg-[#150129]  p-6 rounded-lg text-gray-100">
   <table class="w-full border-collapse bg-gray-700 rounded-lg overflow-hidden">
     <thead>
       <tr class="bg-gray-600 text-gray-100">
@@ -53,4 +53,58 @@
   </div>
 </div>
 
-<app-response-form *ngIf="!res && selectedCandidate"></app-response-form>
+<app-response-form *ngIf="!res && selectedCandidate"></app-response-form> -->
+<div class="space-y-8 bg-[#150129] p-8 rounded-lg text-gray-100 shadow-lg">
+  <table class="w-full border-collapse bg-gray-800 rounded-lg overflow-hidden shadow">
+    <thead>
+      <tr class="bg-gray-700 text-gray-100">
+        <th class="p-4 text-left font-semibold">Nom</th>
+        <th class="p-4 text-left font-semibold">Poste</th>
+        <th class="p-4 text-left font-semibold">Date</th>
+        <th class="p-4 text-left font-semibold">Statut</th>
+        <th class="p-4 text-left font-semibold">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let application of jobApplications" class="border-b border-gray-700 hover:bg-gray-700 transition">
+        <td class="p-4">{{ application.Nom }}</td>
+        <td class="p-4">{{ application.Poste }}</td>
+        <td class="p-4">{{ application.Date | date }}</td>
+        <td class="p-4">{{ application.Statut }}</td>
+        <td class="p-4">
+          <button
+            (click)="showDetails(application)"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400">
+            Voir détails
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngFor="let application of jobApplications" class="mt-8 bg-gray-800 p-6 rounded-lg shadow">
+    <h3 class="text-2xl font-bold mb-4">Détails du candidat</h3>
+    <p><strong>Nom :</strong> {{ application.Nom }}</p>
+    <p><strong>Poste :</strong> {{ application.Poste }}</p>
+    <p><strong>Date :</strong> {{ application.Date | date }}</p>
+    <p><strong>Statut :</strong> {{ application.Statut }}</p>
+
+    <div class="flex gap-4 pt-4">
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+        Télécharger CV
+      </button>
+      <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+        Lire la lettre de motivation
+      </button>
+      <button (click)="respondToCandidate()" *ngIf="res" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+        Répondre
+      </button>
+      <p class="text-yellow-500" *ngIf="!res">Réponse en attente...</p>
+      <app-response-form *ngIf="!res && selectedCandidate"></app-response-form>
+    </div>
+  </div>
+
+  <div *ngIf="jobApplications.length === 0" class="text-center mt-4">
+    <p class="text-gray-400">Aucune candidature trouvée.</p>
+  </div>
+</div>

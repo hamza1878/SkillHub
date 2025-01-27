@@ -143,6 +143,8 @@ export class CvService {
   setRole(role: any) {
     this.roleData.next(role);
     console.log(role);
+    localStorage.setItem('current_role', role);
+
   }
   private cvHtmlSubject = new BehaviorSubject<CvHtmlContent>({
     styles: '',

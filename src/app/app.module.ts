@@ -38,7 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';  
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { CandidateDetailsComponent } from './apply/candidate-details/candidate-details.component';
+import { CandidateDetailsComponent } from './apply/candidate-details/candidate-res.component';
 import { ResponseFormComponent } from './apply/response-form/response-form.component';
 import { BodycompComponent } from './apply/bodycomp/bodycomp.component';
 import { FindjobComponent } from './BodyContent/findjob/findjob.component';
@@ -48,7 +48,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { SingupCompanyComponent } from './pages/auth/singup-company/singup-company.component'; 
 import { SingupUsersComponent } from './pages/auth/singup-users/singup-users.component';
 import { ApplyPostsComponent } from './apply/apply-posts/apply-posts.component';
- 
+
  @NgModule({
   declarations: [
     AppComponent,ApplyPostsComponent, SingupCompanyComponent,SingupUsersComponent,
@@ -92,30 +92,12 @@ import { ApplyPostsComponent } from './apply/apply-posts/apply-posts.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ApolloModule
-    ,MatSnackBarModule 
-    // MatButtonModule,
-    // MatDialogModule,
-    // BrowserModule,
-    // AppRoutingModule,
-    // RouterModule,
-    // LandingComponent,
-    // BodyComponent,
-    // FooterComponent,
-    // NavbarComponent,
-    // ReactiveFormsModule,
-    // FormsModule,
-    // RouterModule,
-    // HttpClientModule,
-    // GraphQLModule,
-    // MatDialogModule,
-    // MatSnackBarModule,
-    // MatDialogModule,
-    // BrowserModule,
-    // MatDialogModule,
-    // MatButtonModule,
-    // ReactiveFormsModule,
-    // MatAutocompleteModule,
-    // BrowserAnimationsModule
+    ,MatSnackBarModule ,
+    HttpClientModule,
+    CommonModule
+    
+
+   
     
 ],
   providers: [

@@ -15,6 +15,7 @@ export class UsersSettings implements OnInit {
   profilePicturePreview: string | ArrayBuffer | null = null;
   userId: string = '';
   idmail: string = '';
+  selectedFile: File | null = null;
 
   user = {
     firstName: '',
@@ -29,8 +30,7 @@ export class UsersSettings implements OnInit {
     status: '',
     createdAt: '',
     updatedAt: '',
-    createdAtTime: '',
-    updatedAtTime: '',
+    picture: [null]  // Add picture control
   };
   id: any;
 
@@ -52,7 +52,9 @@ export class UsersSettings implements OnInit {
       technologies: [''],
       jobTitle: [''],
       description: [''],
-      status: [''], // Ensure valid enum values
+      status: [''],
+      createdAt: [''],
+      updatedAt: [''],
     });
 
     // Fetch the user ID from the service or local storage
@@ -65,26 +67,42 @@ export class UsersSettings implements OnInit {
     }
   }
 
+  // Handle the profile picture selection
+  onProfilePictureChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profilePicturePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // Update user details and handle file upload
   updateuser(): void {
     const userForm = this.userForm.value;
-    console.log('Form Values:', userForm); // Log form values for debugging
-  
+    console.log('Form Values:', userForm);
+
     if (!this.id) {
       console.error('❌ User ID not found.');
       return;
     }
-  
+
     // Ensure the status value is valid
     if (!['active', 'inactive', 'pending'].includes(userForm.status.toLowerCase())) {
       console.error('❌ Invalid status value:', userForm.status);
       return;
     }
-  
-    // Define the GraphQL mutation
+
+    // GraphQL Mutation for file upload
     const userSettingsMutation = gql`
       mutation UpdateUser($where: UserWhereUniqueInput!, $data: UserUpdateInput!) {
         updateUser(where: $where, data: $data) {
-         id
+          id
           firstName
           lastName
           role
@@ -112,14 +130,29 @@ export class UsersSettings implements OnInit {
         }
       }
     `;
-  
-    // Send the mutation
+
+    const data = {
+      firstName: userForm.firstName,
+      lastName: userForm.lastName,
+      phone: userForm.phone,
+      linkedin: userForm.linkedin,
+      github: userForm.github,
+      technologies: userForm.technologies,
+      jobTitle: userForm.jobTitle,
+      description: userForm.description,
+      status: userForm.status.toLowerCase(),
+      picture: this.selectedFile ? { upload: this.selectedFile } : null,
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Perform Apollo mutation with file upload
     this.apollo
       .mutate({
         mutation: userSettingsMutation,
         variables: {
           where: { id: this.id },
           data: {
+            picture: this.selectedFile ? { upload: this.selectedFile } : null,
             firstName: userForm.firstName,
             lastName: userForm.lastName,
             phone: userForm.phone,
@@ -128,10 +161,12 @@ export class UsersSettings implements OnInit {
             technologies: userForm.technologies,
             jobTitle: userForm.jobTitle,
             description: userForm.description,
-            status: userForm.status.toLowerCase(), // Convert to lowercase to match the enum
-            picture: userForm.picture ? { upload: userForm.picture } : null,
+            status: userForm.status.toLowerCase(),
             updatedAt: new Date().toISOString(),
           },
+        },
+        context: {
+          useMultipart: true, // Enable multipart form data for file upload
         },
       })
       .subscribe({
@@ -153,72 +188,64 @@ export class UsersSettings implements OnInit {
       });
   }
 
-  onProfilePictureChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.profilePicturePreview = reader.result; // Update the profile picture preview
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-  
   fetchUserData(): void {
     const GET_USER_QUERY = gql`
-    query Query($where: UserWhereInput!) {
-      users(where: $where) {
-        id
-        firstName
-        lastName
-        email
-        phone
-        linkedin
-        github
-        technologies
-        jobTitle
-        description
-        status
-        createdAt
-        updatedAt
+      query Query($where: UserWhereInput!) {
+        users(where: $where) {
+          id
+          firstName
+          lastName
+          email
+          phone
+          linkedin
+          github
+          technologies
+          jobTitle
+          description
+          status
+          createdAt
+          updatedAt
+          picture {
+            url
+          }
+        }
       }
-    }
-  `;
-  
+    `;
 
-  this.apollo
-  .watchQuery({
-    query: GET_USER_QUERY,
-    variables: {
-      where: { id: { equals: this.id } }, // Correction ici
-    },
-  })
-  .valueChanges.subscribe({
-    next: (response: any) => {
-      const userData = response.data.users[0];
-      console.log('Données utilisateur récupérées:', userData);
+    this.apollo
+      .watchQuery({
+        query: GET_USER_QUERY,
+        variables: {
+          where: { id: { equals: this.id } },
+        },
+      })
+      .valueChanges.subscribe({
+        next: (response: any) => {
+          const userData = response.data.users[0];
+          console.log('User Data:', userData);
 
-      this.userForm.patchValue({
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        phone: userData.phone,
-        linkedin: userData.linkedin,
-        github: userData.github,
-        technologies: userData.technologies,
-        jobTitle: userData.jobTitle,
-        description: userData.description,
-        status: userData.status,
+          this.userForm.patchValue({
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: userData.email,
+            phone: userData.phone,
+            linkedin: userData.linkedin,
+            github: userData.github,
+            technologies: userData.technologies,
+            jobTitle: userData.jobTitle,
+            description: userData.description,
+            status: userData.status,
+            createdAt: userData.createdAt,
+            updatedAt: userData.updatedAt,
+          });
+
+          if (userData.picture) {
+            this.profilePicturePreview = userData.picture.url;
+          }
+        },
+        error: (error) => {
+          console.error('❌ Error fetching user data:', error);
+        },
       });
-
-      if (userData.picture) {
-        this.profilePicturePreview = userData.picture.url;
-      }
-    },
-    error: (error) => {
-      console.error('❌ Erreur lors de la récupération des données utilisateur:', error);
-    },
-  });
-
-}  }
+  }
+}

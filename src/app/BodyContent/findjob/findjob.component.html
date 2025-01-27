@@ -1,4 +1,7 @@
-<div >
+
+
+
+ <div >
     <div class="text-center bg-[#1a0033] p-4" >
       <div class="text-center text-4xl md:text-8xl p-2 text-white">Find Your Dream Job Today!</div>
       <div class="text-center text-xl md:text-2xl p-2 text-gray-300">
@@ -9,38 +12,41 @@
           class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
           type="text"
           placeholder="Job title or company"
-          [(ngModel)]="jobTitle"
+          [(ngModel)]="searchTitle"
           aria-label="Job title or company">
     
         <input
           class="block p-4 md:p-6 border text-black rounded-xl w-full md:w-80"
           type="text"
           placeholder="Location"
-          [(ngModel)]="location"
+          [(ngModel)]="searchLocation"
           aria-label="Location">
     
-        <select class="block p-6 border text-black rounded-xl w-80" [(ngModel)]="selected" aria-label="Job category">
+        <select class="block p-6 border text-black rounded-xl w-80"  aria-label="Job category">
           <option class="bg-gray-600 text-gray-600" value="" disabled selected>Select a category</option>
           <option *ngFor="let category of jobCategories" [value]="category">{{ category }}</option>
         </select>
     
-        <button (click)="rechercher(jobTitle, location, selected)"
+        <button 
           class="flex items-center justify-center bg-indigo-600 text-white font-semibold p-4 md:p-6 rounded-xl hover:bg-indigo-800 w-full md:w-80">
           <img src="/assets/rech.png" alt="Search" class="w-8 h-8 mr-2">
           <p class="text-xl">Find Job</p>
         </button>
       </div>
     </div>
-    <section *ngIf="shows" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    <section  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
           
      
     
       <ng-container *ngIf="filteredJobs.length > 0">
         <ul *ngFor="let job of filteredJobs" class="bg-[#150129] p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
           <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
-            <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
-            <span *ngIf="!job.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+            <img *ngIf="job.logo?.url" [src]="job.logo.url" alt="Company Logo" class="w-full h-full object-cover">
+            <span *ngIf="!job.logo?.url" class="text-white flex items-center justify-center h-full">Upload Logo</span>
           </div>
+       
+        
+          
     
           <li class="p-2 mt-24">
             <label class="text-xl p-4">🏢 Company Name</label> {{job.companyName}}
@@ -52,7 +58,7 @@
             <label class="text-xl p-4">📍 Location</label> {{job.location}}
           </li>
           <li class="p-2">
-            <label class="text-xl p-4">⏰ Work Time</label> {{job.workTime}}
+            <label class="text-xl p-4">⏰ Work Time</label> {{job.worktime}}
           </li>
           <li class="p-2">
             <label class="text-xl p-4">🤑 Salary</label> {{job.salary}}
@@ -79,7 +85,180 @@
       </ng-container>
        
     </section>
-    <section *ngIf="serach" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    </div>
+    <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+      <div class="bg-[#1a0033] p-6 w-[50%] max-h-[80%] rounded-lg shadow-lg text-center relative ease-in-out flex flex-col">
+        <button (click)="closeModal()" class="absolute top-4 right-4 text-red text-2xl hover:text-red-500">
+          X
+        </button>
+        <div class="space-y-12 p-8 overflow-y-auto flex-grow">
+          <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
+            <img *ngIf="modalJob.logo" [src]="modalJob.logo" alt="Company Logo" class="w-full w-32 h-32 rounded-full h-full object-cover">
+            <span *ngIf="!modalJob.logo" class="text-white flex items-center justify-center h-full">Upload Logo</span>
+          </div>
+          <h1 class="text-2xl text-white mt-4 p-2">{{ modalJob.companyName }}</h1>
+    
+          <h2 class="text-2xl text-white">
+            <label class="text-2xl pr-2">Job Title:</label>{{ modalJob.jobTitle }}
+          </h2>
+          <div class="flex justify-center space-x-12">
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
+              <strong>📍Location:</strong> {{ modalJob.location }}
+            </p>
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
+              <strong>⏰Work Time:</strong> {{ modalJob.worktime }}
+            </p>
+            <p class="text-white mt-1 text-xl bg-[#5c0259] p-2 h-16 rounded-xl hover:bg-[#450143] w-full md:w-70">
+              <strong>🤑Salary:</strong> {{ modalJob.salary }}
+            </p>
+          </div>
+          <p class="text-white w-full text-xl space-x-2 mt-2">
+            <strong class="text-white mt-1 max-h-12 text-xl pr-16 pl-16 bg-[#5c0259] p-4 rounded-xl hover:bg-[#450143] w-1/2">Description:</strong> 
+          </p>
+          <p class="text-xl">{{ modalJob.description || 'No description available' }}</p>
+        </div>
+        <div class="mt-auto p-8">
+          <button (click)=" applyModalOpen()"  class="bg-indigo-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 w-full flex items-center justify-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-fading-plus">
+              <path d="M12 2a10 10 0 0 1 7.38 16.75"/>
+              <path d="M12 8v8"/>
+              <path d="M16 12H8"/>
+            </svg>
+            <span class="text-white">Apply</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="showModalApply"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center space-x-2 items-center"
+    >
+      <div
+        class="bg-[#150129] p-12 w-1/2 h-4/5 rounded-lg shadow-lg relative flex flex-col"
+      >
+        <button
+          (click)="closeModalApply()"
+          class="absolute top-4 right-4 text-red-500 text-2xl hover:text-red-600"
+        >
+          X
+        </button>
+    
+        <label class="text-2xl font-semibold text-white mb-6">
+          You Will Grow, You Will Succeed. We Promise That
+        </label>
+        <form
+        [formGroup]="modalapply"
+       
+        class="space-y-6 p-16 bg-[#150129] text-white rounded-lg shadow-md max-w-4xl overflow-y-auto flex-grow"
+      >
+        <!-- First Name -->
+        <div class="flex flex-col gap-2">
+          <label for="firstName" class="font-semibold">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            placeholder="Enter your first name"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+      
+        <!-- Last Name -->
+        <div class="flex flex-col gap-2">
+          <label for="lastName" class="font-semibold">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Enter your last name"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="email" class="font-semibold">email</label>
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            placeholder="email"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+        <!-- Phone Number -->
+        <div class="flex flex-col gap-2">
+          <label for="phoneNumber" class="font-semibold">Phone Number</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Enter your phone number"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+      
+        <!-- Description -->
+        <div class="flex flex-col gap-2">
+          <label for="description" class="font-semibold">Description</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            rows="4"
+            placeholder="Describe yourself or your application"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          ></textarea>
+        </div>
+      
+        <!-- LinkedIn -->
+        <div class="flex flex-col gap-2">
+          <label for="linkedin" class="font-semibold">LinkedIn</label>
+          <input
+            type="text"
+            id="linkedin"
+            formControlName="linkedin"
+            placeholder="LinkedIn Profile URL"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      
+        <!-- GitHub -->
+        <div class="flex flex-col gap-2">
+          <label for="github" class="font-semibold">GitHub</label>
+          <input
+            type="text"
+            id="github"
+            formControlName="github"
+            placeholder="GitHub Profile URL"
+            class="w-full p-3 bg-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+      
+        <!-- Resume -->
+        <div class="flex flex-col gap-2">
+          <label for="resumes" class="font-semibold">Resume</label>
+          <input
+          type="file"
+           id="resumes"
+            formControlName="resumes"
+            class="w-full bg-gray-700 text-gray-400 p-3 rounded-lg file:bg-indigo-600 file:text-white file:px-4 file:py-2 file:rounded-lg file:mr-3 hover:file:bg-blue-700"
+            required
+          />
+        </div>
+      
+        <!-- Submit Button -->
+        <button
+          type="submit" (click)="onSubmitApplication()"
+          class="w-full bg-indigo-600 text-white font-semibold px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-300 disabled:bg-gray-500"
+          [disabled]="!modalapply.valid"
+        >
+          Submit
+        </button>
+      </form>
+          <!-- <section *ngIf="serach" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
       <ul *ngFor="let job of jobs" class="bg-[#150129] p-8 rounded-lg hover:bg-gray-700 transition duration-300 relative">
         <div class="w-32 h-32 rounded-full bg-gray-500 absolute p-4 -top-4 left-1/2 transform -translate-x-1/2 overflow-hidden">
           <img *ngIf="job.logo" [src]="job.logo" alt="Company Logo" class="w-full h-full object-cover">
@@ -275,7 +454,7 @@
     
       </form>   
       
-    </div></div></div>
+    </div></div></div> -->
     
     
        <!-- <section class="flex justify-center space-x-12 p-12">

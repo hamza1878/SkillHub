@@ -1,0 +1,29 @@
+<div *ngIf="applications.length > 0; else noApplications" class="overflow-x-auto rounded-lg shadow-lg">
+  <table class="table-auto w-full border-collapse border border-gray-300">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="border border-gray-300 px-4 py-2 text-left">Offre</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Entreprise</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Contact</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let application of applications" class="hover:bg-blue-50">
+        <td class="border border-gray-300 px-4 py-2">{{ application.jobTitle }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ application.company }}</td>
+        <td class="border border-gray-300 px-4 py-2">{{ application.contact }}</td>
+        <td class="border border-gray-300 px-4 py-2" [ngClass]="{
+          'text-green-600 font-bold': application.status === 'Accepté',
+          'text-yellow-500 font-bold': application.status === 'En attente',
+          'text-red-600 font-bold': application.status === 'Refusé'
+        }">
+          {{ application.status }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noApplications>
+  <p class="text-gray-500 text-center mt-8">Aucune candidature trouvée.</p>
+</ng-template>

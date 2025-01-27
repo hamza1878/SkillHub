@@ -23,17 +23,14 @@ export class CompanySettings implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récupère l'ID de l'utilisateur connecté
     this.cvService.id$.subscribe((id) => {
       this.userId = localStorage.getItem("current_user");
       console.log('User ID:', this.userId);
 
-      // Récupère l'ID de l'entreprise associée à l'utilisateur
       this.fetchCompanyId(this.userId);
       this.fetchCompanyd(this.userId)
     });
 
-    // Initialise le formulaire
     this.CompanyInformation = this.fb.group({
       name: ['', Validators.required],
       logo: [''],
@@ -57,7 +54,6 @@ export class CompanySettings implements OnInit {
     });
   }
 
-  // Récupère l'ID de l'entreprise associée à l'utilisateur
   fetchCompanyId(userId: string | null): void {
     if (!userId) {
       console.error('❌ Aucun utilisateur connecté');
@@ -226,7 +222,6 @@ fetchCompanyd(userId: string | null): void {
           this.companyId = companyId;
           console.log('Company ID:', this.companyId);
 
-          // Récupérer les données de l'entreprise
           this.fetchCompanyData(this.companyId);
         } else {
           console.error('❌ Aucune entreprise trouvée pour cet utilisateur');
@@ -238,7 +233,6 @@ fetchCompanyd(userId: string | null): void {
     });
 }
 
-// Récupère les données de l'entreprise et les remplit dans le formulaire
 fetchCompanyData(companyId: string): void {
   this.apollo
     .query({
